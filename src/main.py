@@ -34,7 +34,13 @@ def run():
     # THE EXECUTION OF ALL CODE SHALL BE STARTED FROM WITHIN THIS FUNCTION.
     # ADD YOUR OWN IMPLEMENTATION HEREAFTER.
 
-    print("Hello World!")
+    ### Initial test code ###
+    print("Hallo i-Gruppe!")
+    import ev3dev.ev3 as ev3
+    screen = ev3.Screen()
+    screen.draw.text((0, 0), 'Hallo i-Gruppe!')
+    screen.draw.rectangle((10, 10, 60, 20), fill='black')
+    screen.update()  # Applies all changes to the display
 
 
 # DO NOT EDIT
