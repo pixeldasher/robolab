@@ -47,6 +47,8 @@ def run():
             print("sent ready message")
         if user_input == "easy":
             comm.send_explorationCompleted_message()
+            ev3.Sound.tone([(200, 100, 100), (500, 200)]) # list of (frequency (Hz), duration (ms), delay to next (ms)) tuples
+            ev3.Sound.speak('Beam me up, Scotty!')
         else:
             print("try again.")
 
