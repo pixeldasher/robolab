@@ -28,4 +28,19 @@ def colorcheck(color):
 
 
 def distancecheck(centimeters):
-    print(centimeters)
+    if centimeters < 20:
+        main.m.speed_sp = 0
+        main.m2.speed_sp = 0
+        main.m.command = "run-forever"
+        main.m2.command = "run-forever"
+    else:
+        pass
+
+
+def touchcheck(value):
+    if value == 1:
+        print("PRESSED")
+    else:
+        pass
+
+

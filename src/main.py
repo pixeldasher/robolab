@@ -36,18 +36,24 @@ def run():
     # THE EXECUTION OF ALL CODE SHALL BE STARTED FROM WITHIN THIS FUNCTION.
     # ADD YOUR OWN IMPLEMENTATION HEREAFTER.
 
-    us = ev3.UltrasonicSensor()
-    us.mode = 'US-DIST-CM'
-    cs = ev3.ColorSensor()
-    ev3.Sound.beep()
-    cs.mode = 'COL-COLOR'
-    m = ev3.LargeMotor("outA")
-    m2 = ev3.LargeMotor("outB")
+ts = ev3.TouchSensor()
+ts.value()
+us = ev3.UltrasonicSensor()
+us.mode = 'US-DIST-CM'
+distance = us.value()
+cs = ev3.ColorSensor()
+ev3.Sound.beep()
+cs.mode = 'COL-COLOR'
+m = ev3.LargeMotor("outA")
+m2 = ev3.LargeMotor("outB")
 
-    while True:
-        odometry.colorcheck(cs.value())
-        odometry.distancecheck(us.distance_centimeters)
+while True:
+     odometry.colorcheck(cs.value())
+     odometry.distancecheck(us.distance_centimeters)
+     odometry.touchcheck(ts.value())
+
 
 # DO NOT EDIT
 if __name__ == '__main__':
     run()
+
