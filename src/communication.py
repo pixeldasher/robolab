@@ -67,12 +67,29 @@ class Communication:
         self.client.publish(topic, json.dumps(message))
 
 
+    def send_planetName_message(self, planetName):
+        self.send_message("explorer/025", {"from": "client", "type": "testplanet", "payload": {"planetName": planetName}})
+
+
     def send_ready_message(self):
         self.send_message("explorer/025", {"from": "client", "type": "ready"})
 
 
-    def send_path_message(self, topic, message):
-        pass
+    def send_path_message(self, message):
+        self.send_message("explorer/025", {"from": "client", "type": "path", "payload":{message}})
+
+
+    def send_pathSelect_message(self, message):
+        self.send_message("explorer/025", {"from": "client", "type": "pathSelect", "payload":{message}})
+
+
+    def send_targetReached_message(self):
+        self.send_message("explorer/025", {"from": "client", "type": "explorationCompleted", "payload":{"message": "Target reached!"}})
+
+
+    def send_explorationCompleted_message(self):
+        self.send_message("explorer/025", {"from": "client", "type": "done", "payload":{"message": "Exploration completed!"}})
+
 
     # DO NOT EDIT THE METHOD SIGNATURE OR BODY
     #

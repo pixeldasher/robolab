@@ -5,6 +5,7 @@ import logging
 import os
 import paho.mqtt.client as mqtt
 import uuid
+import ev3dev.ev3 as ev3
 
 from communication import Communication
 from odometry import Odometry
@@ -37,12 +38,17 @@ def run():
     comm = Communication(client, logger)
 
     while True:
-        if input("send message") == "ready":
+        user_input = input("Send message...")
+        if user_input == "ready":
             comm.send_ready_message()
             print("sent ready message")
+        if user_input == "target":
+            comm.send_targetReached_message()
+            print("sent ready message")
+        if user_input == "easy":
+            comm.send_explorationCompleted_message()
         else:
             print("try again.")
-
 
 
 # DO NOT EDIT
