@@ -17,3 +17,22 @@
     "startOrientation": 0
   }
 }
+2020-03-06 16:23:19,995: Send to: explorer/025
+2020-03-06 16:23:19,995: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-06 16:23:20,003: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-06 16:23:20,006: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
