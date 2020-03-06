@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import ev3dev.ev3 as ev3
+
 import logging
 import os
 import paho.mqtt.client as mqtt
@@ -34,13 +34,15 @@ def run():
     # THE EXECUTION OF ALL CODE SHALL BE STARTED FROM WITHIN THIS FUNCTION.
     # ADD YOUR OWN IMPLEMENTATION HEREAFTER.
 
-    ### Initial test code ###
-    print("Hallo i-Gruppe!")
-    import ev3dev.ev3 as ev3
-    screen = ev3.Screen()
-    screen.draw.text((0, 0), 'Hallo i-Gruppe!')
-    screen.draw.rectangle((10, 10, 60, 20), fill='black')
-    screen.update()  # Applies all changes to the display
+    comm = Communication(client, logger)
+
+    while True:
+        if input("send message") == "ready":
+            comm.send_ready_message()
+            print("sent ready message")
+        else:
+            print("try again.")
+
 
 
 # DO NOT EDIT
