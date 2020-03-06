@@ -36,3 +36,186 @@
     "startOrientation": 0
   }
 }
+2020-03-06 16:29:53,073: Send to: explorer/025
+2020-03-06 16:29:53,074: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-06 16:29:53,080: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-06 16:29:53,083: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-06 17:51:10,480: Send to: explorer/025
+2020-03-06 17:51:10,481: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-06 17:51:10,488: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-06 17:51:10,494: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-06 17:51:15,342: Send to: explorer/025
+2020-03-06 17:51:15,343: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-06 17:51:15,349: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-06 17:51:15,354: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-06 17:53:26,642: Send to: explorer/025
+2020-03-06 17:53:26,642: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-06 17:53:26,652: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-06 17:53:26,656: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-06 17:53:29,095: Send to: explorer/025
+2020-03-06 17:53:29,095: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-06 17:53:29,102: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-06 17:53:29,105: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-06 17:54:23,402: Send to: explorer/025
+2020-03-06 17:54:23,403: {
+  "from": "client",
+  "type": "explorationCompleted",
+  "payload": {
+    "message": "Target reached!"
+  }
+}
+2020-03-06 17:54:23,409: {
+  "from": "client",
+  "type": "explorationCompleted",
+  "payload": {
+    "message": "Target reached!"
+  }
+}
+2020-03-06 17:54:23,412: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "Not all paths explored yet",
+    "debug": "{\"from\": \"client\", \"type\": \"explorationCompleted\", \"payload\": {\"message\": \"Target reached!\"}}"
+  }
+}
+2020-03-06 17:54:44,015: Send to: explorer/025
+2020-03-06 17:54:44,015: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-06 17:54:44,020: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-06 17:54:44,022: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-06 17:54:46,266: Send to: explorer/025
+2020-03-06 17:54:46,266: {
+  "from": "client",
+  "type": "done",
+  "payload": {
+    "message": "Exploration completed!"
+  }
+}
+2020-03-06 17:55:01,455: Send to: explorer/025
+2020-03-06 17:55:01,456: {
+  "from": "client",
+  "type": "done",
+  "payload": {
+    "message": "Exploration completed!"
+  }
+}
+2020-03-06 17:55:01,465: {
+  "from": "client",
+  "type": "done",
+  "payload": {
+    "message": "Exploration completed!"
+  }
+}
+2020-03-06 17:55:10,338: Send to: explorer/025
+2020-03-06 17:55:10,338: {
+  "from": "client",
+  "type": "explorationCompleted",
+  "payload": {
+    "message": "Target reached!"
+  }
+}
+2020-03-06 17:55:10,345: {
+  "from": "client",
+  "type": "explorationCompleted",
+  "payload": {
+    "message": "Target reached!"
+  }
+}
+2020-03-06 17:55:10,349: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "Not all paths explored yet",
+    "debug": "{\"from\": \"client\", \"type\": \"explorationCompleted\", \"payload\": {\"message\": \"Target reached!\"}}"
+  }
+}
