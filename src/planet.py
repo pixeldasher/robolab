@@ -30,9 +30,11 @@ class Planet:
     it according to the specifications
     """
 
+
     def __init__(self):
         """ Initializes the data structure """
         self.target = None
+        self.planet_dict = {}
 
     def add_path(self, start: Tuple[Tuple[int, int], Direction], target: Tuple[Tuple[int, int], Direction],
                  weight: int):
@@ -46,9 +48,16 @@ class Planet:
         :param weight: Integer
         :return: void
         """
+        # evtl eher für get_path verwenden? und intern mit anderer Speicherform für Pfade arbeiten?
+        if not start[1] in self.planet_dict:
+            path_dict = {}
+            self.planet_dict[start[1]] = path_dict
+        self.planet_dict[start[1]] [start[2]] = (target[1], target[2], weight)
 
-        # YOUR CODE FOLLOWS (remove pass, please!)
-        pass
+    #def close_path(self, start: Tuple[Tuple[int, int], Direction]):
+        # eigenständig hinzugefügt
+        # wenn eine Flasche auf dem Pfad erscheint und er deshalb nicht mehr passierbar ist...?
+        # unnötig, da dieser Pfad einfach das Gewicht -1 erhält
 
     def get_paths(self) -> Dict[Tuple[int, int], Dict[Direction, Tuple[Tuple[int, int], Direction, Weight]]]:
         """
