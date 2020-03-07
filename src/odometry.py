@@ -11,36 +11,38 @@ class Odometry:
         """
 
         # YOUR CODE FOLLOWS (remove pass, please!)
+    
+    
+path_dict = {}
+
+def follow_line():
+    red = main.cs.color.getRed()
+    blue = main.color.getBlue()
+    green = main.color.getGreen()
 
 
-def colorcheck(color):
-    if color == 5 or color == 2 or color == 0:
-        print("Stop")
-        main.m.speed_sp = 0
-        main.m2.speed_sp = 0
-        main.m.command = "run-forever"
-        main.m2.command = "run-forever"
-    elif color == 1:
-        main.m.speed_sp = 200
-        main.m2.speed_sp = 200
-        main.m.command = "run-forever"
-        main.m2.command = "run-forever"
-
-
-def distancecheck(centimeters):
-    if centimeters < 20:
-        main.m.speed_sp = 0
-        main.m2.speed_sp = 0
-        main.m.command = "run-forever"
-        main.m2.command = "run-forever"
+def touch_check(n):
+    if (n == 1):
+        path_dict.update({"latest_path" : "blocked t"})
+        print(path_dict)
+        main.stop_moving()
+        return False
     else:
-        pass
+        return True
 
 
-def touchcheck(value):
-    if value == 1:
-        print("PRESSED")
+def distance_check(d):
+    if (d < 20):
+        path_dict.update({"latest_path" : "blocked d"})
+        print(path_dict)
+        main.turn_around()
+        return False
     else:
-        pass
+        return True
 
 
+def movement_check(boolean):
+    if boolean:
+        follow_line()
+    else:
+        main.stop_moving()
