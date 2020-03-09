@@ -6,9 +6,11 @@ import os
 import paho.mqtt.client as mqtt
 import uuid
 import ev3dev.ev3 as ev3
+import time
+import database
 
-from communication import Communication
-from odometry import Odometry
+import communication
+import odometry
 from planet import Direction, Planet
 
 client = None  # DO NOT EDIT
@@ -32,25 +34,48 @@ def run():
                         )
     logger = logging.getLogger('RoboLab')
 
+
     # THE EXECUTION OF ALL CODE SHALL BE STARTED FROM WITHIN THIS FUNCTION.
     # ADD YOUR OWN IMPLEMENTATION HEREAFTER.
 
-    comm = Communication(client, logger)
+    # Setup communication variable in order to use it after import
+    global comm
+    comm = communication.Communication(client, logger)
 
+    # Run the system loop for exploration
+    system_loop()
+
+
+### 
+
+"""
+# Define sensors
+ts = ev3.TouchSensor()
+us = ev3.UltrasonicSensor()
+cs = ev3.ColorSensor()
+
+
+# Define sensor modes
+us.mode = 'US-DIST-CM'
+cs.mode = 'RGB-RAW'
+
+# Define motors
+motor_left = ev3.LargeMotor("outA")
+motor_right = ev3.LargeMotor("outB")
+"""
+
+
+# System loop for exploration
+def system_loop():
     while True:
-        user_input = input("Send message...")
-        if user_input == "ready":
-            comm.send_ready_message()
-            print("sent ready message")
-        if user_input == "target":
-            comm.send_targetReached_message()
-            print("sent ready message")
-        if user_input == "easy":
-            comm.send_explorationCompleted_message()
-            ev3.Sound.tone([(200, 100, 100), (500, 200)]) # list of (frequency (Hz), duration (ms), delay to next (ms)) tuples
-            ev3.Sound.speak('Beam me up, Scotty!')
-        else:
-            print("try again.")
+        #odometry.check_phase()
+        #odometry.station_fider()
+
+        # Start communication phase
+        comm.comm_phase_init()
+
+        # Samplingrate for system loop ### 1/10 of a second
+        time.sleep(1/10)
 
 
 # DO NOT EDIT
