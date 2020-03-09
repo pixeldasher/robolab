@@ -3,6 +3,7 @@
 # Attention: Do not import the ev3dev.ev3 module in this file
 import json
 import ssl
+import database
 
 
 class Communication:
@@ -23,13 +24,19 @@ class Communication:
         self.client.tls_set(tls_version=ssl.PROTOCOL_TLS)
         self.client.on_message = self.safe_on_message_handler
         # Add your client setup here
+
+        # Changes current channel (topic) to explorer/025
+        database.current_channel = "explorer/025"
+
+        # Setup for client/server communication
         self.client.username_pw_set('025', password='4NpQpEEVS7')  # Your group credentials
         self.client.connect('mothership.inf.tu-dresden.de', port=8883)
-        self.client.subscribe('explorer/025', qos=1)  # Subscribe to topic explorer/xxx
+        self.client.subscribe('{}'.format(database.current_channel), qos=1)  # Subscribe to topic explorer/025
 
         self.client.loop_start()
 
         self.logger = logger
+
 
     # DO NOT EDIT THE METHOD SIGNATURE
     def on_message(self, client, data, message):
@@ -44,10 +51,11 @@ class Communication:
         self.logger.debug(json.dumps(payload, indent=2))
 
         # YOUR CODE FOLLOWS (remove pass, please!)
-        print('Message received with topic: "{}":'.format(message.topic))
-        data = json.loads(message.payload.decode('utf-8'))
-        print('"' + json.dumps(data, indent=2) + '"')
-        print("\n")
+        if payload["from"] == "server":
+            database.message_type = payload["type"]
+            database.received_message = json.loads(message.payload.decode('utf-8'))
+            self.message_type_scan()
+        
 
     # DO NOT EDIT THE METHOD SIGNATURE
     #
@@ -67,28 +75,50 @@ class Communication:
         self.client.publish(topic, json.dumps(message))
 
 
+    # Define all unique receivable message types for easier usage
+    def message_type_scan(self):
+        print(database.message_type)
+        if database.message_type == "planet":
+            database.planet_name = database.received_message["payload"]["planetName"]
+            database.current_channel = "planet/{}/025".format(database.planet_name)
+            database.first_time_ready = not database.first_time_ready
+
+
+    # Define all unique sendable message types as functions for easier usage
     def send_planetName_message(self, planetName):
-        self.send_message("explorer/025", {"from": "client", "type": "testplanet", "payload": {"planetName": planetName}})
+        self.send_message("{}".format(database.current_channel), {"from": "client", "type": "testplanet", "payload": {"planetName": database.planet_name}})
 
 
     def send_ready_message(self):
-        self.send_message("explorer/025", {"from": "client", "type": "ready"})
+        self.send_message("{}".format(database.current_channel), {"from": "client", "type": "ready"})
 
 
     def send_path_message(self, message):
-        self.send_message("explorer/025", {"from": "client", "type": "path", "payload":{message}})
+        self.send_message("{}".format(database.current_channel), {"from": "client", "type": "path", "payload": "{}"})
 
 
     def send_pathSelect_message(self, message):
-        self.send_message("explorer/025", {"from": "client", "type": "pathSelect", "payload":{message}})
+        self.send_message("{}".format(database.current_channel), {"from": "client", "type": "pathSelect", "payload":{message}})
 
 
     def send_targetReached_message(self):
-        self.send_message("explorer/025", {"from": "client", "type": "explorationCompleted", "payload":{"message": "Target reached!"}})
+        self.send_message("{}".format(database.current_channel), {"from": "client", "type": "explorationCompleted", "payload":{"message": "Target reached!"}})
 
 
     def send_explorationCompleted_message(self):
-        self.send_message("explorer/025", {"from": "client", "type": "done", "payload":{"message": "Exploration completed!"}})
+        self.send_message("{}".format(database.current_channel), {"from": "client", "type": "done", "payload":{"message": "Exploration completed!"}})
+
+    
+    def comm_phase_init(self):
+        if database.first_time_ready:
+            # Send ready message to mothership
+            self.send_ready_message()
+        else:
+            self.comm_phase_send()
+        
+
+    def comm_phase_send(self):
+        print("Hello")
 
 
     # DO NOT EDIT THE METHOD SIGNATURE OR BODY
