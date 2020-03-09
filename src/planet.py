@@ -34,6 +34,7 @@ class Planet:
     def __init__(self):
         """ Initializes the data structure """
         self.target = None
+        self.paths = set()
         self.planet_dict = {}
 
     def add_path(self, start: Tuple[Tuple[int, int], Direction], target: Tuple[Tuple[int, int], Direction],
@@ -48,11 +49,16 @@ class Planet:
         :param weight: Integer
         :return: void
         """
-        # evtl eher für get_path verwenden? und intern mit anderer Speicherform für Pfade arbeiten?
-        if not start[1] in self.planet_dict:
-            path_dict = {}
-            self.planet_dict[start[1]] = path_dict
-        self.planet_dict[start[1]] [start[2]] = (target[1], target[2], weight)
+        self.paths.add((start, target, weight))
+        self.paths.add((target, start, weight))
+
+
+        # vorheriger Programmcode: evtl eher für get_path verwenden? und intern mit anderer Speicherform für Pfade arbeiten?
+        # if not start[1] in self.planet_dict:
+        #    path_dict = {}
+        #    self.planet_dict[start[1]] = path_dict
+        #self.planet_dict[start[1]] [start[2]] = (target[1], target[2], weight)
+
 
     #def close_path(self, start: Tuple[Tuple[int, int], Direction]):
         # eigenständig hinzugefügt
@@ -78,8 +84,13 @@ class Planet:
         :return: Dict
         """
 
-        # YOUR CODE FOLLOWS (remove pass, please!)
-        pass
+        for path_tuple in self.paths:
+            if not path_tuple[1] [1] in self.planet_dict:
+                path_dict = {}
+                self.planet_dict[path_tuple[1] [1]] = path_dict
+            self.planet_dict[path_tuple[1] [1]] [path_tuple[1] [2]] = (path_tuple[2] [1], path_tuple[2] [2], path_tuple[3])
+
+
 
     def shortest_path(self, start: Tuple[int, int], target: Tuple[int, int]) -> Union[None, List[Tuple[Tuple[int, int], Direction]]]:
         """
@@ -93,5 +104,40 @@ class Planet:
         :return: 2-Tuple[List, Direction]
         """
 
-        # YOUR CODE FOLLOWS (remove pass, please!)
-        pass
+        # Initialisierung für Djikstra:
+
+        dist = {} # Dictionary für Distanz aller Knoten zu Startknoten
+        prev = {} # Dictionary für Vorgängerknoten
+        q = []# Liste aller Knoten, für die noch kein kürzester Weg vom Startknoten aus gefunden wurde
+
+        for (x, y) in self.planet_dict:
+            dist[(x, y)] = float("inf")
+            prev[(x, y)] = None
+            q.append(x, y)
+
+        dist[start] = 0
+
+        # Dijkstraalgorithmus:
+
+        if not q==():   # wird nur ausgeführt, wenn es noch Knoten gibt, zu denen kein kürzester Weg berechnet wurde
+
+            # Ermittlung von u (=(xu, yu)) - u ist Knoten mit der kleinsten Distanz zu Startknoten
+            temp = float("inf")
+
+            for i in range (len(q)):
+                if dist[q(i)] <= temp:
+                    u = q(i)
+                    temp = dist[q(i)]
+
+            # Entfernen des Knoten u aus Liste q (Liste aller Knoten, für die noch kein kürzester Weg vom Startknoten aus gefunden wurde)
+            q.remove(u)
+
+            for (x, y) in self.planet_dict.values [u]:
+
+
+
+
+
+
+
+
