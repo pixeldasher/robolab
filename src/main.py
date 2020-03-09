@@ -11,7 +11,7 @@ import database
 
 import communication
 import odometry
-from planet import Direction, Planet
+import planet
 
 client = None  # DO NOT EDIT
 
@@ -37,12 +37,13 @@ def run():
 
     # THE EXECUTION OF ALL CODE SHALL BE STARTED FROM WITHIN THIS FUNCTION.
     # ADD YOUR OWN IMPLEMENTATION HEREAFTER.
-
-    # Setup communication variable in order to use it after import
-    global comm
-    comm = communication.Communication(client, logger)
-
     # Run the system loop for exploration
+
+    global p
+    global c
+    p = planet.Planet()
+    c = communication.Communication(client, logger)
+
     system_loop()
 
 
@@ -68,11 +69,20 @@ motor_right = ev3.LargeMotor("outB")
 # System loop for exploration
 def system_loop():
     while True:
-        #odometry.check_phase()
-        #odometry.station_fider()
+        # Start odometry phase
+        """
+        odometry.check_phase()
+        odometry.station_fider()
+        """
 
         # Start communication phase
-        comm.comm_phase_init()
+        c.comm_phase_init()
+
+        start_dict = ((database.start_x, database.start_y), planet.Direction(database.start_dir))
+        end_dict = ((database.end_x, database.end_y), planet.Direction(database.end_dir))
+        this_path_weight = database.path_weight
+
+        p.add_path(start_dict, end_dict, this_path_weight)
 
         # Samplingrate for system loop ### 1/10 of a second
         time.sleep(1/10)
