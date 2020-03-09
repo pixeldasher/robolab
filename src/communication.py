@@ -51,10 +51,18 @@ class Communication:
         self.logger.debug(json.dumps(payload, indent=2))
 
         # YOUR CODE FOLLOWS (remove pass, please!)
+        
         if payload["from"] == "server":
-            database.message_type = payload["type"]
-            database.received_message = json.loads(message.payload.decode('utf-8'))
+            database.message_type = str(payload["type"])
+            database.received_message = dict(json.loads(message.payload.decode('utf-8')))
             self.message_type_scan()
+        """
+        if payload["from"] == "server":
+            database.message_type = str(payload["type"])
+            database.received_message = dict(json.loads(message.payload.decode('utf-8')))
+            print(json.dumps(payload, indent=2))
+        """
+
         
 
     # DO NOT EDIT THE METHOD SIGNATURE
@@ -79,46 +87,94 @@ class Communication:
     def message_type_scan(self):
         print(database.message_type)
         if database.message_type == "planet":
-            database.planet_name = database.received_message["payload"]["planetName"]
-            database.current_channel = "planet/{}/025".format(database.planet_name)
+            database.planet_name = str(database.received_message["payload"]["planetName"])
+            database.current_channel = str("planet/{}/025".format(database.planet_name))
             database.first_time_ready = not database.first_time_ready
 
+            database.start_x = int(database.received_message["payload"]["startX"])
+            database.start_y = int(database.received_message["payload"]["startY"])
+            database.start_dir = int(database.received_message["payload"]["startOrientation"])
+        
+        elif database.message_type == "path":
+            database.start_x = int(database.received_message["payload"]["startX"])
+            database.start_y = int(database.received_message["payload"]["startY"])
+            database.start_dir = int(database.received_message["payload"]["startDirection"])
+
+            database.end_x = int(database.received_message["payload"]["endX"])
+            database.end_y = int(database.received_message["payload"]["endY"])
+            database.end_dir = int(database.received_message["payload"]["endDirection"])
+
+            database.path_status = str(database.received_message["payload"]["pathStatus"])
+            database.path_weight = str(database.received_message["payload"]["pathWeight"])
+        
+        elif database.message_type == "pathSelect":
+            database.start_dir = int(database.received_message["payload"]["startDirection"])
+        
+        elif database.message_type == "pathUnveiled":
+            database.start_x = int(database.received_message["payload"]["startX"])
+            database.start_y = int(database.received_message["payload"]["startY"])
+            database.start_dir = int(database.received_message["payload"]["startDirection"])
+
+            database.end_x = int(database.received_message["payload"]["endX"])
+            database.end_y = int(database.received_message["payload"]["endY"])
+            database.end_dir = int(database.received_message["payload"]["endDirection"])
+
+            database.path_status = str(database.received_message["payload"]["pathStatus"])
+            database.path_weight = int(database.received_message["payload"]["pathWeight"])
+        
+        elif database.message_type == "target":
+            database.target_x = int(database.received_message["payload"]["targetX"])
+            database.target_y = int(database.received_message["payload"]["targetY"])
+        
+        elif database.message_type == "done":
+            database.done_message = str(database.received_message["payload"]["message"])
+            
 
     # Define all unique sendable message types as functions for easier usage
-    def send_planetName_message(self, planetName):
+    def send_test_planet(self, planet_name):
         self.send_message("{}".format(database.current_channel), {"from": "client", "type": "testplanet", "payload": {"planetName": database.planet_name}})
 
 
-    def send_ready_message(self):
+    def send_ready(self):
         self.send_message("{}".format(database.current_channel), {"from": "client", "type": "ready"})
 
 
-    def send_path_message(self, message):
+    def send_path(self, startX, startY, startDirection, endX, endY, pathStatus):
         self.send_message("{}".format(database.current_channel), {"from": "client", "type": "path", "payload": "{}"})
 
 
-    def send_pathSelect_message(self, message):
+    def send_path_select(self, message):
         self.send_message("{}".format(database.current_channel), {"from": "client", "type": "pathSelect", "payload":{message}})
 
 
-    def send_targetReached_message(self):
+    def send_target_reached(self):
         self.send_message("{}".format(database.current_channel), {"from": "client", "type": "explorationCompleted", "payload":{"message": "Target reached!"}})
 
 
-    def send_explorationCompleted_message(self):
+    def send_exploration_completed(self):
         self.send_message("{}".format(database.current_channel), {"from": "client", "type": "done", "payload":{"message": "Exploration completed!"}})
 
     
     def comm_phase_init(self):
         if database.first_time_ready:
-            # Send ready message to mothership
-            self.send_ready_message()
+            # Only performs the ready message action once
+            self.send_ready()
+            database.first_time_ready = not database.first_time_ready
+
         else:
+            #Continue to sending phase
             self.comm_phase_send()
         
 
     def comm_phase_send(self):
         print("Hello")
+
+        # Continue to receiving phase
+        self.comm_phase_receive()
+
+
+    def comm_phase_receive(self):
+        pass
 
 
     # DO NOT EDIT THE METHOD SIGNATURE OR BODY
