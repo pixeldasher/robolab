@@ -52,19 +52,6 @@ class Planet:
         self.paths.add((start, target, weight))
         self.paths.add((target, start, weight))
 
-
-        # vorheriger Programmcode: evtl eher für get_path verwenden? und intern mit anderer Speicherform für Pfade arbeiten?
-        # if not start[1] in self.planet_dict:
-        #    path_dict = {}
-        #    self.planet_dict[start[1]] = path_dict
-        #self.planet_dict[start[1]] [start[2]] = (target[1], target[2], weight)
-
-
-    #def close_path(self, start: Tuple[Tuple[int, int], Direction]):
-        # eigenständig hinzugefügt
-        # wenn eine Flasche auf dem Pfad erscheint und er deshalb nicht mehr passierbar ist...?
-        # unnötig, da dieser Pfad einfach das Gewicht -1 erhält
-
     def get_paths(self) -> Dict[Tuple[int, int], Dict[Direction, Tuple[Tuple[int, int], Direction, Weight]]]:
         """
         Returns all paths
@@ -163,6 +150,7 @@ class Planet:
 
             u = temp_min
 
+            # Zielknoten expandiert - einzelne Wegknoten des kürzesten Wegs werden in shortest_p zusammengefasst und auf output vorbereitet (Directions hinzufügen)
             if u == target:
                 temp = u
                 shortest_p = []
