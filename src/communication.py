@@ -50,12 +50,18 @@ class Communication:
         # YOUR CODE FOLLOWS (remove pass, please!)
 
         print("\n-----\n")
+
+        # Add the message's content to the database
         database.message_type = str(payload["type"])
         database.received_message = dict(json.loads(message.payload.decode('utf-8')))
+
+        # Function for differentiating all possible messages
         self.message_type_scan()
 
+        # Prints the message
         print(json.dumps(json.loads(message.payload.decode('utf-8')), indent=2))
 
+        # Checks whether or not an answer has been received
         if (database.received_message["from"] == "server") or (database.received_message["from"] == "debug"):
             database.answered = True
       
@@ -78,12 +84,16 @@ class Communication:
         # YOUR CODE FOLLOWS (remove pass, please!)
         self.client.publish(topic, json.dumps(message))
 
+        # Write down time value in order to compare it later
         database.time_offset = int(time())
+
         while True:
+            # If last message has received an answer, continue...
             if database.answered:
                 database.answered = False
                 break
 
+            # If the time offset between the last sent/received message is longer than 3 seconds, stop the communication phase
             elif (int(time()) - database.time_offset) >= 3:
                 # Stop communication after 3 seconds of no answer
                 break
@@ -93,58 +103,58 @@ class Communication:
             
 
 
-    # Define all unique receivable message types for easier usage
+    # Define all unique receivable message types for easier usage; Takes all data from message and adds them to database
     def message_type_scan(self):
         if database.message_type == "planet":
-            database.planet_name = database.received_message["payload"]["planetName"]
+            database.planet_name = str(database.received_message["payload"]["planetName"])
 
-            database.start_x = database.received_message["payload"]["startX"]
-            database.start_y = database.received_message["payload"]["startY"]
-            database.start_dir = database.received_message["payload"]["startOrientation"]
+            database.start_x = int(database.received_message["payload"]["startX"])
+            database.start_y = int(database.received_message["payload"]["startY"])
+            database.start_dir = int(database.received_message["payload"]["startOrientation"])
 
             self.client.subscribe("planet/{}/025".format(database.planet_name), qos=1)  # Subscribe to topic planet
 
         
         elif database.message_type == "path":
-            database.start_x = database.received_message["payload"]["startX"]
-            database.start_y = database.received_message["payload"]["startY"]
-            database.start_dir = database.received_message["payload"]["startDirection"]
+            database.start_x = int(database.received_message["payload"]["startX"])
+            database.start_y = int(database.received_message["payload"]["startY"])
+            database.start_dir = int(database.received_message["payload"]["startDirection"])
 
-            database.end_x = database.received_message["payload"]["endX"]
-            database.end_y = database.received_message["payload"]["endY"]
-            database.end_dir = database.received_message["payload"]["endDirection"]
+            database.end_x = int(database.received_message["payload"]["endX"])
+            database.end_y = int(database.received_message["payload"]["endY"])
+            database.end_dir = int(database.received_message["payload"]["endDirection"])
 
-            database.path_status = database.received_message["payload"]["pathStatus"]
-            database.path_weight = database.received_message["payload"]["pathWeight"]
+            database.path_status = str(database.received_message["payload"]["pathStatus"])
+            database.path_weight = int(database.received_message["payload"]["pathWeight"])
         
         elif database.message_type == "pathSelect":
-            database.start_dir = database.received_message["payload"]["startDirection"]
+            database.start_dir = int(database.received_message["payload"]["startDirection"])
         
         elif database.message_type == "pathUnveiled":
-            database.start_x = database.received_message["payload"]["startX"]
-            database.start_y = database.received_message["payload"]["startY"]
-            database.start_dir = database.received_message["payload"]["startDirection"]
+            database.start_x = int(database.received_message["payload"]["startX"])
+            database.start_y = int(database.received_message["payload"]["startY"])
+            database.start_dir = int(database.received_message["payload"]["startDirection"])
 
-            database.end_x = database.received_message["payload"]["endX"]
-            database.end_y = database.received_message["payload"]["endY"]
-            database.end_dir = database.received_message["payload"]["endDirection"]
+            database.end_x = int(database.received_message["payload"]["endX"])
+            database.end_y = int(database.received_message["payload"]["endY"])
+            database.end_dir = int(database.received_message["payload"]["endDirection"])
 
-            database.path_status = database.received_message["payload"]["pathStatus"]
-            database.path_weight = database.received_message["payload"]["pathWeight"]
+            database.path_status = str(database.received_message["payload"]["pathStatus"])
+            database.path_weight = int(database.received_message["payload"]["pathWeight"])
         
         elif database.message_type == "target":
-            database.target_x = database.received_message["payload"]["targetX"]
-            database.target_y = database.received_message["payload"]["targetY"]
+            database.target_x = int(database.received_message["payload"]["targetX"])
+            database.target_y = int(database.received_message["payload"]["targetY"])
         
         elif database.message_type == "done":
-            database.done_message = database.received_message["payload"]["message"]
+            database.done_message = str(database.received_message["payload"]["message"])
 
         elif database.message_type == "notice":
-            database.testplanet_message = database.received_message["payload"]["message"]
+            database.testplanet_message = str(database.received_message["payload"]["message"])
 
             
 
-    # Define all unique sendable message types as functions for easier usage
+    # Define all unique sendable message types as functions for easier usage; Takes all data from database and adds them to message
     def send_ready(self):
         if database.first_time_ready:
             # Only performs the ready message action once
@@ -174,6 +184,7 @@ class Communication:
         self.send_message("explorer/025", {"from": "client", "type": "explorationCompleted", "payload":{"message": "Exploration completed!"}})
 
 
+    # Initiated in main; starts all functions once
     def communication_phase(self):
         self.send_ready()
         
