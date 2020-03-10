@@ -6,11 +6,11 @@ import paho.mqtt.client as mqtt
 import uuid
 import ev3dev.ev3 as ev3
 import time
-
 import odometry
 from communication import Communication
 #from odometry import Odometry
 from planet import Direction, Planet
+import database
 
 client = None  # DO NOT EDIT
 
@@ -36,14 +36,46 @@ def run():
 
     # THE EXECUTION OF ALL CODE SHALL BE STARTED FROM WITHIN THIS FUNCTION.
     # ADD YOUR OWN IMPLEMENTATION HEREAFTER.
+    # Run the system loop for exploration
 
+    # Setup objects for classes inside modules
+    global p
+    global c
+    p = Planet()
+    c = Communication(client, logger)
+
+    # Run system loop for exploration
     system_loop()
 
-    """
-    comm = Communication(client, logger)
-    comm.send_ready_message()
-    """
-    
+"""
+# Define sensor variables
+us = ev3.UltrasonicSensor()
+cs = ev3.ColorSensor()
+
+# Set sensor modes
+us.mode = 'US-DIST-CM'
+cs.mode = 'RGB-RAW'
+
+# Assign motors to corresponding port on device
+motor_left = ev3.LargeMotor("outA")
+motor_right = ev3.LargeMotor("outB")
+
+# Default moving speed value
+database.motor_speed = 250
+
+
+# Function to push all the sensor data into the database
+def push_sensor_data():
+    database.color_sensor_red_raw = cs.bin_data("hhh")[0]
+    database.color_sensor_green_raw = cs.bin_data("hhh")[1]
+    database.color_sensor_blue_raw = cs.bin_data("hhh")[2]
+
+    database.color_sensor_red_rgb = cs.bin_data("hhh")[0] / 185
+    database.color_sensor_green_rgb = cs.bin_data("hhh")[1] / 321
+    database.color_sensor_blue_rgb = cs.bin_data("hhh")[2] / 157
+
+    database.ultra_sonic_sensor = us.distance_centimeters
+"""  
 
 # Define sensors
 us = ev3.UltrasonicSensor()
@@ -64,6 +96,7 @@ motor_right = ev3.LargeMotor("outB")
 def system_loop():
     odometry.start_driving()
     while True:
+        c.communication_phase()
 
         """
         odometry.colorscan()
@@ -79,6 +112,9 @@ def system_loop():
             odometry.start_driving()
         else:
             pass
+
+        # Samplingrate for system loop ### 1/10 of a second
+        time.sleep(1/10)
 
 
 # DO NOT EDIT
