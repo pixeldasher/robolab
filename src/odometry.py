@@ -105,6 +105,9 @@ def move_smooth():
     print("green:", current_value_green)
     print("blue:", current_value_blue)
     """
+    if main.us.distance_centimeters < 25:
+        main.motor_right.speed_sp = main.motor_right.speed_sp * (-1)
+        sleep(3)
 
     if 65 < current_value_red < 100 and 20 < current_value_green < 40 and 5 < current_value_blue < 35:
         main.motor_left.command = "stop"
@@ -117,6 +120,7 @@ def move_smooth():
         main.motor_right.command = "stop"
         sleep(3)
         return True
+
     else:
         main.motor_left.command = "run-forever"
         main.motor_right.command = "run-forever"
@@ -162,4 +166,5 @@ def stop_driving():
         y = deltay + y
 
     return x, y, gamma
+
 
