@@ -38,6 +38,7 @@ def run():
     # ADD YOUR OWN IMPLEMENTATION HEREAFTER.
 
     system_loop()
+
     """
     comm = Communication(client, logger)
     comm.send_ready_message()
@@ -45,7 +46,6 @@ def run():
     
 
 # Define sensors
-ts = ev3.TouchSensor()
 us = ev3.UltrasonicSensor()
 cs = ev3.ColorSensor()
 
@@ -62,20 +62,23 @@ motor_right = ev3.LargeMotor("outB")
 
 # System loop for running through all phases
 def system_loop():
-    wheel_left = []
-    wheel_right = []
-
+    odometry.start_driving()
     while True:
-        odometry.check_phase()
-        motor_left_value = (motor_left.position / 360)
-        motor_right_value = (motor_right.position / 360)
-        wheel_left.append(format(motor_left_value, ".2f"))
-        wheel_right.append(format(motor_right_value, ".2f"))
-        #print(wheel_left)
-        #print(wheel_right)
-        time.sleep(0.05)
 
-
+        """
+        odometry.colorscan()
+        """
+        odometry.while_driving()
+        if odometry.move_smooth():
+            print("hallo")
+            print(odometry.stop_driving())
+            time.sleep(1)
+            motor_left.run_to_rel_pos(position_sp=270)
+            motor_right.run_to_rel_pos(position_sp=270)
+            time.sleep(3)
+            odometry.start_driving()
+        else:
+            pass
 
 
 # DO NOT EDIT
