@@ -13490,3 +13490,109 @@
     "startDirection": 0
   }
 }
+2020-03-10 18:04:47,061: Send to: explorer/025
+2020-03-10 18:04:47,061: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 18:04:47,103: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 18:04:47,150: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 18:04:47,181: Send to: explorer/025
+2020-03-10 18:04:47,181: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": "Galar"
+  }
+}
+2020-03-10 18:04:47,257: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": "Galar"
+  }
+}
+2020-03-10 18:04:47,308: {
+  "from": "debug",
+  "type": "notice",
+  "payload": {
+    "message": "active planet: Galar"
+  }
+}
+2020-03-10 18:04:47,324: Send to: explorer/025
+2020-03-10 18:04:47,324: {
+  "from": "client",
+  "type": "explorationCompleted",
+  "payload": {
+    "message": "Exploration completed!"
+  }
+}
+2020-03-10 18:04:47,384: {
+  "from": "client",
+  "type": "explorationCompleted",
+  "payload": {
+    "message": "Exploration completed!"
+  }
+}
+2020-03-10 18:04:47,436: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "Not all paths explored yet",
+    "debug": "{\"from\": \"client\", \"type\": \"explorationCompleted\", \"payload\": {\"message\": \"Exploration completed!\"}}"
+  }
+}
+2020-03-10 18:04:47,452: Send to: explorer/025
+2020-03-10 18:04:47,452: {
+  "from": "client",
+  "type": "targetReached",
+  "payload": {
+    "message": "Target reached!"
+  }
+}
+2020-03-10 18:04:47,561: {
+  "from": "client",
+  "type": "targetReached",
+  "payload": {
+    "message": "Target reached!"
+  }
+}
+2020-03-10 18:04:47,620: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "target not set yet",
+    "debug": "{\"from\": \"client\", \"type\": \"targetReached\", \"payload\": {\"message\": \"Target reached!\"}}"
+  }
+}
+2020-03-10 18:04:47,646: Send to: planet/Galar/025
+2020-03-10 18:04:47,646: {
+  "from": "client",
+  "type": "pathSelect",
+  "payload": {
+    "startX": 1,
+    "startY": 1,
+    "startDirection": 0
+  }
+}
+2020-03-10 18:04:47,707: {
+  "from": "client",
+  "type": "pathSelect",
+  "payload": {
+    "startX": 1,
+    "startY": 1,
+    "startDirection": 0
+  }
+}
