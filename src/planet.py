@@ -105,59 +105,89 @@ class Planet:
         :return: 2-Tuple[List, Direction]
         """
 
-        # Initialisierung für Djikstra:
+        # wenn Ziel- und Startknoten derselbe sind, wird ein "leerer Weg" zurückgegeben
+        if target == start:
+            print("shortest path from: ", start, " to: ", target, "? ... well... just stay right here.")
+            return[]
 
-        dist = {} # Dictionary für Distanz aller Knoten zu Startknoten
-        prev = {} # Dictionary für Vorgängerknoten
-        q = []# Liste aller Knoten, für die noch kein kürzester Weg vom Startknoten aus gefunden wurde
+        # Initialisierung für Djikstra:
+        dist = {}   # Dictionary für Distanz aller Knoten zu Startknoten
+        prev = {}   # Dictionary für Vorgängerknoten
+        q = []      # Liste aller Knoten, für die noch kein kürzester Weg vom Startknoten aus gefunden wurde
+        output = []
+
+        self.get_paths()
 
         for v in self.planet_dict:
             dist[v] = float("inf")
             prev[v] = None
             q.append(v)
 
+        # falls das Ziel nicht in der Liste aller Knoten enthalten ist, dh. es wurde noch kein Pfad erkundet, der dort hinführt
+        #if target not in q:
+        #    return None
+
+
         dist[start] = 0
+        u = start
 
         # Dijkstraalgorithmus:
 
         while q:   # solange es noch Knoten gibt, zu denen kein kürzester Weg berechnet wurde
-
-            # Ermittlung von u (=(xu, yu)) - u ist Knoten mit der kleinsten Distanz zu Startknoten
-
-            temp = float("inf")
-            u = (None, None)
-            for i in range (len(q)):
-                if dist[q[i]] <= temp:
-                    u = q[i]
-                    temp = dist[q[i]]
-
-            # Entfernen des Knoten u aus Liste q (Liste aller Knoten, für die noch kein kürzester Weg vom Startknoten aus gefunden wurde)
             q.remove(u)
 
-            # falls u der Zielknoten ist:
-            if u == target:
-                short_p = [target]
-                while prev[u]:
-                    u = prev[u]
-                    short_p.insert(0, u)
-                return short_p
 
-            # Vergleich der alten Distanzwerte aller bis jetzt nicht ausgewerteten Nachbarn v von u mit den neuen Distanzwerten durch Berücksichtigung den jeweiligen Kanten zwischen u und v
-            for path_tuple in self.paths:
-                if u == path_tuple[0] [0]:
+            # alle relevanten Nachbaren v von u finden:
+            for path_tuple in self.paths:   # alle Pfade (alle path_tuples, die im paths-set enthalten sind)
+                if path_tuple[0][0] == u:   # nur die Pfade, dessen Startknoten u entspricht
 
-                    for v in path_tuple[1] [0]:
-                        if v in q:
+                    v = path_tuple[1][0]
+                    if v in q:              # falls diese Nachbarn noch zu scannen sind (also noch Element der Liste q sind)
 
-                            altern = dist[u] + path_tuple[2] # Alternativweg: neuer Distanzwert durch Berücksichtigung der jeweiligen Kante zwischen u und v (path_tuple[2])
+
+            # Berechnung und Vergleich des Alternativwegs: neuer Distanzwert durch Berücksichtigung der jeweiligen Kante zwischen u und v (path_tuple[2])
+                            altern = dist[u] + path_tuple[2]
+
                             if altern < dist[v]: # falls Alterativweg kürzer ist, als bisheriger, wird Vorgänger von v auf u gesetzt und die Distanz zu v auf altern gesetzt
                                 dist[v] = altern
                                 prev[v] = u
 
-            # nun sind alle kürzesten Wege berechnet und könnten mit "return prev[]" ausgegeben werden, falls nicht bereits der kürzeste Weg zu target ausgegeben wurde
-            # da target scheinbar nicht mit start verbunden werden konnte, wird None returnt:
+            # Nachbar von u mit dem kleinsten Abstand zu u finden und als neues u setzen:
+            temp_min_dist = float("inf")
+            temp_min = None
+            for v in self.planet_dict:
+                if v in q:
+                    if dist[v] < temp_min_dist:
+                        temp_min_dist = dist[v]
+                        temp_min = v
 
+            u = temp_min
+
+            if u == target:
+                temp = u
+                shortest_p = []
+                while prev[temp]:
+                    shortest_p.append(temp)
+                    temp = prev[temp]
+                shortest_p.append(start)
+
+                shortest_p.reverse()
+
+
+                for i in range(len(shortest_p)):
+                    for path_tuple in self.paths:
+                        if path_tuple[0][0] == shortest_p[i]:
+                            if i+1 <len(shortest_p):
+                                if path_tuple[1][0] == shortest_p[i+1]:
+                                    output.append((shortest_p[i], path_tuple[0][1]))
+
+                print("shortest path from: ", start, " to: ", target, "is:", output)
+                return output
+
+        # falls nach dem Erstellen des Baumes aller kürzesten Pfade im Planet kein Weg vom Start zum Ziel gefunden wurde:
+        print("shortest path from: ", start, " to: ", target, "doesn't exist!")
         return None
+
 
 if __name__ == "__main__":
     p = Planet()
@@ -173,4 +203,4 @@ if __name__ == "__main__":
     p.add_path(((4, 0), Direction.NORTH), ((3, 4), Direction.EAST), 4)
     import pprint
     pprint.pprint(p.get_paths())
-    print("shortest path", p.shortest_path((0, 0), (3, 4)))
+    p.shortest_path((0, 0), (10, 10))
