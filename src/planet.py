@@ -85,11 +85,12 @@ class Planet:
         """
 
         for path_tuple in self.paths:
-            if not path_tuple[1] [1] in self.planet_dict:
+            if not path_tuple[0] [0] in self.planet_dict:
                 path_dict = {}
-                self.planet_dict[path_tuple[1] [1]] = path_dict
-            self.planet_dict[path_tuple[1] [1]] [path_tuple[1] [2]] = (path_tuple[2] [1], path_tuple[2] [2], path_tuple[3])
+                self.planet_dict[path_tuple[0] [0]] = path_dict
+            self.planet_dict[path_tuple[0] [0]] [path_tuple[0] [1]] = (path_tuple[1] [0], path_tuple[1] [1], path_tuple[2])
 
+        return self.planet_dict
 
 
     def shortest_path(self, start: Tuple[int, int], target: Tuple[int, int]) -> Union[None, List[Tuple[Tuple[int, int], Direction]]]:
@@ -110,34 +111,66 @@ class Planet:
         prev = {} # Dictionary für Vorgängerknoten
         q = []# Liste aller Knoten, für die noch kein kürzester Weg vom Startknoten aus gefunden wurde
 
-        for (x, y) in self.planet_dict:
-            dist[(x, y)] = float("inf")
-            prev[(x, y)] = None
-            q.append(x, y)
+        for v in self.planet_dict:
+            dist[v] = float("inf")
+            prev[v] = None
+            q.append(v)
 
         dist[start] = 0
 
         # Dijkstraalgorithmus:
 
-        if not q==():   # wird nur ausgeführt, wenn es noch Knoten gibt, zu denen kein kürzester Weg berechnet wurde
+        while q:   # solange es noch Knoten gibt, zu denen kein kürzester Weg berechnet wurde
 
             # Ermittlung von u (=(xu, yu)) - u ist Knoten mit der kleinsten Distanz zu Startknoten
-            temp = float("inf")
 
+            temp = float("inf")
+            u = (None, None)
             for i in range (len(q)):
-                if dist[q(i)] <= temp:
-                    u = q(i)
-                    temp = dist[q(i)]
+                if dist[q[i]] <= temp:
+                    u = q[i]
+                    temp = dist[q[i]]
 
             # Entfernen des Knoten u aus Liste q (Liste aller Knoten, für die noch kein kürzester Weg vom Startknoten aus gefunden wurde)
             q.remove(u)
 
-            for (x, y) in self.planet_dict.values [u]:
+            # falls u der Zielknoten ist:
+            if u == target:
+                short_p = [target]
+                while prev[u]:
+                    u = prev[u]
+                    short_p.insert(0, u)
+                return short_p
 
+            # Vergleich der alten Distanzwerte aller bis jetzt nicht ausgewerteten Nachbarn v von u mit den neuen Distanzwerten durch Berücksichtigung den jeweiligen Kanten zwischen u und v
+            for path_tuple in self.paths:
+                if u == path_tuple[0] [0]:
 
+                    for v in path_tuple[1] [0]:
+                        if v in q:
 
+                            altern = dist[u] + path_tuple[2] # Alternativweg: neuer Distanzwert durch Berücksichtigung der jeweiligen Kante zwischen u und v (path_tuple[2])
+                            if altern < dist[v]: # falls Alterativweg kürzer ist, als bisheriger, wird Vorgänger von v auf u gesetzt und die Distanz zu v auf altern gesetzt
+                                dist[v] = altern
+                                prev[v] = u
 
+            # nun sind alle kürzesten Wege berechnet und könnten mit "return prev[]" ausgegeben werden, falls nicht bereits der kürzeste Weg zu target ausgegeben wurde
+            # da target scheinbar nicht mit start verbunden werden konnte, wird None returnt:
 
+        return None
 
-
-
+if __name__ == "__main__":
+    p = Planet()
+    p.add_path(((0, 0), Direction.NORTH), ((0, 2), Direction.SOUTH), 2)
+    p.add_path(((0, 2), Direction.EAST), ((1, 2), Direction.WEST), 1)
+    p.add_path(((1, 2), Direction.EAST), ((1, 4), Direction.EAST), 3)
+    p.add_path(((1, 4), Direction.NORTH), ((3, 4), Direction.WEST), 3)
+    p.add_path(((2, 2), Direction.EAST), ((3, 4), Direction.SOUTH), 3)
+    p.add_path(((2, 2), Direction.SOUTH), ((2, 1), Direction.NORTH), 1)
+    p.add_path(((2, 1), Direction.EAST), ((3, 1), Direction.WEST), 1)
+    p.add_path(((1, 2), Direction.SOUTH), ((2, 1), Direction.WEST), 3)
+    p.add_path(((0, 0), Direction.EAST), ((4, 0), Direction.WEST), 4)
+    p.add_path(((4, 0), Direction.NORTH), ((3, 4), Direction.EAST), 4)
+    import pprint
+    pprint.pprint(p.get_paths())
+    print("shortest path", p.shortest_path((0, 0), (3, 4)))
