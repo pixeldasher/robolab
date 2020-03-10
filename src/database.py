@@ -14,6 +14,12 @@ first_time_ready = True
 # Type of the latest received message
 message_type = None
 
+# Text
+answered = False
+
+#
+time_offset = None
+
 # Variables for data extracted from mothership messages 
 start_x = None
 start_y = None
@@ -28,7 +34,6 @@ target_y = None
 done_message = None
 testplanet_message = None
 #######
-exploration_completed = False
 targed_reached = False
 target_unreachable = False
 
