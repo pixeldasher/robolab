@@ -14,10 +14,10 @@ first_time_ready = True
 # Type of the latest received message
 message_type = None
 
-# Text
+# Boolean for whether or not the last message received an answer
 answered = False
 
-#
+# Saves a specific point in time, then compares it with the current time
 time_offset = None
 
 # Variables for data extracted from mothership messages 
