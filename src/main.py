@@ -49,7 +49,7 @@ def run():
     # Run system loop for exploration
     system_loop()
 
-
+"""
 # Define sensor variables
 us = ev3.UltrasonicSensor()
 cs = ev3.ColorSensor()
@@ -77,20 +77,16 @@ def push_sensor_data():
     database.color_sensor_blue_rgb = cs.bin_data("hhh")[2] / 157
 
     database.ultra_sonic_sensor = us.distance_centimeters
-
+"""
 
 # System loop for exploration
 def system_loop():
     while True:
         # Add sensor data to database
-        push_sensor_data()
+        #push_sensor_data()
 
         # Send ready message to mothership, only works once
-        c.send_ready()
-
-        c.send_exploration_completed()
-
-        c.send_target_reached()
+        c.communication_phase()
 
         """
         # Planet test code
@@ -106,6 +102,8 @@ def system_loop():
 
         # Samplingrate for system loop ### 1/10 of a second
         time.sleep(1/10)
+        print("Hello")
+        break
 
 
 # DO NOT EDIT
