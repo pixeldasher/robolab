@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
 
-import ev3dev.ev3 as ev3
 import logging
 import os
 import paho.mqtt.client as mqtt
 import uuid
+import ev3dev.ev3 as ev3
+import time
 
+import odometry
 from communication import Communication
-from odometry import Odometry
+#from odometry import Odometry
 from planet import Direction, Planet
 
 client = None  # DO NOT EDIT
@@ -31,10 +33,52 @@ def run():
                         )
     logger = logging.getLogger('RoboLab')
 
+
     # THE EXECUTION OF ALL CODE SHALL BE STARTED FROM WITHIN THIS FUNCTION.
     # ADD YOUR OWN IMPLEMENTATION HEREAFTER.
 
-    print("Hello World!")
+    system_loop()
+
+    """
+    comm = Communication(client, logger)
+    comm.send_ready_message()
+    """
+    
+
+# Define sensors
+us = ev3.UltrasonicSensor()
+cs = ev3.ColorSensor()
+
+
+# Define sensor modes
+us.mode = 'US-DIST-CM'
+cs.mode = 'RGB-RAW'
+
+
+# Define motors
+motor_left = ev3.LargeMotor("outA")
+motor_right = ev3.LargeMotor("outB")
+
+
+# System loop for running through all phases
+def system_loop():
+    odometry.start_driving()
+    while True:
+
+        """
+        odometry.colorscan()
+        """
+        odometry.while_driving()
+        if odometry.move_smooth():
+            print("hallo")
+            print(odometry.stop_driving())
+            time.sleep(1)
+            motor_left.run_to_rel_pos(position_sp=270)
+            motor_right.run_to_rel_pos(position_sp=270)
+            time.sleep(3)
+            odometry.start_driving()
+        else:
+            pass
 
 
 # DO NOT EDIT
