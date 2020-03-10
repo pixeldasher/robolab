@@ -1,13 +1,12 @@
-### Variable database ###
+###############################
+### Communication variables ###
+###############################
 
 # After the ready message's been sent, planet name is received
 planet_name = None
 
 # Temporarily saves the received message for further processing
 received_message = None
-
-# Defines the channel the brick is subscribed to and sending to
-current_channel = None
 
 # One time check at first station, should return as False afterwards
 first_time_ready = True
@@ -27,3 +26,33 @@ path_weight = None
 target_x = None
 target_y = None
 done_message = None
+testplanet_message = None
+#######
+exploration_completed = False
+targed_reached = False
+target_unreachable = False
+
+"""
+###
+"""
+
+### Odometry variables ###
+
+# Color sensor values
+color_sensor_red_raw = None
+color_sensor_green_raw = None
+color_sensor_blue_raw = None
+
+color_sensor_red_rgb = None
+color_sensor_green_rgb = None
+color_sensor_blue_rgb = None
+
+# Ultra sonic sensor value
+ultra_sonic_sensor = None
+
+# Current speed value
+motor_left_speed = None
+motor_right_speed = None
+
+# Motor commands
+motor_command = None

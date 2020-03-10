@@ -2179,3 +2179,4295 @@
     "debug": "{\"from\": \"client\", \"type\": \"ready\"}"
   }
 }
+2020-03-09 16:41:27,107: Send to: explorer/025
+2020-03-09 16:41:27,108: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-09 16:41:27,118: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-09 16:41:27,120: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-09 16:41:35,637: Send to: explorer/025
+2020-03-09 16:41:35,637: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-09 16:41:35,645: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-09 16:41:35,651: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-09 16:41:50,634: Send to: explorer/025
+2020-03-09 16:41:50,634: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-09 16:41:50,657: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-09 16:41:50,662: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-09 16:41:50,735: Send to: planet/Galar/025
+2020-03-09 16:41:50,735: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-09 16:41:50,749: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "Payload is missing",
+    "debug": "{\"from\": \"client\", \"type\": \"ready\"}"
+  }
+}
+2020-03-10 09:29:49,928: Send to: explorer/025
+2020-03-10 09:29:49,931: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 09:29:49,936: Send to: explorer/025
+2020-03-10 09:29:49,936: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": null
+  }
+}
+2020-03-10 09:29:49,939: Send to: explorer/025
+2020-03-10 09:29:49,940: {
+  "from": "client",
+  "type": "path",
+  "payload": {
+    "startX": null,
+    "startY": null,
+    "startDirection": null,
+    "endX": null,
+    "endY": null,
+    "endDirection": null,
+    "pathStatus": null
+  }
+}
+2020-03-10 09:29:49,940: Send to: explorer/025
+2020-03-10 09:29:49,941: {
+  "from": "client",
+  "type": "done",
+  "payload": {
+    "message": "Exploration completed!"
+  }
+}
+2020-03-10 09:29:49,942: Send to: explorer/025
+2020-03-10 09:29:49,942: {
+  "from": "client",
+  "type": "pathSelect",
+  "payload": {
+    "startX": null,
+    "startY": null,
+    "startDirection": null
+  }
+}
+2020-03-10 09:29:49,944: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 09:29:49,947: Send to: explorer/025
+2020-03-10 09:29:49,947: {
+  "from": "client",
+  "type": "explorationCompleted",
+  "payload": {
+    "message": "Target reached!"
+  }
+}
+2020-03-10 09:29:49,949: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 09:29:49,952: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": null
+  }
+}
+2020-03-10 09:29:49,955: {
+  "from": "client",
+  "type": "path",
+  "payload": {
+    "startX": null,
+    "startY": null,
+    "startDirection": null,
+    "endX": null,
+    "endY": null,
+    "endDirection": null,
+    "pathStatus": null
+  }
+}
+2020-03-10 09:29:49,959: {
+  "from": "client",
+  "type": "done",
+  "payload": {
+    "message": "Exploration completed!"
+  }
+}
+2020-03-10 09:29:49,961: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "unknown planet: ",
+    "debug": "{\"from\": \"client\", \"type\": \"testplanet\", \"payload\": {\"planetName\": null}}"
+  }
+}
+2020-03-10 09:29:49,963: {
+  "from": "client",
+  "type": "pathSelect",
+  "payload": {
+    "startX": null,
+    "startY": null,
+    "startDirection": null
+  }
+}
+2020-03-10 09:29:49,973: {
+  "from": "client",
+  "type": "explorationCompleted",
+  "payload": {
+    "message": "Target reached!"
+  }
+}
+2020-03-10 09:29:49,976: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "Not all paths explored yet",
+    "debug": "{\"from\": \"client\", \"type\": \"explorationCompleted\", \"payload\": {\"message\": \"Target reached!\"}}"
+  }
+}
+2020-03-10 09:29:50,049: Send to: planet/Galar/025
+2020-03-10 09:29:50,049: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 09:29:50,049: Send to: planet/Galar/025
+2020-03-10 09:29:50,049: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": "Galar"
+  }
+}
+2020-03-10 09:29:50,049: Send to: planet/Galar/025
+2020-03-10 09:29:50,050: {
+  "from": "client",
+  "type": "path",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0,
+    "endX": null,
+    "endY": null,
+    "endDirection": null,
+    "pathStatus": null
+  }
+}
+2020-03-10 09:29:50,050: Send to: planet/Galar/025
+2020-03-10 09:29:50,050: {
+  "from": "client",
+  "type": "done",
+  "payload": {
+    "message": "Exploration completed!"
+  }
+}
+2020-03-10 09:29:50,050: Send to: planet/Galar/025
+2020-03-10 09:29:50,051: {
+  "from": "client",
+  "type": "pathSelect",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0
+  }
+}
+2020-03-10 09:29:50,051: Send to: planet/Galar/025
+2020-03-10 09:29:50,051: {
+  "from": "client",
+  "type": "explorationCompleted",
+  "payload": {
+    "message": "Target reached!"
+  }
+}
+2020-03-10 09:29:50,061: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "Payload is missing",
+    "debug": "{\"from\": \"client\", \"type\": \"ready\"}"
+  }
+}
+2020-03-10 09:29:50,065: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"done\", \"payload\": {\"message\": \"Exploration completed!\"}}"
+  }
+}
+2020-03-10 09:29:50,071: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"path\", \"payload\": {\"startX\": 0, \"startY\": 0, \"startDirection\": 0, \"endX\": null, \"endY\": null, \"endDirection\": null, \"pathStatus\": null}}"
+  }
+}
+2020-03-10 09:29:50,071: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"explorationCompleted\", \"payload\": {\"message\": \"Target reached!\"}}"
+  }
+}
+2020-03-10 09:29:50,072: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"testplanet\", \"payload\": {\"planetName\": \"Galar\"}}"
+  }
+}
+2020-03-10 09:29:50,151: Send to: planet/Galar/025
+2020-03-10 09:29:50,151: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": "Galar"
+  }
+}
+2020-03-10 09:29:50,152: Send to: planet/Galar/025
+2020-03-10 09:29:50,152: {
+  "from": "client",
+  "type": "path",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0,
+    "endX": null,
+    "endY": null,
+    "endDirection": null,
+    "pathStatus": null
+  }
+}
+2020-03-10 09:29:50,152: Send to: planet/Galar/025
+2020-03-10 09:29:50,152: {
+  "from": "client",
+  "type": "done",
+  "payload": {
+    "message": "Exploration completed!"
+  }
+}
+2020-03-10 09:29:50,152: Send to: planet/Galar/025
+2020-03-10 09:29:50,152: {
+  "from": "client",
+  "type": "pathSelect",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0
+  }
+}
+2020-03-10 09:29:50,152: Send to: planet/Galar/025
+2020-03-10 09:29:50,152: {
+  "from": "client",
+  "type": "explorationCompleted",
+  "payload": {
+    "message": "Target reached!"
+  }
+}
+2020-03-10 09:29:50,161: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"testplanet\", \"payload\": {\"planetName\": \"Galar\"}}"
+  }
+}
+2020-03-10 09:29:50,168: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"explorationCompleted\", \"payload\": {\"message\": \"Target reached!\"}}"
+  }
+}
+2020-03-10 09:29:50,169: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"path\", \"payload\": {\"startX\": 0, \"startY\": 0, \"startDirection\": 0, \"endX\": null, \"endY\": null, \"endDirection\": null, \"pathStatus\": null}}"
+  }
+}
+2020-03-10 09:29:50,171: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"done\", \"payload\": {\"message\": \"Exploration completed!\"}}"
+  }
+}
+2020-03-10 09:29:50,253: Send to: planet/Galar/025
+2020-03-10 09:29:50,253: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": "Galar"
+  }
+}
+2020-03-10 09:29:50,253: Send to: planet/Galar/025
+2020-03-10 09:29:50,254: {
+  "from": "client",
+  "type": "path",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0,
+    "endX": null,
+    "endY": null,
+    "endDirection": null,
+    "pathStatus": null
+  }
+}
+2020-03-10 09:29:50,254: Send to: planet/Galar/025
+2020-03-10 09:29:50,254: {
+  "from": "client",
+  "type": "done",
+  "payload": {
+    "message": "Exploration completed!"
+  }
+}
+2020-03-10 09:29:50,255: Send to: planet/Galar/025
+2020-03-10 09:29:50,255: {
+  "from": "client",
+  "type": "pathSelect",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0
+  }
+}
+2020-03-10 09:29:50,255: Send to: planet/Galar/025
+2020-03-10 09:29:50,255: {
+  "from": "client",
+  "type": "explorationCompleted",
+  "payload": {
+    "message": "Target reached!"
+  }
+}
+2020-03-10 09:29:50,264: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"testplanet\", \"payload\": {\"planetName\": \"Galar\"}}"
+  }
+}
+2020-03-10 09:29:50,275: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"path\", \"payload\": {\"startX\": 0, \"startY\": 0, \"startDirection\": 0, \"endX\": null, \"endY\": null, \"endDirection\": null, \"pathStatus\": null}}"
+  }
+}
+2020-03-10 09:29:50,277: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"done\", \"payload\": {\"message\": \"Exploration completed!\"}}"
+  }
+}
+2020-03-10 09:29:50,279: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"explorationCompleted\", \"payload\": {\"message\": \"Target reached!\"}}"
+  }
+}
+2020-03-10 09:29:50,355: Send to: planet/Galar/025
+2020-03-10 09:29:50,356: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": "Galar"
+  }
+}
+2020-03-10 09:29:50,356: Send to: planet/Galar/025
+2020-03-10 09:29:50,356: {
+  "from": "client",
+  "type": "path",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0,
+    "endX": null,
+    "endY": null,
+    "endDirection": null,
+    "pathStatus": null
+  }
+}
+2020-03-10 09:29:50,357: Send to: planet/Galar/025
+2020-03-10 09:29:50,357: {
+  "from": "client",
+  "type": "done",
+  "payload": {
+    "message": "Exploration completed!"
+  }
+}
+2020-03-10 09:29:50,357: Send to: planet/Galar/025
+2020-03-10 09:29:50,357: {
+  "from": "client",
+  "type": "pathSelect",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0
+  }
+}
+2020-03-10 09:29:50,358: Send to: planet/Galar/025
+2020-03-10 09:29:50,358: {
+  "from": "client",
+  "type": "explorationCompleted",
+  "payload": {
+    "message": "Target reached!"
+  }
+}
+2020-03-10 09:29:50,369: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"testplanet\", \"payload\": {\"planetName\": \"Galar\"}}"
+  }
+}
+2020-03-10 09:29:50,376: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"path\", \"payload\": {\"startX\": 0, \"startY\": 0, \"startDirection\": 0, \"endX\": null, \"endY\": null, \"endDirection\": null, \"pathStatus\": null}}"
+  }
+}
+2020-03-10 09:29:50,377: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"explorationCompleted\", \"payload\": {\"message\": \"Target reached!\"}}"
+  }
+}
+2020-03-10 09:29:50,378: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"done\", \"payload\": {\"message\": \"Exploration completed!\"}}"
+  }
+}
+2020-03-10 09:29:50,458: Send to: planet/Galar/025
+2020-03-10 09:29:50,459: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": "Galar"
+  }
+}
+2020-03-10 09:29:50,459: Send to: planet/Galar/025
+2020-03-10 09:29:50,459: {
+  "from": "client",
+  "type": "path",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0,
+    "endX": null,
+    "endY": null,
+    "endDirection": null,
+    "pathStatus": null
+  }
+}
+2020-03-10 09:29:50,459: Send to: planet/Galar/025
+2020-03-10 09:29:50,459: {
+  "from": "client",
+  "type": "done",
+  "payload": {
+    "message": "Exploration completed!"
+  }
+}
+2020-03-10 09:29:50,459: Send to: planet/Galar/025
+2020-03-10 09:29:50,460: {
+  "from": "client",
+  "type": "pathSelect",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0
+  }
+}
+2020-03-10 09:29:50,460: Send to: planet/Galar/025
+2020-03-10 09:29:50,460: {
+  "from": "client",
+  "type": "explorationCompleted",
+  "payload": {
+    "message": "Target reached!"
+  }
+}
+2020-03-10 09:29:50,470: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"testplanet\", \"payload\": {\"planetName\": \"Galar\"}}"
+  }
+}
+2020-03-10 09:29:50,478: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"path\", \"payload\": {\"startX\": 0, \"startY\": 0, \"startDirection\": 0, \"endX\": null, \"endY\": null, \"endDirection\": null, \"pathStatus\": null}}"
+  }
+}
+2020-03-10 09:29:50,482: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"done\", \"payload\": {\"message\": \"Exploration completed!\"}}"
+  }
+}
+2020-03-10 09:29:50,484: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"explorationCompleted\", \"payload\": {\"message\": \"Target reached!\"}}"
+  }
+}
+2020-03-10 09:29:50,560: Send to: planet/Galar/025
+2020-03-10 09:29:50,560: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": "Galar"
+  }
+}
+2020-03-10 09:29:50,561: Send to: planet/Galar/025
+2020-03-10 09:29:50,561: {
+  "from": "client",
+  "type": "path",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0,
+    "endX": null,
+    "endY": null,
+    "endDirection": null,
+    "pathStatus": null
+  }
+}
+2020-03-10 09:29:50,561: Send to: planet/Galar/025
+2020-03-10 09:29:50,561: {
+  "from": "client",
+  "type": "done",
+  "payload": {
+    "message": "Exploration completed!"
+  }
+}
+2020-03-10 09:29:50,561: Send to: planet/Galar/025
+2020-03-10 09:29:50,561: {
+  "from": "client",
+  "type": "pathSelect",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0
+  }
+}
+2020-03-10 09:29:50,562: Send to: planet/Galar/025
+2020-03-10 09:29:50,562: {
+  "from": "client",
+  "type": "explorationCompleted",
+  "payload": {
+    "message": "Target reached!"
+  }
+}
+2020-03-10 09:29:50,572: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"testplanet\", \"payload\": {\"planetName\": \"Galar\"}}"
+  }
+}
+2020-03-10 09:29:50,580: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"path\", \"payload\": {\"startX\": 0, \"startY\": 0, \"startDirection\": 0, \"endX\": null, \"endY\": null, \"endDirection\": null, \"pathStatus\": null}}"
+  }
+}
+2020-03-10 09:29:50,581: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"done\", \"payload\": {\"message\": \"Exploration completed!\"}}"
+  }
+}
+2020-03-10 09:29:50,583: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"explorationCompleted\", \"payload\": {\"message\": \"Target reached!\"}}"
+  }
+}
+2020-03-10 09:29:50,662: Send to: planet/Galar/025
+2020-03-10 09:29:50,663: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": "Galar"
+  }
+}
+2020-03-10 09:29:50,663: Send to: planet/Galar/025
+2020-03-10 09:29:50,663: {
+  "from": "client",
+  "type": "path",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0,
+    "endX": null,
+    "endY": null,
+    "endDirection": null,
+    "pathStatus": null
+  }
+}
+2020-03-10 09:29:50,664: Send to: planet/Galar/025
+2020-03-10 09:29:50,665: {
+  "from": "client",
+  "type": "done",
+  "payload": {
+    "message": "Exploration completed!"
+  }
+}
+2020-03-10 09:29:50,665: Send to: planet/Galar/025
+2020-03-10 09:29:50,666: {
+  "from": "client",
+  "type": "pathSelect",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0
+  }
+}
+2020-03-10 09:29:50,666: Send to: planet/Galar/025
+2020-03-10 09:29:50,667: {
+  "from": "client",
+  "type": "explorationCompleted",
+  "payload": {
+    "message": "Target reached!"
+  }
+}
+2020-03-10 09:29:50,674: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"testplanet\", \"payload\": {\"planetName\": \"Galar\"}}"
+  }
+}
+2020-03-10 09:29:50,682: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"explorationCompleted\", \"payload\": {\"message\": \"Target reached!\"}}"
+  }
+}
+2020-03-10 09:29:50,684: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"done\", \"payload\": {\"message\": \"Exploration completed!\"}}"
+  }
+}
+2020-03-10 09:29:50,686: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"path\", \"payload\": {\"startX\": 0, \"startY\": 0, \"startDirection\": 0, \"endX\": null, \"endY\": null, \"endDirection\": null, \"pathStatus\": null}}"
+  }
+}
+2020-03-10 09:29:50,767: Send to: planet/Galar/025
+2020-03-10 09:29:50,768: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": "Galar"
+  }
+}
+2020-03-10 09:29:50,768: Send to: planet/Galar/025
+2020-03-10 09:29:50,768: {
+  "from": "client",
+  "type": "path",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0,
+    "endX": null,
+    "endY": null,
+    "endDirection": null,
+    "pathStatus": null
+  }
+}
+2020-03-10 09:29:50,769: Send to: planet/Galar/025
+2020-03-10 09:29:50,769: {
+  "from": "client",
+  "type": "done",
+  "payload": {
+    "message": "Exploration completed!"
+  }
+}
+2020-03-10 09:29:50,770: Send to: planet/Galar/025
+2020-03-10 09:29:50,770: {
+  "from": "client",
+  "type": "pathSelect",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0
+  }
+}
+2020-03-10 09:29:50,770: Send to: planet/Galar/025
+2020-03-10 09:29:50,771: {
+  "from": "client",
+  "type": "explorationCompleted",
+  "payload": {
+    "message": "Target reached!"
+  }
+}
+2020-03-10 09:29:50,780: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"testplanet\", \"payload\": {\"planetName\": \"Galar\"}}"
+  }
+}
+2020-03-10 09:29:50,786: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"done\", \"payload\": {\"message\": \"Exploration completed!\"}}"
+  }
+}
+2020-03-10 09:29:50,786: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"path\", \"payload\": {\"startX\": 0, \"startY\": 0, \"startDirection\": 0, \"endX\": null, \"endY\": null, \"endDirection\": null, \"pathStatus\": null}}"
+  }
+}
+2020-03-10 09:29:50,790: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"explorationCompleted\", \"payload\": {\"message\": \"Target reached!\"}}"
+  }
+}
+2020-03-10 09:29:50,871: Send to: planet/Galar/025
+2020-03-10 09:29:50,871: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": "Galar"
+  }
+}
+2020-03-10 09:29:50,871: Send to: planet/Galar/025
+2020-03-10 09:29:50,872: {
+  "from": "client",
+  "type": "path",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0,
+    "endX": null,
+    "endY": null,
+    "endDirection": null,
+    "pathStatus": null
+  }
+}
+2020-03-10 09:29:50,872: Send to: planet/Galar/025
+2020-03-10 09:29:50,872: {
+  "from": "client",
+  "type": "done",
+  "payload": {
+    "message": "Exploration completed!"
+  }
+}
+2020-03-10 09:29:50,872: Send to: planet/Galar/025
+2020-03-10 09:29:50,872: {
+  "from": "client",
+  "type": "pathSelect",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0
+  }
+}
+2020-03-10 09:29:50,873: Send to: planet/Galar/025
+2020-03-10 09:29:50,873: {
+  "from": "client",
+  "type": "explorationCompleted",
+  "payload": {
+    "message": "Target reached!"
+  }
+}
+2020-03-10 09:29:50,881: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"testplanet\", \"payload\": {\"planetName\": \"Galar\"}}"
+  }
+}
+2020-03-10 09:29:50,889: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"path\", \"payload\": {\"startX\": 0, \"startY\": 0, \"startDirection\": 0, \"endX\": null, \"endY\": null, \"endDirection\": null, \"pathStatus\": null}}"
+  }
+}
+2020-03-10 09:29:50,890: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"done\", \"payload\": {\"message\": \"Exploration completed!\"}}"
+  }
+}
+2020-03-10 09:29:50,891: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"explorationCompleted\", \"payload\": {\"message\": \"Target reached!\"}}"
+  }
+}
+2020-03-10 09:29:50,973: Send to: planet/Galar/025
+2020-03-10 09:29:50,975: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": "Galar"
+  }
+}
+2020-03-10 09:29:50,976: Send to: planet/Galar/025
+2020-03-10 09:29:50,976: {
+  "from": "client",
+  "type": "path",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0,
+    "endX": null,
+    "endY": null,
+    "endDirection": null,
+    "pathStatus": null
+  }
+}
+2020-03-10 09:29:50,977: Send to: planet/Galar/025
+2020-03-10 09:29:50,977: {
+  "from": "client",
+  "type": "done",
+  "payload": {
+    "message": "Exploration completed!"
+  }
+}
+2020-03-10 09:29:50,978: Send to: planet/Galar/025
+2020-03-10 09:29:50,979: {
+  "from": "client",
+  "type": "pathSelect",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0
+  }
+}
+2020-03-10 09:29:50,979: Send to: planet/Galar/025
+2020-03-10 09:29:50,980: {
+  "from": "client",
+  "type": "explorationCompleted",
+  "payload": {
+    "message": "Target reached!"
+  }
+}
+2020-03-10 09:29:50,988: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"testplanet\", \"payload\": {\"planetName\": \"Galar\"}}"
+  }
+}
+2020-03-10 09:29:50,997: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"path\", \"payload\": {\"startX\": 0, \"startY\": 0, \"startDirection\": 0, \"endX\": null, \"endY\": null, \"endDirection\": null, \"pathStatus\": null}}"
+  }
+}
+2020-03-10 09:29:50,998: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"done\", \"payload\": {\"message\": \"Exploration completed!\"}}"
+  }
+}
+2020-03-10 09:29:51,000: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"explorationCompleted\", \"payload\": {\"message\": \"Target reached!\"}}"
+  }
+}
+2020-03-10 09:29:51,080: Send to: planet/Galar/025
+2020-03-10 09:29:51,081: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": "Galar"
+  }
+}
+2020-03-10 09:29:51,081: Send to: planet/Galar/025
+2020-03-10 09:29:51,082: {
+  "from": "client",
+  "type": "path",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0,
+    "endX": null,
+    "endY": null,
+    "endDirection": null,
+    "pathStatus": null
+  }
+}
+2020-03-10 09:29:51,083: Send to: planet/Galar/025
+2020-03-10 09:29:51,083: {
+  "from": "client",
+  "type": "done",
+  "payload": {
+    "message": "Exploration completed!"
+  }
+}
+2020-03-10 09:29:51,084: Send to: planet/Galar/025
+2020-03-10 09:29:51,086: {
+  "from": "client",
+  "type": "pathSelect",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0
+  }
+}
+2020-03-10 09:29:51,087: Send to: planet/Galar/025
+2020-03-10 09:29:51,087: {
+  "from": "client",
+  "type": "explorationCompleted",
+  "payload": {
+    "message": "Target reached!"
+  }
+}
+2020-03-10 09:29:51,091: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"testplanet\", \"payload\": {\"planetName\": \"Galar\"}}"
+  }
+}
+2020-03-10 09:29:51,099: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"path\", \"payload\": {\"startX\": 0, \"startY\": 0, \"startDirection\": 0, \"endX\": null, \"endY\": null, \"endDirection\": null, \"pathStatus\": null}}"
+  }
+}
+2020-03-10 09:29:51,101: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"done\", \"payload\": {\"message\": \"Exploration completed!\"}}"
+  }
+}
+2020-03-10 09:29:51,105: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"explorationCompleted\", \"payload\": {\"message\": \"Target reached!\"}}"
+  }
+}
+2020-03-10 09:29:51,189: Send to: planet/Galar/025
+2020-03-10 09:29:51,189: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": "Galar"
+  }
+}
+2020-03-10 09:29:51,190: Send to: planet/Galar/025
+2020-03-10 09:29:51,190: {
+  "from": "client",
+  "type": "path",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0,
+    "endX": null,
+    "endY": null,
+    "endDirection": null,
+    "pathStatus": null
+  }
+}
+2020-03-10 09:29:51,190: Send to: planet/Galar/025
+2020-03-10 09:29:51,190: {
+  "from": "client",
+  "type": "done",
+  "payload": {
+    "message": "Exploration completed!"
+  }
+}
+2020-03-10 09:29:51,191: Send to: planet/Galar/025
+2020-03-10 09:29:51,191: {
+  "from": "client",
+  "type": "pathSelect",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0
+  }
+}
+2020-03-10 09:29:51,191: Send to: planet/Galar/025
+2020-03-10 09:29:51,191: {
+  "from": "client",
+  "type": "explorationCompleted",
+  "payload": {
+    "message": "Target reached!"
+  }
+}
+2020-03-10 09:29:51,198: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"testplanet\", \"payload\": {\"planetName\": \"Galar\"}}"
+  }
+}
+2020-03-10 09:29:51,208: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"done\", \"payload\": {\"message\": \"Exploration completed!\"}}"
+  }
+}
+2020-03-10 09:29:51,209: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"explorationCompleted\", \"payload\": {\"message\": \"Target reached!\"}}"
+  }
+}
+2020-03-10 09:29:51,209: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"path\", \"payload\": {\"startX\": 0, \"startY\": 0, \"startDirection\": 0, \"endX\": null, \"endY\": null, \"endDirection\": null, \"pathStatus\": null}}"
+  }
+}
+2020-03-10 09:29:51,291: Send to: planet/Galar/025
+2020-03-10 09:29:51,292: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": "Galar"
+  }
+}
+2020-03-10 09:29:51,292: Send to: planet/Galar/025
+2020-03-10 09:29:51,292: {
+  "from": "client",
+  "type": "path",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0,
+    "endX": null,
+    "endY": null,
+    "endDirection": null,
+    "pathStatus": null
+  }
+}
+2020-03-10 09:29:51,292: Send to: planet/Galar/025
+2020-03-10 09:29:51,293: {
+  "from": "client",
+  "type": "done",
+  "payload": {
+    "message": "Exploration completed!"
+  }
+}
+2020-03-10 09:29:51,293: Send to: planet/Galar/025
+2020-03-10 09:29:51,293: {
+  "from": "client",
+  "type": "pathSelect",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0
+  }
+}
+2020-03-10 09:29:51,293: Send to: planet/Galar/025
+2020-03-10 09:29:51,294: {
+  "from": "client",
+  "type": "explorationCompleted",
+  "payload": {
+    "message": "Target reached!"
+  }
+}
+2020-03-10 09:29:51,301: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"testplanet\", \"payload\": {\"planetName\": \"Galar\"}}"
+  }
+}
+2020-03-10 09:29:51,310: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"path\", \"payload\": {\"startX\": 0, \"startY\": 0, \"startDirection\": 0, \"endX\": null, \"endY\": null, \"endDirection\": null, \"pathStatus\": null}}"
+  }
+}
+2020-03-10 09:29:51,311: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"done\", \"payload\": {\"message\": \"Exploration completed!\"}}"
+  }
+}
+2020-03-10 09:29:51,313: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"explorationCompleted\", \"payload\": {\"message\": \"Target reached!\"}}"
+  }
+}
+2020-03-10 09:29:51,394: Send to: planet/Galar/025
+2020-03-10 09:29:51,395: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": "Galar"
+  }
+}
+2020-03-10 09:29:51,395: Send to: planet/Galar/025
+2020-03-10 09:29:51,396: {
+  "from": "client",
+  "type": "path",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0,
+    "endX": null,
+    "endY": null,
+    "endDirection": null,
+    "pathStatus": null
+  }
+}
+2020-03-10 09:29:51,396: Send to: planet/Galar/025
+2020-03-10 09:29:51,397: {
+  "from": "client",
+  "type": "done",
+  "payload": {
+    "message": "Exploration completed!"
+  }
+}
+2020-03-10 09:29:51,398: Send to: planet/Galar/025
+2020-03-10 09:29:51,398: {
+  "from": "client",
+  "type": "pathSelect",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0
+  }
+}
+2020-03-10 09:29:51,399: Send to: planet/Galar/025
+2020-03-10 09:29:51,399: {
+  "from": "client",
+  "type": "explorationCompleted",
+  "payload": {
+    "message": "Target reached!"
+  }
+}
+2020-03-10 09:29:51,404: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"testplanet\", \"payload\": {\"planetName\": \"Galar\"}}"
+  }
+}
+2020-03-10 09:29:51,416: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"path\", \"payload\": {\"startX\": 0, \"startY\": 0, \"startDirection\": 0, \"endX\": null, \"endY\": null, \"endDirection\": null, \"pathStatus\": null}}"
+  }
+}
+2020-03-10 09:29:51,418: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"done\", \"payload\": {\"message\": \"Exploration completed!\"}}"
+  }
+}
+2020-03-10 09:29:51,420: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"explorationCompleted\", \"payload\": {\"message\": \"Target reached!\"}}"
+  }
+}
+2020-03-10 09:29:51,500: Send to: planet/Galar/025
+2020-03-10 09:29:51,501: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": "Galar"
+  }
+}
+2020-03-10 09:29:51,502: Send to: planet/Galar/025
+2020-03-10 09:29:51,502: {
+  "from": "client",
+  "type": "path",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0,
+    "endX": null,
+    "endY": null,
+    "endDirection": null,
+    "pathStatus": null
+  }
+}
+2020-03-10 09:29:51,503: Send to: planet/Galar/025
+2020-03-10 09:29:51,503: {
+  "from": "client",
+  "type": "done",
+  "payload": {
+    "message": "Exploration completed!"
+  }
+}
+2020-03-10 09:29:51,503: Send to: planet/Galar/025
+2020-03-10 09:29:51,503: {
+  "from": "client",
+  "type": "pathSelect",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0
+  }
+}
+2020-03-10 09:29:51,504: Send to: planet/Galar/025
+2020-03-10 09:29:51,504: {
+  "from": "client",
+  "type": "explorationCompleted",
+  "payload": {
+    "message": "Target reached!"
+  }
+}
+2020-03-10 09:29:51,512: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"testplanet\", \"payload\": {\"planetName\": \"Galar\"}}"
+  }
+}
+2020-03-10 09:29:51,520: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"path\", \"payload\": {\"startX\": 0, \"startY\": 0, \"startDirection\": 0, \"endX\": null, \"endY\": null, \"endDirection\": null, \"pathStatus\": null}}"
+  }
+}
+2020-03-10 09:29:51,521: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"explorationCompleted\", \"payload\": {\"message\": \"Target reached!\"}}"
+  }
+}
+2020-03-10 09:29:51,522: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"done\", \"payload\": {\"message\": \"Exploration completed!\"}}"
+  }
+}
+2020-03-10 09:29:51,605: Send to: planet/Galar/025
+2020-03-10 09:29:51,605: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": "Galar"
+  }
+}
+2020-03-10 09:29:51,605: Send to: planet/Galar/025
+2020-03-10 09:29:51,605: {
+  "from": "client",
+  "type": "path",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0,
+    "endX": null,
+    "endY": null,
+    "endDirection": null,
+    "pathStatus": null
+  }
+}
+2020-03-10 09:29:51,605: Send to: planet/Galar/025
+2020-03-10 09:29:51,606: {
+  "from": "client",
+  "type": "done",
+  "payload": {
+    "message": "Exploration completed!"
+  }
+}
+2020-03-10 09:29:51,606: Send to: planet/Galar/025
+2020-03-10 09:29:51,606: {
+  "from": "client",
+  "type": "pathSelect",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0
+  }
+}
+2020-03-10 09:29:51,606: Send to: planet/Galar/025
+2020-03-10 09:29:51,607: {
+  "from": "client",
+  "type": "explorationCompleted",
+  "payload": {
+    "message": "Target reached!"
+  }
+}
+2020-03-10 09:29:51,618: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"testplanet\", \"payload\": {\"planetName\": \"Galar\"}}"
+  }
+}
+2020-03-10 09:29:51,622: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"path\", \"payload\": {\"startX\": 0, \"startY\": 0, \"startDirection\": 0, \"endX\": null, \"endY\": null, \"endDirection\": null, \"pathStatus\": null}}"
+  }
+}
+2020-03-10 09:29:51,622: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"done\", \"payload\": {\"message\": \"Exploration completed!\"}}"
+  }
+}
+2020-03-10 09:29:51,626: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"explorationCompleted\", \"payload\": {\"message\": \"Target reached!\"}}"
+  }
+}
+2020-03-10 09:29:51,707: Send to: planet/Galar/025
+2020-03-10 09:29:51,707: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": "Galar"
+  }
+}
+2020-03-10 09:29:51,707: Send to: planet/Galar/025
+2020-03-10 09:29:51,708: {
+  "from": "client",
+  "type": "path",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0,
+    "endX": null,
+    "endY": null,
+    "endDirection": null,
+    "pathStatus": null
+  }
+}
+2020-03-10 09:29:51,708: Send to: planet/Galar/025
+2020-03-10 09:29:51,708: {
+  "from": "client",
+  "type": "done",
+  "payload": {
+    "message": "Exploration completed!"
+  }
+}
+2020-03-10 09:29:51,709: Send to: planet/Galar/025
+2020-03-10 09:29:51,709: {
+  "from": "client",
+  "type": "pathSelect",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0
+  }
+}
+2020-03-10 09:29:51,709: Send to: planet/Galar/025
+2020-03-10 09:29:51,710: {
+  "from": "client",
+  "type": "explorationCompleted",
+  "payload": {
+    "message": "Target reached!"
+  }
+}
+2020-03-10 09:29:51,719: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"testplanet\", \"payload\": {\"planetName\": \"Galar\"}}"
+  }
+}
+2020-03-10 09:29:51,723: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"path\", \"payload\": {\"startX\": 0, \"startY\": 0, \"startDirection\": 0, \"endX\": null, \"endY\": null, \"endDirection\": null, \"pathStatus\": null}}"
+  }
+}
+2020-03-10 09:29:51,728: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"done\", \"payload\": {\"message\": \"Exploration completed!\"}}"
+  }
+}
+2020-03-10 09:29:51,729: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"explorationCompleted\", \"payload\": {\"message\": \"Target reached!\"}}"
+  }
+}
+2020-03-10 09:29:51,810: Send to: planet/Galar/025
+2020-03-10 09:29:51,811: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": "Galar"
+  }
+}
+2020-03-10 09:29:51,811: Send to: planet/Galar/025
+2020-03-10 09:29:51,811: {
+  "from": "client",
+  "type": "path",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0,
+    "endX": null,
+    "endY": null,
+    "endDirection": null,
+    "pathStatus": null
+  }
+}
+2020-03-10 09:29:51,812: Send to: planet/Galar/025
+2020-03-10 09:29:51,812: {
+  "from": "client",
+  "type": "done",
+  "payload": {
+    "message": "Exploration completed!"
+  }
+}
+2020-03-10 09:29:51,812: Send to: planet/Galar/025
+2020-03-10 09:29:51,813: {
+  "from": "client",
+  "type": "pathSelect",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0
+  }
+}
+2020-03-10 09:29:51,813: Send to: planet/Galar/025
+2020-03-10 09:29:51,814: {
+  "from": "client",
+  "type": "explorationCompleted",
+  "payload": {
+    "message": "Target reached!"
+  }
+}
+2020-03-10 09:29:51,821: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"testplanet\", \"payload\": {\"planetName\": \"Galar\"}}"
+  }
+}
+2020-03-10 09:29:51,832: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"path\", \"payload\": {\"startX\": 0, \"startY\": 0, \"startDirection\": 0, \"endX\": null, \"endY\": null, \"endDirection\": null, \"pathStatus\": null}}"
+  }
+}
+2020-03-10 09:29:51,832: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"explorationCompleted\", \"payload\": {\"message\": \"Target reached!\"}}"
+  }
+}
+2020-03-10 09:29:51,833: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"done\", \"payload\": {\"message\": \"Exploration completed!\"}}"
+  }
+}
+2020-03-10 09:29:51,914: Send to: planet/Galar/025
+2020-03-10 09:29:51,914: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": "Galar"
+  }
+}
+2020-03-10 09:29:51,915: Send to: planet/Galar/025
+2020-03-10 09:29:51,915: {
+  "from": "client",
+  "type": "path",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0,
+    "endX": null,
+    "endY": null,
+    "endDirection": null,
+    "pathStatus": null
+  }
+}
+2020-03-10 09:29:51,916: Send to: planet/Galar/025
+2020-03-10 09:29:51,916: {
+  "from": "client",
+  "type": "done",
+  "payload": {
+    "message": "Exploration completed!"
+  }
+}
+2020-03-10 09:29:51,916: Send to: planet/Galar/025
+2020-03-10 09:29:51,917: {
+  "from": "client",
+  "type": "pathSelect",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0
+  }
+}
+2020-03-10 09:29:51,917: Send to: planet/Galar/025
+2020-03-10 09:29:51,917: {
+  "from": "client",
+  "type": "explorationCompleted",
+  "payload": {
+    "message": "Target reached!"
+  }
+}
+2020-03-10 09:29:51,925: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"testplanet\", \"payload\": {\"planetName\": \"Galar\"}}"
+  }
+}
+2020-03-10 09:29:51,932: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"path\", \"payload\": {\"startX\": 0, \"startY\": 0, \"startDirection\": 0, \"endX\": null, \"endY\": null, \"endDirection\": null, \"pathStatus\": null}}"
+  }
+}
+2020-03-10 09:29:51,937: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"explorationCompleted\", \"payload\": {\"message\": \"Target reached!\"}}"
+  }
+}
+2020-03-10 09:29:51,937: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"done\", \"payload\": {\"message\": \"Exploration completed!\"}}"
+  }
+}
+2020-03-10 09:29:52,018: Send to: planet/Galar/025
+2020-03-10 09:29:52,018: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": "Galar"
+  }
+}
+2020-03-10 09:29:52,019: Send to: planet/Galar/025
+2020-03-10 09:29:52,020: {
+  "from": "client",
+  "type": "path",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0,
+    "endX": null,
+    "endY": null,
+    "endDirection": null,
+    "pathStatus": null
+  }
+}
+2020-03-10 09:29:52,021: Send to: planet/Galar/025
+2020-03-10 09:29:52,021: {
+  "from": "client",
+  "type": "done",
+  "payload": {
+    "message": "Exploration completed!"
+  }
+}
+2020-03-10 09:29:52,022: Send to: planet/Galar/025
+2020-03-10 09:29:52,023: {
+  "from": "client",
+  "type": "pathSelect",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0
+  }
+}
+2020-03-10 09:29:52,023: Send to: planet/Galar/025
+2020-03-10 09:29:52,024: {
+  "from": "client",
+  "type": "explorationCompleted",
+  "payload": {
+    "message": "Target reached!"
+  }
+}
+2020-03-10 09:29:52,034: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"testplanet\", \"payload\": {\"planetName\": \"Galar\"}}"
+  }
+}
+2020-03-10 09:29:52,041: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"path\", \"payload\": {\"startX\": 0, \"startY\": 0, \"startDirection\": 0, \"endX\": null, \"endY\": null, \"endDirection\": null, \"pathStatus\": null}}"
+  }
+}
+2020-03-10 09:29:52,043: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"explorationCompleted\", \"payload\": {\"message\": \"Target reached!\"}}"
+  }
+}
+2020-03-10 09:29:52,045: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"done\", \"payload\": {\"message\": \"Exploration completed!\"}}"
+  }
+}
+2020-03-10 09:29:52,125: Send to: planet/Galar/025
+2020-03-10 09:29:52,125: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": "Galar"
+  }
+}
+2020-03-10 09:29:52,125: Send to: planet/Galar/025
+2020-03-10 09:29:52,125: {
+  "from": "client",
+  "type": "path",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0,
+    "endX": null,
+    "endY": null,
+    "endDirection": null,
+    "pathStatus": null
+  }
+}
+2020-03-10 09:29:52,126: Send to: planet/Galar/025
+2020-03-10 09:29:52,126: {
+  "from": "client",
+  "type": "done",
+  "payload": {
+    "message": "Exploration completed!"
+  }
+}
+2020-03-10 09:29:52,126: Send to: planet/Galar/025
+2020-03-10 09:29:52,126: {
+  "from": "client",
+  "type": "pathSelect",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0
+  }
+}
+2020-03-10 09:29:52,126: Send to: planet/Galar/025
+2020-03-10 09:29:52,126: {
+  "from": "client",
+  "type": "explorationCompleted",
+  "payload": {
+    "message": "Target reached!"
+  }
+}
+2020-03-10 09:29:52,133: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"testplanet\", \"payload\": {\"planetName\": \"Galar\"}}"
+  }
+}
+2020-03-10 09:29:52,143: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"path\", \"payload\": {\"startX\": 0, \"startY\": 0, \"startDirection\": 0, \"endX\": null, \"endY\": null, \"endDirection\": null, \"pathStatus\": null}}"
+  }
+}
+2020-03-10 09:29:52,144: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"done\", \"payload\": {\"message\": \"Exploration completed!\"}}"
+  }
+}
+2020-03-10 09:29:52,145: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"explorationCompleted\", \"payload\": {\"message\": \"Target reached!\"}}"
+  }
+}
+2020-03-10 09:30:29,579: Send to: explorer/025
+2020-03-10 09:30:29,579: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 09:30:29,580: Send to: explorer/025
+2020-03-10 09:30:29,580: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": null
+  }
+}
+2020-03-10 09:30:29,580: Send to: explorer/025
+2020-03-10 09:30:29,580: {
+  "from": "client",
+  "type": "path",
+  "payload": {
+    "startX": null,
+    "startY": null,
+    "startDirection": null,
+    "endX": null,
+    "endY": null,
+    "endDirection": null,
+    "pathStatus": null
+  }
+}
+2020-03-10 09:30:29,581: Send to: explorer/025
+2020-03-10 09:30:29,581: {
+  "from": "client",
+  "type": "done",
+  "payload": {
+    "message": "Exploration completed!"
+  }
+}
+2020-03-10 09:30:29,581: Send to: explorer/025
+2020-03-10 09:30:29,581: {
+  "from": "client",
+  "type": "pathSelect",
+  "payload": {
+    "startX": null,
+    "startY": null,
+    "startDirection": null
+  }
+}
+2020-03-10 09:30:29,582: Send to: explorer/025
+2020-03-10 09:30:29,582: {
+  "from": "client",
+  "type": "explorationCompleted",
+  "payload": {
+    "message": "Target reached!"
+  }
+}
+2020-03-10 09:30:29,591: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 09:30:29,592: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": null
+  }
+}
+2020-03-10 09:30:29,592: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 09:30:29,593: {
+  "from": "client",
+  "type": "path",
+  "payload": {
+    "startX": null,
+    "startY": null,
+    "startDirection": null,
+    "endX": null,
+    "endY": null,
+    "endDirection": null,
+    "pathStatus": null
+  }
+}
+2020-03-10 09:30:29,594: {
+  "from": "client",
+  "type": "done",
+  "payload": {
+    "message": "Exploration completed!"
+  }
+}
+2020-03-10 09:30:29,595: {
+  "from": "client",
+  "type": "pathSelect",
+  "payload": {
+    "startX": null,
+    "startY": null,
+    "startDirection": null
+  }
+}
+2020-03-10 09:30:29,596: {
+  "from": "client",
+  "type": "explorationCompleted",
+  "payload": {
+    "message": "Target reached!"
+  }
+}
+2020-03-10 09:30:29,596: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "unknown planet: ",
+    "debug": "{\"from\": \"client\", \"type\": \"testplanet\", \"payload\": {\"planetName\": null}}"
+  }
+}
+2020-03-10 09:30:29,601: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "Not all paths explored yet",
+    "debug": "{\"from\": \"client\", \"type\": \"explorationCompleted\", \"payload\": {\"message\": \"Target reached!\"}}"
+  }
+}
+2020-03-10 09:30:54,770: Send to: explorer/025
+2020-03-10 09:30:54,770: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 09:30:54,770: Send to: explorer/025
+2020-03-10 09:30:54,770: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": null
+  }
+}
+2020-03-10 09:30:54,770: Send to: explorer/025
+2020-03-10 09:30:54,771: {
+  "from": "client",
+  "type": "path",
+  "payload": {
+    "startX": null,
+    "startY": null,
+    "startDirection": null,
+    "endX": null,
+    "endY": null,
+    "endDirection": null,
+    "pathStatus": null
+  }
+}
+2020-03-10 09:30:54,771: Send to: explorer/025
+2020-03-10 09:30:54,771: {
+  "from": "client",
+  "type": "done",
+  "payload": {
+    "message": "Exploration completed!"
+  }
+}
+2020-03-10 09:30:54,771: Send to: explorer/025
+2020-03-10 09:30:54,771: {
+  "from": "client",
+  "type": "pathSelect",
+  "payload": {
+    "startX": null,
+    "startY": null,
+    "startDirection": null
+  }
+}
+2020-03-10 09:30:54,771: Send to: explorer/025
+2020-03-10 09:30:54,771: {
+  "from": "client",
+  "type": "explorationCompleted",
+  "payload": {
+    "message": "Target reached!"
+  }
+}
+2020-03-10 09:30:54,783: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 09:30:54,784: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": null
+  }
+}
+2020-03-10 09:30:54,784: {
+  "from": "client",
+  "type": "path",
+  "payload": {
+    "startX": null,
+    "startY": null,
+    "startDirection": null,
+    "endX": null,
+    "endY": null,
+    "endDirection": null,
+    "pathStatus": null
+  }
+}
+2020-03-10 09:30:54,785: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 09:30:54,785: {
+  "from": "client",
+  "type": "done",
+  "payload": {
+    "message": "Exploration completed!"
+  }
+}
+2020-03-10 09:30:54,785: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "unknown planet: ",
+    "debug": "{\"from\": \"client\", \"type\": \"testplanet\", \"payload\": {\"planetName\": null}}"
+  }
+}
+2020-03-10 09:30:54,786: {
+  "from": "client",
+  "type": "pathSelect",
+  "payload": {
+    "startX": null,
+    "startY": null,
+    "startDirection": null
+  }
+}
+2020-03-10 09:30:54,786: {
+  "from": "client",
+  "type": "explorationCompleted",
+  "payload": {
+    "message": "Target reached!"
+  }
+}
+2020-03-10 09:30:54,788: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "Not all paths explored yet",
+    "debug": "{\"from\": \"client\", \"type\": \"explorationCompleted\", \"payload\": {\"message\": \"Target reached!\"}}"
+  }
+}
+2020-03-10 09:33:44,528: Send to: explorer/025
+2020-03-10 09:33:44,528: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 09:33:44,536: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 09:33:44,538: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 09:33:55,036: Send to: explorer/025
+2020-03-10 09:33:55,036: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 09:33:55,036: Send to: explorer/025
+2020-03-10 09:33:55,036: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": null
+  }
+}
+2020-03-10 09:33:55,046: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 09:33:55,046: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": null
+  }
+}
+2020-03-10 09:33:55,054: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 09:33:55,055: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "unknown planet: ",
+    "debug": "{\"from\": \"client\", \"type\": \"testplanet\", \"payload\": {\"planetName\": null}}"
+  }
+}
+2020-03-10 09:35:18,778: Send to: explorer/025
+2020-03-10 09:35:18,779: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 09:35:18,787: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 09:35:18,790: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 09:35:19,780: Send to: planet/Galar/025
+2020-03-10 09:35:19,780: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": "Galar"
+  }
+}
+2020-03-10 09:38:29,293: Send to: explorer/025
+2020-03-10 09:38:29,293: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 09:38:29,301: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 09:38:29,303: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 09:38:30,294: Send to: planet/Galar/025
+2020-03-10 09:38:30,295: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": "Galar"
+  }
+}
+2020-03-10 09:46:17,566: Send to: explorer/025
+2020-03-10 09:46:17,566: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 09:46:17,575: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 09:46:17,578: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 09:46:22,570: Send to: planet/Galar/025
+2020-03-10 09:46:22,571: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": "Galar"
+  }
+}
+2020-03-10 09:51:48,645: Send to: explorer/025
+2020-03-10 09:51:48,645: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 09:51:48,653: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 09:51:48,657: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 09:53:52,448: Send to: explorer/025
+2020-03-10 09:53:52,449: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 09:53:52,456: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 09:53:52,462: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 09:53:57,454: Send to: planet/Galar/025
+2020-03-10 09:53:57,455: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": "Galar"
+  }
+}
+2020-03-10 09:54:03,450: Send to: explorer/025
+2020-03-10 09:54:03,450: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 09:54:03,450: Send to: explorer/025
+2020-03-10 09:54:03,451: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": null
+  }
+}
+2020-03-10 09:54:06,552: Send to: explorer/025
+2020-03-10 09:54:06,552: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 09:54:06,553: Send to: explorer/025
+2020-03-10 09:54:06,553: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": null
+  }
+}
+2020-03-10 09:54:17,197: Send to: explorer/025
+2020-03-10 09:54:17,198: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 09:54:17,198: Send to: explorer/025
+2020-03-10 09:54:17,198: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": null
+  }
+}
+2020-03-10 09:54:17,208: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 09:54:17,209: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": null
+  }
+}
+2020-03-10 09:54:17,213: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 09:54:17,215: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "unknown planet: ",
+    "debug": "{\"from\": \"client\", \"type\": \"testplanet\", \"payload\": {\"planetName\": null}}"
+  }
+}
+2020-03-10 09:59:28,387: Send to: explorer/025
+2020-03-10 09:59:28,387: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 09:59:28,387: Send to: explorer/025
+2020-03-10 09:59:28,388: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": null
+  }
+}
+2020-03-10 09:59:28,398: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 09:59:28,398: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": null
+  }
+}
+2020-03-10 09:59:28,402: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 09:59:28,408: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "unknown planet: ",
+    "debug": "{\"from\": \"client\", \"type\": \"testplanet\", \"payload\": {\"planetName\": null}}"
+  }
+}
+2020-03-10 10:00:23,896: Send to: explorer/025
+2020-03-10 10:00:23,896: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 10:00:23,904: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 10:00:23,908: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 10:00:26,461: Send to: planet/Galar/025
+2020-03-10 10:00:26,462: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": "Galar"
+  }
+}
+2020-03-10 10:00:26,473: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"testplanet\", \"payload\": {\"planetName\": \"Galar\"}}"
+  }
+}
+2020-03-10 10:00:32,380: Send to: explorer/025
+2020-03-10 10:00:32,380: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 10:00:32,388: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 10:00:32,391: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 10:00:36,515: Send to: planet/Galar/025
+2020-03-10 10:00:36,516: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": "Galar"
+  }
+}
+2020-03-10 10:00:36,531: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"testplanet\", \"payload\": {\"planetName\": \"Galar\"}}"
+  }
+}
+2020-03-10 10:01:27,250: Send to: explorer/025
+2020-03-10 10:01:27,250: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 10:01:27,258: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 10:01:27,262: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 10:01:28,363: Send to: explorer/025
+2020-03-10 10:01:28,363: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": "Galar"
+  }
+}
+2020-03-10 10:01:28,371: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": "Galar"
+  }
+}
+2020-03-10 10:01:28,378: {
+  "from": "debug",
+  "type": "notice",
+  "payload": {
+    "message": "active planet: Galar"
+  }
+}
+2020-03-10 10:07:48,183: Send to: explorer/025
+2020-03-10 10:07:48,183: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 10:07:48,191: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 10:07:48,196: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 10:07:50,635: Send to: explorer/025
+2020-03-10 10:07:50,636: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": "Galar"
+  }
+}
+2020-03-10 10:07:50,644: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": "Galar"
+  }
+}
+2020-03-10 10:07:50,652: {
+  "from": "debug",
+  "type": "notice",
+  "payload": {
+    "message": "active planet: Galar"
+  }
+}
+2020-03-10 10:10:34,627: Send to: explorer/025
+2020-03-10 10:10:34,627: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 10:10:34,636: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 10:10:34,639: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 10:10:36,713: Send to: explorer/025
+2020-03-10 10:10:36,713: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": "Galar"
+  }
+}
+2020-03-10 10:10:36,719: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": "Galar"
+  }
+}
+2020-03-10 10:10:36,725: {
+  "from": "debug",
+  "type": "notice",
+  "payload": {
+    "message": "active planet: Galar"
+  }
+}
+2020-03-10 10:12:23,806: Send to: explorer/025
+2020-03-10 10:12:23,806: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 10:12:23,815: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 10:12:23,819: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 10:12:24,650: Send to: explorer/025
+2020-03-10 10:12:24,651: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": "Galar"
+  }
+}
+2020-03-10 10:12:24,659: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": "Galar"
+  }
+}
+2020-03-10 10:12:24,662: {
+  "from": "debug",
+  "type": "notice",
+  "payload": {
+    "message": "active planet: Galar"
+  }
+}
+2020-03-10 10:14:07,742: Send to: explorer/025
+2020-03-10 10:14:07,742: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 10:14:07,751: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 10:14:07,754: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 10:14:09,072: Send to: explorer/025
+2020-03-10 10:14:09,073: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": "Galar"
+  }
+}
+2020-03-10 10:14:09,082: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": "Galar"
+  }
+}
+2020-03-10 10:14:09,089: {
+  "from": "debug",
+  "type": "notice",
+  "payload": {
+    "message": "active planet: Galar"
+  }
+}
+2020-03-10 10:14:11,190: Send to: planet/Galar/025
+2020-03-10 10:14:11,191: {
+  "from": "client",
+  "type": "path",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0,
+    "endX": null,
+    "endY": null,
+    "endDirection": null,
+    "pathStatus": null
+  }
+}
+2020-03-10 10:14:11,204: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"path\", \"payload\": {\"startX\": 0, \"startY\": 0, \"startDirection\": 0, \"endX\": null, \"endY\": null, \"endDirection\": null, \"pathStatus\": null}}"
+  }
+}
+2020-03-10 10:14:52,935: Send to: explorer/025
+2020-03-10 10:14:52,935: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 10:14:52,943: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 10:14:52,948: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 10:14:54,537: Send to: explorer/025
+2020-03-10 10:14:54,537: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": "Galar"
+  }
+}
+2020-03-10 10:14:54,544: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": "Galar"
+  }
+}
+2020-03-10 10:14:54,549: {
+  "from": "debug",
+  "type": "notice",
+  "payload": {
+    "message": "active planet: Galar"
+  }
+}
+2020-03-10 10:14:56,556: Send to: planet/Galar/025
+2020-03-10 10:14:56,557: {
+  "from": "client",
+  "type": "path",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0,
+    "endX": null,
+    "endY": null,
+    "endDirection": null,
+    "pathStatus": null
+  }
+}
+2020-03-10 10:14:56,566: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"path\", \"payload\": {\"startX\": 0, \"startY\": 0, \"startDirection\": 0, \"endX\": null, \"endY\": null, \"endDirection\": null, \"pathStatus\": null}}"
+  }
+}
+2020-03-10 10:15:00,963: Send to: explorer/025
+2020-03-10 10:15:00,963: {
+  "from": "client",
+  "type": "done",
+  "payload": {
+    "message": "Exploration completed!"
+  }
+}
+2020-03-10 10:15:00,972: {
+  "from": "client",
+  "type": "done",
+  "payload": {
+    "message": "Exploration completed!"
+  }
+}
+2020-03-10 10:15:05,365: Send to: planet/Galar/025
+2020-03-10 10:15:05,366: {
+  "from": "client",
+  "type": "pathSelect",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0
+  }
+}
+2020-03-10 10:15:06,373: Send to: explorer/025
+2020-03-10 10:15:06,373: {
+  "from": "client",
+  "type": "explorationCompleted",
+  "payload": {
+    "message": "Target reached!"
+  }
+}
+2020-03-10 10:15:06,381: {
+  "from": "client",
+  "type": "explorationCompleted",
+  "payload": {
+    "message": "Target reached!"
+  }
+}
+2020-03-10 10:15:06,389: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "Not all paths explored yet",
+    "debug": "{\"from\": \"client\", \"type\": \"explorationCompleted\", \"payload\": {\"message\": \"Target reached!\"}}"
+  }
+}
+2020-03-10 10:18:16,971: Send to: explorer/025
+2020-03-10 10:18:16,971: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 10:18:16,982: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 10:18:16,989: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 10:18:18,472: Send to: explorer/025
+2020-03-10 10:18:18,472: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": null
+  }
+}
+2020-03-10 10:18:18,480: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": null
+  }
+}
+2020-03-10 10:18:18,490: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "unknown planet: ",
+    "debug": "{\"from\": \"client\", \"type\": \"testplanet\", \"payload\": {\"planetName\": null}}"
+  }
+}
+2020-03-10 10:18:36,885: Send to: explorer/025
+2020-03-10 10:18:36,885: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 10:18:36,894: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 10:18:36,898: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 10:18:38,522: Send to: explorer/025
+2020-03-10 10:18:38,523: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": "Galar"
+  }
+}
+2020-03-10 10:18:38,531: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": "Galar"
+  }
+}
+2020-03-10 10:18:38,540: {
+  "from": "debug",
+  "type": "notice",
+  "payload": {
+    "message": "active planet: Galar"
+  }
+}
+2020-03-10 10:18:42,281: Send to: planet/Galar/025
+2020-03-10 10:18:42,282: {
+  "from": "client",
+  "type": "path",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0,
+    "endX": null,
+    "endY": null,
+    "endDirection": null,
+    "pathStatus": null
+  }
+}
+2020-03-10 10:18:42,295: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "invalid message format: Incomplete message, coordinate parameters missing!",
+    "debug": "{\"from\": \"client\", \"type\": \"path\", \"payload\": {\"startX\": 0, \"startY\": 0, \"startDirection\": 0, \"endX\": null, \"endY\": null, \"endDirection\": null, \"pathStatus\": null}}"
+  }
+}
+2020-03-10 10:18:54,379: Send to: explorer/025
+2020-03-10 10:18:54,380: {
+  "from": "client",
+  "type": "done",
+  "payload": {
+    "message": "Exploration completed!"
+  }
+}
+2020-03-10 10:18:54,385: {
+  "from": "client",
+  "type": "done",
+  "payload": {
+    "message": "Exploration completed!"
+  }
+}
+2020-03-10 10:19:10,754: Send to: planet/Galar/025
+2020-03-10 10:19:10,754: {
+  "from": "client",
+  "type": "pathSelect",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0
+  }
+}
+2020-03-10 10:19:16,202: Send to: explorer/025
+2020-03-10 10:19:16,203: {
+  "from": "client",
+  "type": "explorationCompleted",
+  "payload": {
+    "message": "Target reached!"
+  }
+}
+2020-03-10 10:19:16,212: {
+  "from": "client",
+  "type": "explorationCompleted",
+  "payload": {
+    "message": "Target reached!"
+  }
+}
+2020-03-10 10:19:16,221: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "Not all paths explored yet",
+    "debug": "{\"from\": \"client\", \"type\": \"explorationCompleted\", \"payload\": {\"message\": \"Target reached!\"}}"
+  }
+}
+2020-03-10 10:21:43,411: Send to: explorer/025
+2020-03-10 10:21:43,411: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 10:21:43,423: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 10:21:43,425: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 10:21:47,500: Send to: explorer/025
+2020-03-10 10:21:47,500: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": "Galar"
+  }
+}
+2020-03-10 10:21:47,509: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": "Galar"
+  }
+}
+2020-03-10 10:21:47,514: {
+  "from": "debug",
+  "type": "notice",
+  "payload": {
+    "message": "active planet: Galar"
+  }
+}
+2020-03-10 10:21:48,839: Send to: planet/Galar/025
+2020-03-10 10:21:48,840: {
+  "from": "client",
+  "type": "path",
+  "payload": {
+    "startX": 2,
+    "startY": 3,
+    "startDirection": 0,
+    "endX": 2,
+    "endY": 4,
+    "endDirection": 180,
+    "pathStatus": "free"
+  }
+}
+2020-03-10 10:21:48,850: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "path not found",
+    "debug": "{\"from\": \"client\", \"type\": \"path\", \"payload\": {\"startX\": 2, \"startY\": 3, \"startDirection\": 0, \"endX\": 2, \"endY\": 4, \"endDirection\": 180, \"pathStatus\": \"free\"}}"
+  }
+}
+2020-03-10 10:22:08,613: Send to: explorer/025
+2020-03-10 10:22:08,613: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 10:22:08,621: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 10:22:08,623: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 10:22:09,388: Send to: explorer/025
+2020-03-10 10:22:09,388: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": "Galar"
+  }
+}
+2020-03-10 10:22:09,397: {
+  "from": "client",
+  "type": "testplanet",
+  "payload": {
+    "planetName": "Galar"
+  }
+}
+2020-03-10 10:22:09,402: {
+  "from": "debug",
+  "type": "notice",
+  "payload": {
+    "message": "active planet: Galar"
+  }
+}
+2020-03-10 10:22:10,262: Send to: planet/examinator-p-33r/025
+2020-03-10 10:22:10,262: {
+  "from": "client",
+  "type": "path",
+  "payload": {
+    "startX": 2,
+    "startY": 3,
+    "startDirection": 0,
+    "endX": 2,
+    "endY": 4,
+    "endDirection": 180,
+    "pathStatus": "free"
+  }
+}
+2020-03-10 10:23:00,639: Send to: explorer/025
+2020-03-10 10:23:00,640: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 10:23:00,649: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 10:23:00,654: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 10:23:02,070: Send to: planet/examinator-p-33r/025
+2020-03-10 10:23:02,071: {
+  "from": "client",
+  "type": "path",
+  "payload": {
+    "startX": 2,
+    "startY": 3,
+    "startDirection": 0,
+    "endX": 2,
+    "endY": 4,
+    "endDirection": 180,
+    "pathStatus": "free"
+  }
+}
+2020-03-10 10:24:30,695: Send to: explorer/025
+2020-03-10 10:24:30,696: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 10:24:30,704: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 10:24:30,706: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 10:24:31,497: Send to: planet/examinator-p-33r/025
+2020-03-10 10:24:31,497: {
+  "from": "client",
+  "type": "path",
+  "payload": {
+    "startX": 2,
+    "startY": 3,
+    "startDirection": 0,
+    "endX": 2,
+    "endY": 4,
+    "endDirection": 180,
+    "pathStatus": "free"
+  }
+}
+2020-03-10 10:26:50,979: Send to: explorer/025
+2020-03-10 10:26:50,979: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 10:26:50,989: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 10:26:50,992: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 10:26:51,643: Send to: planet/examinator-p-33r/025
+2020-03-10 10:26:51,644: {
+  "from": "client",
+  "type": "path",
+  "payload": {
+    "startX": 2,
+    "startY": 3,
+    "startDirection": 0,
+    "endX": 2,
+    "endY": 4,
+    "endDirection": 180,
+    "pathStatus": "free"
+  }
+}
+2020-03-10 10:27:44,933: Send to: explorer/025
+2020-03-10 10:27:44,934: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 10:27:44,941: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 10:27:44,945: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 10:27:45,620: Send to: planet/examinator-p-33r/025
+2020-03-10 10:27:45,620: {
+  "from": "client",
+  "type": "path",
+  "payload": {
+    "startX": 2,
+    "startY": 3,
+    "startDirection": 0,
+    "endX": 2,
+    "endY": 4,
+    "endDirection": 180,
+    "pathStatus": "free"
+  }
+}
+2020-03-10 10:28:45,764: Send to: explorer/025
+2020-03-10 10:28:45,764: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 10:28:45,773: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 10:28:45,775: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 10:28:46,719: Send to: planet/Examinator-P-33R/025
+2020-03-10 10:28:46,720: {
+  "from": "client",
+  "type": "path",
+  "payload": {
+    "startX": 2,
+    "startY": 3,
+    "startDirection": 0,
+    "endX": 2,
+    "endY": 4,
+    "endDirection": 180,
+    "pathStatus": "free"
+  }
+}
+2020-03-10 10:29:07,202: Send to: explorer/025
+2020-03-10 10:29:07,202: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 10:29:07,211: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 10:29:07,215: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 10:29:07,901: Send to: planet/Examinator-P-33R/025
+2020-03-10 10:29:07,901: {
+  "from": "client",
+  "type": "path",
+  "payload": {
+    "startX": 2,
+    "startY": 3,
+    "startDirection": 0,
+    "endX": 2,
+    "endY": 4,
+    "endDirection": 180,
+    "pathStatus": "free"
+  }
+}
+2020-03-10 10:29:37,899: Send to: explorer/025
+2020-03-10 10:29:37,899: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 10:29:37,906: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 10:29:37,910: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 10:29:38,523: Send to: planet//025
+2020-03-10 10:29:38,524: {
+  "from": "client",
+  "type": "path",
+  "payload": {
+    "startX": 2,
+    "startY": 3,
+    "startDirection": 0,
+    "endX": 2,
+    "endY": 4,
+    "endDirection": 180,
+    "pathStatus": "free"
+  }
+}
+2020-03-10 10:32:03,215: Send to: explorer/025
+2020-03-10 10:32:03,215: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 10:32:03,224: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 10:32:03,228: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 10:32:03,653: Send to: planet/Galar/025
+2020-03-10 10:32:03,653: {
+  "from": "client",
+  "type": "path",
+  "payload": {
+    "startX": 2,
+    "startY": 3,
+    "startDirection": 0,
+    "endX": 2,
+    "endY": 4,
+    "endDirection": 180,
+    "pathStatus": "free"
+  }
+}
+2020-03-10 10:32:03,671: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "path not found",
+    "debug": "{\"from\": \"client\", \"type\": \"path\", \"payload\": {\"startX\": 2, \"startY\": 3, \"startDirection\": 0, \"endX\": 2, \"endY\": 4, \"endDirection\": 180, \"pathStatus\": \"free\"}}"
+  }
+}
+2020-03-10 10:32:51,899: Send to: explorer/025
+2020-03-10 10:32:51,899: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 10:32:51,907: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 10:32:51,911: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 10:32:52,590: Send to: planet/Galar/025
+2020-03-10 10:32:52,590: {
+  "from": "client",
+  "type": "path",
+  "payload": {
+    "startX": 2,
+    "startY": 3,
+    "startDirection": 0,
+    "endX": 2,
+    "endY": 4,
+    "endDirection": 180,
+    "pathStatus": "free"
+  }
+}
+2020-03-10 10:32:52,596: {
+  "from": "client",
+  "type": "path",
+  "payload": {
+    "startX": 2,
+    "startY": 3,
+    "startDirection": 0,
+    "endX": 2,
+    "endY": 4,
+    "endDirection": 180,
+    "pathStatus": "free"
+  }
+}
+2020-03-10 10:32:52,607: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "path not found",
+    "debug": "{\"from\": \"client\", \"type\": \"path\", \"payload\": {\"startX\": 2, \"startY\": 3, \"startDirection\": 0, \"endX\": 2, \"endY\": 4, \"endDirection\": 180, \"pathStatus\": \"free\"}}"
+  }
+}
+2020-03-10 10:33:15,748: Send to: explorer/025
+2020-03-10 10:33:15,748: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 10:33:15,757: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 10:33:15,761: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 10:33:16,306: Send to: planet/pommes/025
+2020-03-10 10:33:16,307: {
+  "from": "client",
+  "type": "path",
+  "payload": {
+    "startX": 2,
+    "startY": 3,
+    "startDirection": 0,
+    "endX": 2,
+    "endY": 4,
+    "endDirection": 180,
+    "pathStatus": "free"
+  }
+}
+2020-03-10 10:33:37,803: Send to: explorer/025
+2020-03-10 10:33:37,803: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 10:33:37,811: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 10:33:37,814: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 10:33:38,934: Send to: planet/Galar/025
+2020-03-10 10:33:38,934: {
+  "from": "client",
+  "type": "path",
+  "payload": {
+    "startX": 2,
+    "startY": 3,
+    "startDirection": 0,
+    "endX": 2,
+    "endY": 4,
+    "endDirection": 180,
+    "pathStatus": "free"
+  }
+}
+2020-03-10 10:33:38,940: {
+  "from": "client",
+  "type": "path",
+  "payload": {
+    "startX": 2,
+    "startY": 3,
+    "startDirection": 0,
+    "endX": 2,
+    "endY": 4,
+    "endDirection": 180,
+    "pathStatus": "free"
+  }
+}
+2020-03-10 10:33:38,949: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "path not found",
+    "debug": "{\"from\": \"client\", \"type\": \"path\", \"payload\": {\"startX\": 2, \"startY\": 3, \"startDirection\": 0, \"endX\": 2, \"endY\": 4, \"endDirection\": 180, \"pathStatus\": \"free\"}}"
+  }
+}
+2020-03-10 10:34:35,029: Send to: explorer/025
+2020-03-10 10:34:35,029: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 10:34:35,037: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 10:34:35,039: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 10:34:35,569: Send to: planet/Galar/025
+2020-03-10 10:34:35,570: {
+  "from": "client",
+  "type": "path",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0,
+    "endX": 0,
+    "endY": 1,
+    "endDirection": 180,
+    "pathStatus": "free"
+  }
+}
+2020-03-10 10:34:35,576: {
+  "from": "client",
+  "type": "path",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0,
+    "endX": 0,
+    "endY": 1,
+    "endDirection": 180,
+    "pathStatus": "free"
+  }
+}
+2020-03-10 10:34:35,580: {
+  "from": "server",
+  "type": "path",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0,
+    "endX": 0,
+    "endY": 1,
+    "endDirection": 180,
+    "pathStatus": "free",
+    "pathWeight": 1
+  }
+}
+2020-03-10 11:00:33,433: Send to: explorer/025
+2020-03-10 11:00:33,433: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:00:33,441: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:00:33,448: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 11:00:34,112: Send to: planet/Galar/025
+2020-03-10 11:00:34,112: {
+  "from": "client",
+  "type": "path",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0,
+    "endX": 0,
+    "endY": 1,
+    "endDirection": 180,
+    "pathStatus": "free"
+  }
+}
+2020-03-10 11:00:34,118: {
+  "from": "client",
+  "type": "path",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0,
+    "endX": 0,
+    "endY": 1,
+    "endDirection": 180,
+    "pathStatus": "free"
+  }
+}
+2020-03-10 11:00:34,123: {
+  "from": "server",
+  "type": "path",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0,
+    "endX": 0,
+    "endY": 1,
+    "endDirection": 180,
+    "pathStatus": "free",
+    "pathWeight": 1
+  }
+}
+2020-03-10 11:00:35,098: Send to: explorer/025
+2020-03-10 11:00:35,098: {
+  "from": "client",
+  "type": "done",
+  "payload": {
+    "message": "Exploration completed!"
+  }
+}
+2020-03-10 11:00:35,107: {
+  "from": "client",
+  "type": "done",
+  "payload": {
+    "message": "Exploration completed!"
+  }
+}
+2020-03-10 11:00:36,242: Send to: planet/Galar/025
+2020-03-10 11:00:36,242: {
+  "from": "client",
+  "type": "pathSelect",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0
+  }
+}
+2020-03-10 11:00:36,248: {
+  "from": "client",
+  "type": "pathSelect",
+  "payload": {
+    "startX": 0,
+    "startY": 0,
+    "startDirection": 0
+  }
+}
+2020-03-10 11:00:40,490: Send to: explorer/025
+2020-03-10 11:00:40,491: {
+  "from": "client",
+  "type": "explorationCompleted",
+  "payload": {
+    "message": "Target reached!"
+  }
+}
+2020-03-10 11:00:40,500: {
+  "from": "client",
+  "type": "explorationCompleted",
+  "payload": {
+    "message": "Target reached!"
+  }
+}
+2020-03-10 11:00:40,505: {
+  "from": "debug",
+  "type": "error",
+  "payload": {
+    "message": "Not all paths explored yet",
+    "debug": "{\"from\": \"client\", \"type\": \"explorationCompleted\", \"payload\": {\"message\": \"Target reached!\"}}"
+  }
+}
+2020-03-10 11:24:15,115: Send to: explorer/025
+2020-03-10 11:24:15,115: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:24:15,156: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:24:15,204: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 11:24:15,230: Send to: explorer/025
+2020-03-10 11:24:15,230: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:24:15,305: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:24:15,340: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 11:24:15,346: Send to: explorer/025
+2020-03-10 11:24:15,347: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:24:15,400: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:24:15,453: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 11:24:15,474: Send to: explorer/025
+2020-03-10 11:24:15,474: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:24:15,545: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:24:15,593: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 11:24:15,609: Send to: explorer/025
+2020-03-10 11:24:15,609: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:24:15,692: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:24:15,744: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 11:24:15,770: Send to: explorer/025
+2020-03-10 11:24:15,772: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:24:15,846: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:24:15,898: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 11:24:15,927: Send to: explorer/025
+2020-03-10 11:24:15,927: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:24:15,993: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:24:16,025: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 11:24:16,051: Send to: explorer/025
+2020-03-10 11:24:16,051: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:24:28,681: Send to: explorer/025
+2020-03-10 11:24:28,681: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:24:28,715: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:24:28,752: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 11:24:28,773: Send to: explorer/025
+2020-03-10 11:24:28,774: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:24:28,853: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:24:28,895: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 11:24:28,921: Send to: explorer/025
+2020-03-10 11:24:28,921: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:24:28,994: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:24:29,046: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 11:24:29,073: Send to: explorer/025
+2020-03-10 11:24:29,073: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:24:29,147: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:24:29,183: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 11:24:29,204: Send to: explorer/025
+2020-03-10 11:24:29,205: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:24:29,293: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:24:29,336: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 11:24:29,363: Send to: explorer/025
+2020-03-10 11:24:29,364: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:24:29,424: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:25:13,419: Send to: explorer/025
+2020-03-10 11:25:13,419: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:25:13,428: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:25:13,434: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 11:25:15,421: Send to: explorer/025
+2020-03-10 11:25:15,422: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:25:15,430: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:25:15,438: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 11:25:17,424: Send to: explorer/025
+2020-03-10 11:25:17,424: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:25:17,433: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:25:17,443: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 11:26:09,051: Send to: explorer/025
+2020-03-10 11:26:09,051: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:26:09,060: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:26:09,062: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 11:26:11,054: Send to: explorer/025
+2020-03-10 11:26:11,054: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:26:11,063: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:26:11,067: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 11:26:48,198: Send to: explorer/025
+2020-03-10 11:26:48,198: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:26:48,206: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:26:48,209: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 11:26:50,198: Send to: explorer/025
+2020-03-10 11:26:50,199: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:26:50,207: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:26:50,216: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 11:27:26,125: Send to: explorer/025
+2020-03-10 11:27:26,126: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:27:26,134: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:27:26,139: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 11:27:26,226: Send to: explorer/025
+2020-03-10 11:27:26,226: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:27:26,233: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:27:26,243: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 11:27:26,327: Send to: explorer/025
+2020-03-10 11:27:26,327: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:27:26,334: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:27:26,341: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 11:27:26,428: Send to: explorer/025
+2020-03-10 11:27:26,428: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:27:26,435: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:27:26,444: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 11:27:26,529: Send to: explorer/025
+2020-03-10 11:27:26,530: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:27:26,538: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:27:26,547: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 11:27:26,631: Send to: explorer/025
+2020-03-10 11:27:26,632: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:27:26,639: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:27:26,648: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 11:27:26,732: Send to: explorer/025
+2020-03-10 11:27:26,732: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:27:26,739: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:27:26,748: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 11:27:26,833: Send to: explorer/025
+2020-03-10 11:27:26,833: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:27:26,839: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:27:26,846: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 11:27:26,933: Send to: explorer/025
+2020-03-10 11:27:26,934: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:27:26,941: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:27:26,948: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 11:27:27,034: Send to: explorer/025
+2020-03-10 11:27:27,034: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:27:27,042: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:27:27,052: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}
+2020-03-10 11:28:02,286: Send to: explorer/025
+2020-03-10 11:28:02,286: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:28:02,294: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-10 11:28:02,297: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Galar",
+    "startX": 0,
+    "startY": 0,
+    "startOrientation": 0
+  }
+}

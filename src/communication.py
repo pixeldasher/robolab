@@ -24,15 +24,11 @@ class Communication:
         self.client.tls_set(tls_version=ssl.PROTOCOL_TLS)
         self.client.on_message = self.safe_on_message_handler
         # Add your client setup here
-
-        # Changes current channel (topic) to explorer/025
-        database.current_channel = "explorer/025"
-
+        #
         # Setup for client/server communication
         self.client.username_pw_set('025', password='4NpQpEEVS7')  # Your group credentials
         self.client.connect('mothership.inf.tu-dresden.de', port=8883)
-        self.client.subscribe('{}'.format(database.current_channel), qos=1)  # Subscribe to topic explorer/025
-
+        self.client.subscribe("explorer/025", qos=1)  # Subscribe to topic explorer/025
         self.client.loop_start()
 
         self.logger = logger
@@ -52,23 +48,18 @@ class Communication:
 
         # YOUR CODE FOLLOWS (remove pass, please!)
         
-        if payload["from"] == "server":
-            database.message_type = str(payload["type"])
-            database.received_message = dict(json.loads(message.payload.decode('utf-8')))
-            self.message_type_scan()
-        """
-        if payload["from"] == "server":
-            database.message_type = str(payload["type"])
-            database.received_message = dict(json.loads(message.payload.decode('utf-8')))
-            print(json.dumps(payload, indent=2))
-        """
-
-        
+        print("----------------")
+        database.message_type = str(payload["type"])
+        database.received_message = dict(json.loads(message.payload.decode('utf-8')))
+        print(json.dumps(json.loads(message.payload.decode('utf-8')), indent=2))
+        self.message_type_scan()
+              
 
     # DO NOT EDIT THE METHOD SIGNATURE
     #
     # In order to keep the logging working you must provide a topic string and
     # an already encoded JSON-Object as message.
+    
     def send_message(self, topic, message):
         """
         Sends given message to specified channel
@@ -88,12 +79,13 @@ class Communication:
         print(database.message_type)
         if database.message_type == "planet":
             database.planet_name = str(database.received_message["payload"]["planetName"])
-            database.current_channel = str("planet/{}/025".format(database.planet_name))
-            database.first_time_ready = not database.first_time_ready
 
             database.start_x = int(database.received_message["payload"]["startX"])
             database.start_y = int(database.received_message["payload"]["startY"])
             database.start_dir = int(database.received_message["payload"]["startOrientation"])
+
+            self.client.subscribe("planet/{}/025".format(database.planet_name), qos=1)  # Subscribe to topic planet
+
         
         elif database.message_type == "path":
             database.start_x = int(database.received_message["payload"]["startX"])
@@ -128,53 +120,40 @@ class Communication:
         
         elif database.message_type == "done":
             database.done_message = str(database.received_message["payload"]["message"])
+
+        elif database.message_type == "notice":
+            database.testplanet_message = str(database.received_message["payload"]["message"])
+
             
 
     # Define all unique sendable message types as functions for easier usage
-    def send_test_planet(self, planet_name):
-        self.send_message("{}".format(database.current_channel), {"from": "client", "type": "testplanet", "payload": {"planetName": database.planet_name}})
-
-
     def send_ready(self):
-        self.send_message("{}".format(database.current_channel), {"from": "client", "type": "ready"})
+        if database.first_time_ready:
+            # Only performs the ready message action once
+            self.send_message("explorer/025", {"from": "client", "type": "ready"})
+            database.first_time_ready = not database.first_time_ready
+        else:
+            pass
 
 
-    def send_path(self, startX, startY, startDirection, endX, endY, pathStatus):
-        self.send_message("{}".format(database.current_channel), {"from": "client", "type": "path", "payload": "{}"})
+    def send_test_planet(self, planet_name):
+        self.send_message("explorer/025", {"from": "client", "type": "testplanet", "payload": {"planetName": database.planet_name}})
 
 
-    def send_path_select(self, message):
-        self.send_message("{}".format(database.current_channel), {"from": "client", "type": "pathSelect", "payload":{message}})
+    def send_path(self, start_x, start_y, start_dir, end_x, end_y, end_dir, path_status):
+        self.send_message("planet/{}/025".format(database.planet_name), {"from": "client", "type": "path", "payload": {"startX": start_x, "startY": start_y, "startDirection": start_dir, "endX": end_x, "endY": end_y, "endDirection": end_dir, "pathStatus": path_status}})
+
+
+    def send_path_select(self, start_x, start_y, start_dir):
+        self.send_message("planet/{}/025".format(database.planet_name), {"from": "client", "type": "pathSelect", "payload":{"startX": start_x, "startY": start_y, "startDirection": start_dir}})
 
 
     def send_target_reached(self):
-        self.send_message("{}".format(database.current_channel), {"from": "client", "type": "explorationCompleted", "payload":{"message": "Target reached!"}})
+        self.send_message("explorer/025", {"from": "client", "type": "explorationCompleted", "payload":{"message": "Target reached!"}})
 
 
     def send_exploration_completed(self):
-        self.send_message("{}".format(database.current_channel), {"from": "client", "type": "done", "payload":{"message": "Exploration completed!"}})
-
-    
-    def comm_phase_init(self):
-        if database.first_time_ready:
-            # Only performs the ready message action once
-            self.send_ready()
-            database.first_time_ready = not database.first_time_ready
-
-        else:
-            #Continue to sending phase
-            self.comm_phase_send()
-        
-
-    def comm_phase_send(self):
-        print("Hello")
-
-        # Continue to receiving phase
-        self.comm_phase_receive()
-
-
-    def comm_phase_receive(self):
-        pass
+        self.send_message("explorer/025", {"from": "client", "type": "done", "payload":{"message": "Exploration completed!"}})
 
 
     # DO NOT EDIT THE METHOD SIGNATURE OR BODY
