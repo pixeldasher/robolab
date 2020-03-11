@@ -45,20 +45,25 @@ class Database:
         self.path_status = None
         self.path_weight = None
 
-        self.target_x = None
-        self.target_y = None
+        self.target = None
 
         self.done_message = None
         self.testplanet_message = None
 
+        # Variables for exploration on planet
+        self.next_direction = None
+        self.vert = (self.end_x, self.end_y)
+        self.directions = None
+
 
         # Latest path, put together with the data above
-        self.latest_path = (((self.start_x, self.start_y), self.start_dir), ((self.end_x, self.end_y), self.end_dir), (self.path_weight))
+        self.latest_path_start = ((self.start_x, self.start_y), self.start_dir)
+        self.latest_path_end = ((self.end_x, self.end_y), self.end_dir)
+        self.latest_path_weight = self.path_weight
 
 
-        # Booleans for whether or not a target has been reached or is unreachable
-        self.targed_reached = False
-        self.target_unreachable = False
+        # Booleans for whether or not the exploration is completed
+        self.exploration_completed = False
 
 
     def update_start_coords(self):

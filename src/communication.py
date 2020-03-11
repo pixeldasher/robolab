@@ -66,7 +66,7 @@ class Communication:
         print(json.dumps(json.loads(message.payload.decode('utf-8')), indent=2))
 
         # Checks whether or not an answer has been received
-        if d.received_message["from"] == "server" or d.received_message["from"] == "debug":
+        if d.received_message["from"] == "server" or "debug":
             d.answered = True
         
         # Writes down the time since the last message has been sent/received
@@ -119,7 +119,7 @@ class Communication:
             d.start_y = int(d.received_message["payload"]["startY"])
             d.start_dir = int(d.received_message["payload"]["startOrientation"])
 
-            #"""
+            """
             # Possible Override for testing
             d.planet_name = "examinator-p-33r"
             d.start_x = 1
@@ -158,8 +158,7 @@ class Communication:
             d.path_weight = int(d.received_message["payload"]["pathWeight"])
         
         elif d.message_type == "target":
-            d.target_x = int(d.received_message["payload"]["targetX"])
-            d.target_y = int(d.received_message["payload"]["targetY"])
+            d.target = (int(d.received_message["payload"]["targetX"]), int(d.received_message["payload"]["targetY"]))
         
         elif d.message_type == "done":
             d.done_message = str(d.received_message["payload"]["message"])
@@ -193,8 +192,8 @@ class Communication:
 
     def send_path_select(self):
         # If no data has been set, don't call it from database
-        if type(d.start_dir) == int:
-            self.send_message(f"planet/{d.planet_name}/025", {"from": "client", "type": "pathSelect", "payload":{"startX": d.start_x, "startY": d.start_y, "startDirection": d.start_dir}})
+        if type(d.next_direction) == int:
+            self.send_message(f"planet/{d.planet_name}/025", {"from": "client", "type": "pathSelect", "payload":{"startX": d.start_x, "startY": d.start_y, "startDirection": d.next_direction}})
         else:
             pass
 

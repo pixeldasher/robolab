@@ -46,9 +46,20 @@ class RoboLabPlanetTests(unittest.TestCase):
         MODEL YOUR TEST PLANET HERE (if you'd like):
 
         """
+
         # Initialize your data structure here
         self.planet = Planet()
-        # self.planet.add_path(...)
+
+        self.planet.add_path(((0, 0), Direction.NORTH), ((0, 2), Direction.SOUTH), 2)
+        self.planet.add_path(((0, 2), Direction.EAST), ((1, 2), Direction.WEST), 1)
+        self.planet.add_path(((1, 2), Direction.EAST), ((1, 4), Direction.EAST), 3)
+        self.planet.add_path(((1, 4), Direction.NORTH), ((3, 4), Direction.WEST), 3)
+        self.planet.add_path(((2, 2), Direction.EAST), ((3, 4), Direction.SOUTH), 3)
+        self.planet.add_path(((2, 2), Direction.SOUTH), ((2, 1), Direction.NORTH), 1)
+        self.planet.add_path(((2, 1), Direction.EAST), ((3, 1), Direction.WEST), 1)
+        self.planet.add_path(((1, 2), Direction.SOUTH), ((2, 1), Direction.WEST), 3)
+        self.planet.add_path(((0, 0), Direction.EAST), ((4, 0), Direction.WEST), 4)
+        self.planet.add_path(((4, 0), Direction.NORTH), ((3, 4), Direction.EAST), 4)
 
     def test_integrity(self):
         """
