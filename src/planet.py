@@ -183,11 +183,11 @@ class Planet:
         print("shortest path from: ", start, " to: ", target, "doesn't exist!")
         return None
 
-    def select_direction(self, start: Tuple[int, int]):
+    def select_direction(self, start: Tuple[int, int], target: Union[None, Tuple[int, int]]):
         if start in self.explore_dict:
-            return self.explore_dict[start][0]
+            return int(self.explore_dict[start][0])
         else:
-            return self.shortest_path(start, None)[0][1]
+            return int(self.shortest_path(start, target)[0][1])
 
 
 if __name__ == "__main__":
