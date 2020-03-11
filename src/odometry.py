@@ -1,10 +1,13 @@
 # !/usr/bin/env python3
 
 # Attention: Do not import the ev3dev.ev3 module in this file
-import main
+# Import py modules
 from time import sleep
 from math import sin,cos,pi
-import database
+
+# Import src modules
+import main
+from database import Database
 
 
 class Odometry:
@@ -14,6 +17,8 @@ class Odometry:
         """
 
         # YOUR CODE FOLLOWS (remove pass, please!)
+        global d
+        d = Database()
     
     
 path_dict = {}
