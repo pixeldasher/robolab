@@ -6,11 +6,11 @@ import paho.mqtt.client as mqtt
 import uuid
 import ev3dev.ev3 as ev3
 import time
-import odometry
 from communication import Communication
-#from odometry import Odometry
+from odometry import Odometry
 from planet import Direction, Planet
 import database
+odometry = Odometry()
 
 client = None  # DO NOT EDIT
 
@@ -48,22 +48,6 @@ def run():
     system_loop()
 
 """
-# Define sensor variables
-us = ev3.UltrasonicSensor()
-cs = ev3.ColorSensor()
-
-# Set sensor modes
-us.mode = 'US-DIST-CM'
-cs.mode = 'RGB-RAW'
-
-# Assign motors to corresponding port on device
-motor_left = ev3.LargeMotor("outA")
-motor_right = ev3.LargeMotor("outB")
-
-# Default moving speed value
-database.motor_speed = 250
-
-
 # Function to push all the sensor data into the database
 def push_sensor_data():
     database.color_sensor_red_raw = cs.bin_data("hhh")[0]
@@ -77,26 +61,11 @@ def push_sensor_data():
     database.ultra_sonic_sensor = us.distance_centimeters
 """  
 
-# Define sensors
-us = ev3.UltrasonicSensor()
-cs = ev3.ColorSensor()
-
-
-# Define sensor modes
-us.mode = 'US-DIST-CM'
-cs.mode = 'RGB-RAW'
-
-
-# Define motors
-motor_left = ev3.LargeMotor("outA")
-motor_right = ev3.LargeMotor("outB")
-
 
 # System loop for running through all phases
 def system_loop():
     odometry.start_driving()
     while True:
-        c.communication_phase()
 
         """
         odometry.colorscan()
@@ -105,16 +74,16 @@ def system_loop():
         if odometry.move_smooth():
             print("hallo")
             print(odometry.stop_driving())
-            time.sleep(1)
-            motor_left.run_to_rel_pos(position_sp=270)
-            motor_right.run_to_rel_pos(position_sp=270)
-            time.sleep(3)
+            c.communication_phase()
+            odometry.motor_left.run_to_rel_pos(position_sp=270)
+            odometry.motor_right.run_to_rel_pos(position_sp=270)
+            time.sleep(2)
+            odometry.turn_around(350)
             odometry.start_driving()
         else:
             pass
 
         # Samplingrate for system loop ### 1/10 of a second
-        time.sleep(1/10)
 
 
 # DO NOT EDIT
