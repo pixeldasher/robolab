@@ -111,36 +111,36 @@ class Planet:
         # Initialisierung für Djikstra:
         dist = {}  # Dictionary für Distanz aller Knoten zu Startknoten
         prev = {}  # Dictionary für Vorgängerknoten
-        q = []  # Liste aller Knoten, für die noch kein kürzester Weg vom Startknoten aus gefunden wurde
+        to_do = []  # Liste aller Knoten, für die noch kein kürzester Weg vom Startknoten aus gefunden wurde
         output = []
 
+        # Erstellen des Dictionarys mit allen bekannten Knoten und Pfaden
         self.get_paths()
 
         for v in self.planet_dict:
             dist[v] = float("inf")
             prev[v] = None
-            q.append(v)
+            to_do.append(v)
 
         dist[start] = 0
         u = start
 
         # Dijkstraalgorithmus:
 
-        while q:  # solange es noch Knoten gibt, zu denen kein kürzester Weg berechnet wurde
-            q.remove(u)
+        while to_do:  # solange es noch Knoten gibt, zu denen kein kürzester Weg berechnet wurde
+            to_do.remove(u)
 
             # alle relevanten Nachbaren v von u finden:
             for path_tuple in self.paths:  # alle Pfade (alle path_tuples, die im paths-set enthalten sind)
                 if path_tuple[0][0] == u:  # nur die Pfade, dessen Startknoten u entspricht
 
                     v = path_tuple[1][0]
-                    if v in q:  # falls diese Nachbarn noch zu scannen sind (also noch Element der Liste q sind)
+                    if v in to_do:  # falls diese Nachbarn noch zu scannen sind (also noch Element der Liste to_do sind)
 
                         # Berechnung und Vergleich des Alternativwegs: neuer Distanzwert durch Berücksichtigung der jeweiligen Kante zwischen u und v (path_tuple[2])
                         altern = dist[u] + path_tuple[2]
 
-                        if altern < dist[
-                            v]:  # falls Alterativweg kürzer ist, als bisheriger, wird Vorgänger von v auf u gesetzt und die Distanz zu v auf altern gesetzt
+                        if altern < dist[v]:  # falls Alterativweg kürzer ist, als bisheriger, wird Vorgänger von v auf u gesetzt und die Distanz zu v auf altern gesetzt
                             dist[v] = altern
                             prev[v] = u
 
@@ -148,7 +148,7 @@ class Planet:
             temp_min_dist = float("inf")
             temp_min = None
             for v in self.planet_dict:
-                if v in q:
+                if v in to_do:
                     if dist[v] < temp_min_dist:
                         temp_min_dist = dist[v]
                         temp_min = v
