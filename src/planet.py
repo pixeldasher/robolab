@@ -183,6 +183,12 @@ class Planet:
         print("shortest path from: ", start, " to: ", target, "doesn't exist!")
         return None
 
+    def select_direction(self, start: Tuple[int, int]):
+        if start in self.explore_dict:
+            return self.explore_dict[start][0]
+        else:
+            return self.shortest_path(start, None)[0][1]
+
 
 if __name__ == "__main__":
     p = Planet()
