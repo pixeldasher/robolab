@@ -37,6 +37,13 @@ class Planet:
         self.planet_dict: Dict[Tuple[int, int], Dict[Direction, Tuple[Tuple[int, int], Direction, Weight]]] = {}
         self.explore_dict: Dict[Tuple[int, int], Set[Direction]] = {}
 
+    # alle neuen Directions bei Ankunft an einem (neuen) Knoten in explore_dict aufnehmen
+    def add_vertex(self, vert: Tuple[int, int], directions: Set[Direction]):
+            # directions ist ein Set (Menge) aller möglichen neuen(!) directions am neuen Knoten
+
+            if vert not in self.explore_dict:
+                self.explore_dict[vert] = directions
+
     def add_path(self, start: Tuple[Tuple[int, int], Direction], target: Tuple[Tuple[int, int], Direction],
                  weight: int):
         """
@@ -52,17 +59,11 @@ class Planet:
         self.paths.add((start, target, weight))
         self.paths.add((target, start, weight))
 
+
+    def vertex_explored(self, start: Tuple[Tuple[int, int], Direction], target: Tuple[Tuple[int, int], Direction]):
         # Entfernen der Directions, die durchs Abfahren dieses Pfades "erkundet" wurden:
         self.explore_dict[start[0]] = self.explore_dict[start[0]] - {start[1]}
         self.explore_dict[target[0]] = self.explore_dict[target[0]] - {target[1]}
-
-    # alle neuen Directions bei Ankunft an einem (neuen) Knoten in explore_dict aufnehmen
-    def add_vertex(self, vert: Tuple[int, int], directions: Set[Direction]):
-        # directions ist ein Set (Menge) aller möglichen neuen(!) directions am neuen Knoten
-
-        if vert not in self.explore_dict:
-            self.explore_dict[vert] = directions
-
 
     def get_paths(self) -> Dict[Tuple[int, int], Dict[Direction, Tuple[Tuple[int, int], Direction, Weight]]]:
         """
@@ -184,8 +185,17 @@ class Planet:
         return None
 
     def select_direction(self, start: Tuple[int, int], target: Union[None, Tuple[int, int]]):
-        if start in self.explore_dict:
+        # zur Sicherheit wird nochmal abgefragt, ob wir nicht bereits auf dem Ziel sitzen:
+        if self.shortest_path(start, target) == []:
+            return None
+
+        #falls wir auf einem Knoten sitzen, der noch nicht komplett explored wurde
+        # (also noch unbekannte Pfade von ihm abgehen)
+
+        elif start in self.explore_dict:
+            # dann wählen wir das erste Element aus der Menge aller nicht erkundeten Pfade (konkreter: Directions)
             return int(self.explore_dict[start][0])
+
         else:
             return int(self.shortest_path(start, target)[0][1])
 
@@ -206,3 +216,5 @@ if __name__ == "__main__":
 
     pprint.pprint(p.get_paths())
     p.shortest_path((0, 0), (10, 10))
+
+    print()
