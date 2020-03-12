@@ -30,7 +30,6 @@ class Planet:
     it according to the specifications
     """
 
-
     def __init__(self):
         """ Initializes the data structure """
         self.target = None
