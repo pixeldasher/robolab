@@ -106,7 +106,7 @@ class Planet:
 
         # wenn Ziel- und Startknoten derselbe sind, wird ein "leerer Weg" zurückgegeben
         if target == start:
-            print("shortest path from: ", start, " to: ", target, "? ... well... just stay right here.")
+            # print("shortest path from: ", start, " to: ", target, "? ... well... just stay right here.")
             return []
 
         # Initialisierung für Djikstra:
@@ -135,15 +135,17 @@ class Planet:
             for path_tuple in self.paths:  # alle Pfade (alle path_tuples, die im paths-set enthalten sind)
                 if path_tuple[0][0] == u:  # nur die Pfade, dessen Startknoten u entspricht
 
-                    v = path_tuple[1][0]
-                    if v in to_do:  # falls diese Nachbarn noch zu scannen sind (also noch Element der Liste to_do sind)
+                    if not path_tuple[2] == -1: # Pfade mit weight -1 sind irrelevant, da diese Sackgassen sind
 
-                        # Berechnung und Vergleich des Alternativwegs: neuer Distanzwert durch Berücksichtigung der jeweiligen Kante zwischen u und v (path_tuple[2])
-                        altern = dist[u] + path_tuple[2]
+                        v = path_tuple[1][0]
+                        if v in to_do:  # falls diese Nachbarn noch zu scannen sind (also noch Element der Liste to_do sind)
 
-                        if altern < dist[v]:  # falls Alterativweg kürzer ist, als bisheriger, wird Vorgänger von v auf u gesetzt und die Distanz zu v auf altern gesetzt
-                            dist[v] = altern
-                            prev[v] = u
+                            # Berechnung und Vergleich des Alternativwegs: neuer Distanzwert durch Berücksichtigung der jeweiligen Kante zwischen u und v (path_tuple[2])
+                            altern = dist[u] + path_tuple[2]
+
+                            if altern < dist[v]:  # falls Alterativweg kürzer ist, als bisheriger, wird Vorgänger von v auf u gesetzt und die Distanz zu v auf altern gesetzt
+                                dist[v] = altern
+                                prev[v] = u
 
             # Nachbar von u mit dem kleinsten Abstand zu u finden und als neues u setzen:
             temp_min_dist = float("inf")
@@ -177,11 +179,11 @@ class Planet:
                                 if path_tuple[1][0] == shortest_p[i + 1]:
                                     output.append((shortest_p[i], path_tuple[0][1]))
 
-                print("shortest path from: ", start, " to: ", target, "is:", output)
+                # print("shortest path from: ", start, " to: ", target, "is:", output)
                 return output
 
         # falls nach dem Erstellen des Baumes aller kürzesten Pfade im Planet kein Weg vom Start zum Ziel gefunden wurde:
-        print("shortest path from: ", start, " to: ", target, "doesn't exist!")
+        # print("shortest path from: ", start, " to: ", target, "doesn't exist!")
         return None
 
     def select_direction(self, start: Tuple[int, int], target: Union[None, Tuple[int, int]]):
@@ -200,7 +202,7 @@ class Planet:
             return int(self.shortest_path(start, target)[0][1])
 
 
-if __name__ == "__main__":
+'''if __name__ == "__main__":
     p = Planet()
     p.add_path(((0, 0), Direction.NORTH), ((0, 2), Direction.SOUTH), 2)
     p.add_path(((0, 2), Direction.EAST), ((1, 2), Direction.WEST), 1)
@@ -215,6 +217,5 @@ if __name__ == "__main__":
     import pprint
 
     pprint.pprint(p.get_paths())
-    p.shortest_path((0, 0), (10, 10))
+    p.shortest_path((0, 0), (10, 10))'''
 
-    print()

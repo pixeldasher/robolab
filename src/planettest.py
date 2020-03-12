@@ -95,6 +95,21 @@ class RoboLabPlanetTests(unittest.TestCase):
         self.planet_loop.add_path(((0, 0), Direction.EAST), ((4, 0), Direction.WEST), 4)
         self.planet_loop.add_path(((4, 0), Direction.NORTH), ((3, 4), Direction.EAST), 4)
 
+        # meteor planet:
+        self.planet_meteor = Planet()
+
+        self.planet_meteor.add_path(((0, 0), Direction.NORTH), ((0, 2), Direction.SOUTH), 2)
+        self.planet_meteor.add_path(((0, 2), Direction.EAST), ((1, 2), Direction.WEST), 1)
+        self.planet_meteor.add_path(((1, 2), Direction.EAST), ((1, 4), Direction.EAST), 3)
+        self.planet_meteor.add_path(((1, 4), Direction.NORTH), ((3, 4), Direction.WEST), 3)
+        self.planet_meteor.add_path(((2, 2), Direction.EAST), ((3, 4), Direction.SOUTH), 3)
+        self.planet_meteor.add_path(((2, 2), Direction.SOUTH), ((2, 1), Direction.NORTH), 1)
+        self.planet_meteor.add_path(((2, 1), Direction.EAST), ((3, 1), Direction.WEST), 1)
+        self.planet_meteor.add_path(((1, 2), Direction.SOUTH), ((2, 1), Direction.WEST), 3)
+        self.planet_meteor.add_path(((0, 0), Direction.EAST), ((4, 0), Direction.WEST), 4)
+        self.planet_meteor.add_path(((4, 0), Direction.NORTH), ((3, 4), Direction.EAST), 4)
+        self.planet_meteor.add_path(((4, 0), Direction.EAST), ((4, 0), Direction.EAST), -1)
+
 
     def test_integrity(self):
         """
@@ -216,6 +231,13 @@ class RoboLabPlanetTests(unittest.TestCase):
 
         self.assertEqual(expect_list, self.planet_loop.shortest_path((0, 0), (10, 10)))
 
+    def test_skip_meteor(self):
+        # tests target-reaching if there are meteor-paths part of the planet (paths with weight=-1)
+        expect_list = [
+            ((0, 0), Direction.EAST), ((4, 0), Direction.NORTH)
+        ]
+
+        self.assertEqual(expect_list, self.planet_meteor.shortest_path((0, 0), (3, 4)))
 
 if __name__ == "__main__":
     unittest.main()
