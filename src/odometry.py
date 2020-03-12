@@ -36,6 +36,10 @@ class Odometry:
 
         self.directions = set()
         self.path_status = None
+
+        self.start_x = 0
+        self.start_y = 0
+        self.start_dir = 0
         
     def luminance(self):
 
@@ -158,6 +162,7 @@ class Odometry:
                 if self.luminance() < 0.5:
                     self.directions.add(planet.Direction(round(counter/90)*90 % 360))
                     break
+    # aufpassen dass die Gradzahlen umgerechnet werden (Nicki)
 
     def start_driving(self):
         self.wheel_left = []
@@ -194,7 +199,7 @@ class Odometry:
             y = deltay + y
 
         self.path_status = "Free"
-        x = x + round(x / 90)
-        y = y + round(x / 90)
-        dir = (dir + 180 - (round(degrees(gamma)/90) % 4)*90) % 360
+        self.start_x = self.start_x + round(x / 90)
+        self.start_y = self.start_y + round(x / 90)
+        self.start_dir = (self.start_dir + 180 - (round(degrees(gamma)/90) % 4)*90) % 360
         return x, y, gamma
