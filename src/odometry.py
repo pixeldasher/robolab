@@ -4,7 +4,7 @@
 import ev3dev.ev3 as ev3
 from time import sleep
 from math import sin,cos,pi, degrees
-import planet
+from planet import Direction
 
 
 class Odometry:
@@ -24,7 +24,7 @@ class Odometry:
         self.motor_left = ev3.LargeMotor("outA")
         self.motor_right = ev3.LargeMotor("outB")
 
-        self.a = 9.3
+        self.a = 8
         self.d = 5.6
         self.Kp = 10
         self.Ki = 1
@@ -40,7 +40,10 @@ class Odometry:
         self.start_x = 0
         self.start_y = 0
         self.start_dir = 0
-        
+        self.end_x = 0
+        self.end_y = 0
+        self.end_dir = 0
+
     def luminance(self):
 
         current_value = (self.cs.bin_data("hhh"))
@@ -124,7 +127,7 @@ class Odometry:
         # print("blue:", current_value_blue)
 
         if self.us.distance_centimeters < 30:
-            self.motor_right.speed_sp = self.motor_right.speed_sp * (-1)
+            self.turn_around(180)
             sleep(3)
 
         if 110 < current_value_red < 140 and 35 < current_value_green < 60 and 10 < current_value_blue < 30:
@@ -145,22 +148,21 @@ class Odometry:
             return False
 
     def turn_around(self, direct: int):
-        self.motor_left.run_to_rel_pos(position_sp=direct * self.a / self.d, speed_sp=200, stop_action="hold")
-        self.motor_right.run_to_rel_pos(position_sp=-direct * self.a / self.d, speed_sp=-200, stop_action="hold")
-        sleep(0.001)
-        self.motor_left.wait_until_not_moving()
-        self.motor_right.wait_until_not_moving()
+        self.motor_left.run_to_rel_pos(position_sp=direct * self.a / self.d, speed_sp=100, stop_action="brake")
+        self.motor_right.run_to_rel_pos(position_sp=-direct * self.a / self.d, speed_sp=-100, stop_action="brake")
+        while 'running' in(self.motor_left.state + self.motor_right.state):
+            sleep(0.1)
 
     def scan(self):
         counter = 0
-        while counter < 360:
-            counter += 45
-            self.turn_around(45)
+        while counter <= 360:
+            counter += 50
+            self.turn_around(50)
             while True:
                 counter += 5
                 self.turn_around(5)
                 if self.luminance() < 0.5:
-                    self.directions.add(planet.Direction(round(counter/90)*90 % 360))
+                    self.directions.add(Direction(round(counter/90)*90 % 360))
                     break
     # aufpassen dass die Gradzahlen umgerechnet werden (Nicki)
 
@@ -199,7 +201,7 @@ class Odometry:
             y = deltay + y
 
         self.path_status = "Free"
-        self.start_x = self.start_x + round(x / 90)
-        self.start_y = self.start_y + round(x / 90)
-        self.start_dir = (self.start_dir + 180 - (round(degrees(gamma)/90) % 4)*90) % 360
-        return x, y, gamma
+        self.end_x = self.start_x + round(x / 50)
+        self.end_y = self.start_y + round(y / 50)
+        self.end_dir = (self.start_dir + 180 - (round(degrees(gamma)/90) % 4)*90) % 360
+        return self.end_x, self.end_y, self.end_dir
