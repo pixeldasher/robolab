@@ -12,7 +12,7 @@ from time import sleep
 from odometry import Odometry
 from communication import Communication
 from planet import Direction, Planet
-from database import Database
+import database
 
 client = None  # DO NOT EDIT
 
@@ -41,10 +41,9 @@ def run():
     # ADD YOUR OWN IMPLEMENTATION HEREAFTER.
 
     # Objects for classes of other modules
-    global p, c, d, o
+    global p, c, o
     p = Planet()
     c = Communication(client, logger)
-    d = Database()
     o = Odometry()
 
     # Run system loop for exploration
@@ -56,18 +55,18 @@ def system_loop():
     o.start_driving()
 
     while True:
-        # Add all sensor data to database# Movement function
+        # Movement function
         o.while_driving()
 
-        # If stations has been reached:
         if o.move_smooth():
             # ... send ready message, only works once
             c.send_ready()
 
             # ... move forward in order to not scan the same station twice
-            o.motor_left.speed_sp = 360
-            o.motor_right.speed_sp = 360
-            sleep(1)
+            o.motor_left.run_to_rel_pos(position_sp=180, speed_sp = 360)
+            o.motor_right.run_to_rel_pos(position_sp=180, speed_sp = 360)
+            sleep(0.01)
+            o.motor_left.wait_until_not_moving()
 
             # ... get data from odometry and save it to database
             o.stop_driving()
@@ -76,45 +75,40 @@ def system_loop():
             c.send_path()
 
             # ... turn around and check all directions for possible paths
-            #o.scan_directions()
-            o.turn_around(360)
+            o.scan_directions()
 
             # ... take all directions and put them int planet data
-            p.add_vertex(d.vert, d.directions)
+            #p.add_vertex(database.vert, database.directions)
             
             # ... add the corrected path to planet data
-            p.add_path(d.latest_path_start, d.latest_path_end, d.latest_path_weight)
-
-            # ... replace old start coordinates and direction with current end coordinates and direction
-            d.update_start_coords()
+            #p.add_path(database.latest_path_start, database.latest_path_end, database.latest_path_weight)
 
             # ... select the next direction, check if the target has been reached
-            if p.select_direction((d.start_x, d.start_y), d.target) == None:
-                c.send_target_reached()
+            #if p.select_direction((database.start_x, database.start_y), database.target) == None:
+            #    c.send_target_reached()
             
-            if not p.select_direction((d.start_x, d.start_y), d.target) == None:
-                d.next_direction = p.select_direction((d.start_x, d.start_y), d.target)
+            #if not p.select_direction((database.start_x, database.start_y), database.target) == None:
+            #    database.next_direction = p.select_direction((database.start_x, database.start_y), database.target)
             
-            # Check if exploration is completed
-            if p.explore_dict == {}:
-                c.send_exploration_completed()
+            # ... check if exploration is completed
+            #if p.explore_dict == {}:
+            #    c.send_exploration_completed()
+
+            # ... replace old start coordinates and direction with current end coordinates and direction
+            database.update_start_coords()
 
             # ... send selected path choice to mothership
             c.send_path_select()
 
             # ... turn to the selected direction if one was given
-            if type(d.next_direction) == int:
-                o.turn_around((d.start_dir - d.next_direction) % 360)
+            if type(database.next_direction) == int:
+                o.turn_around((database.start_dir - database.next_direction) % 360)
 
             # ... play a happy tune
             ev3.Sound.play_song((('D4', 'e3'),( 'D4', 'e3'), ('D4', 'e3'), ('G4', 'h')))
 
             # ... continue driving
             o.start_driving()
-
-
-        # Samplingrate for system loop ### 1/10 of a seconds
-        sleep(1/10)
 
 
 # DO NOT EDIT

@@ -13596,3 +13596,783 @@
     "startDirection": 0
   }
 }
+2020-03-12 12:09:41,790: UltrasonicSensor: path None, attribute mode
+2020-03-12 12:10:03,089: Send to: explorer/025
+2020-03-12 12:10:03,089: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:10:03,130: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:10:03,146: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Anin",
+    "startX": 15,
+    "startY": 2,
+    "startOrientation": 0
+  }
+}
+2020-03-12 12:11:36,839: Send to: explorer/025
+2020-03-12 12:11:36,839: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:11:36,881: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:11:36,897: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Anin",
+    "startX": 15,
+    "startY": 2,
+    "startOrientation": 0
+  }
+}
+2020-03-12 12:12:24,802: Send to: explorer/025
+2020-03-12 12:12:24,802: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:12:24,828: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:12:24,844: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Anin",
+    "startX": 15,
+    "startY": 2,
+    "startOrientation": 0
+  }
+}
+2020-03-12 12:13:46,593: Send to: explorer/025
+2020-03-12 12:13:46,593: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:13:46,630: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:13:46,646: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Anin",
+    "startX": 15,
+    "startY": 2,
+    "startOrientation": 0
+  }
+}
+2020-03-12 12:16:09,975: Send to: explorer/025
+2020-03-12 12:16:09,975: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:16:10,013: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:16:10,028: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Anin",
+    "startX": 15,
+    "startY": 2,
+    "startOrientation": 0
+  }
+}
+2020-03-12 12:16:26,495: Send to: explorer/025
+2020-03-12 12:16:26,495: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:16:26,533: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:16:26,544: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Anin",
+    "startX": 15,
+    "startY": 2,
+    "startOrientation": 0
+  }
+}
+2020-03-12 12:22:37,011: Send to: explorer/025
+2020-03-12 12:22:37,011: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:22:37,053: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:22:37,069: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Anin",
+    "startX": 15,
+    "startY": 2,
+    "startOrientation": 0
+  }
+}
+2020-03-12 12:23:09,568: Send to: explorer/025
+2020-03-12 12:23:09,568: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:23:09,610: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:23:09,626: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Anin",
+    "startX": 15,
+    "startY": 2,
+    "startOrientation": 0
+  }
+}
+2020-03-12 12:24:17,091: Send to: explorer/025
+2020-03-12 12:24:17,092: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:24:17,139: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:24:17,155: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Anin",
+    "startX": 15,
+    "startY": 2,
+    "startOrientation": 0
+  }
+}
+2020-03-12 12:26:32,184: Send to: explorer/025
+2020-03-12 12:26:32,184: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:26:32,225: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:26:32,241: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Anin",
+    "startX": 15,
+    "startY": 2,
+    "startOrientation": 0
+  }
+}
+2020-03-12 12:26:39,863: Send to: explorer/025
+2020-03-12 12:26:39,863: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:26:39,915: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:26:39,921: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Anin",
+    "startX": 15,
+    "startY": 2,
+    "startOrientation": 0
+  }
+}
+2020-03-12 12:27:56,425: Send to: explorer/025
+2020-03-12 12:27:56,426: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:27:56,473: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:27:56,489: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Anin",
+    "startX": 15,
+    "startY": 2,
+    "startOrientation": 0
+  }
+}
+2020-03-12 12:29:43,784: Send to: explorer/025
+2020-03-12 12:29:43,784: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:29:43,837: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:29:43,848: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Anin",
+    "startX": 15,
+    "startY": 2,
+    "startOrientation": 0
+  }
+}
+2020-03-12 12:31:45,772: Send to: explorer/025
+2020-03-12 12:31:45,772: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:31:45,831: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:31:45,842: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Anin",
+    "startX": 15,
+    "startY": 2,
+    "startOrientation": 0
+  }
+}
+2020-03-12 12:32:39,115: Send to: explorer/025
+2020-03-12 12:32:39,115: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:32:39,198: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:32:39,214: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Anin",
+    "startX": 15,
+    "startY": 2,
+    "startOrientation": 0
+  }
+}
+2020-03-12 12:33:13,666: Send to: explorer/025
+2020-03-12 12:33:13,666: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:33:13,730: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:33:13,746: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Anin",
+    "startX": 15,
+    "startY": 2,
+    "startOrientation": 0
+  }
+}
+2020-03-12 12:33:41,542: Send to: explorer/025
+2020-03-12 12:33:41,542: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:33:41,590: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:33:41,606: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Anin",
+    "startX": 15,
+    "startY": 2,
+    "startOrientation": 0
+  }
+}
+2020-03-12 12:33:54,892: Send to: explorer/025
+2020-03-12 12:33:54,893: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:33:54,945: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:33:54,961: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Anin",
+    "startX": 15,
+    "startY": 2,
+    "startOrientation": 0
+  }
+}
+2020-03-12 12:34:12,401: Send to: explorer/025
+2020-03-12 12:34:12,401: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:34:12,427: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:34:12,438: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Anin",
+    "startX": 15,
+    "startY": 2,
+    "startOrientation": 0
+  }
+}
+2020-03-12 12:35:19,074: Send to: explorer/025
+2020-03-12 12:35:19,074: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:35:19,147: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:35:19,163: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Anin",
+    "startX": 15,
+    "startY": 2,
+    "startOrientation": 0
+  }
+}
+2020-03-12 12:36:51,949: Send to: explorer/025
+2020-03-12 12:36:51,949: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:36:52,012: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:36:52,028: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Anin",
+    "startX": 15,
+    "startY": 2,
+    "startOrientation": 0
+  }
+}
+2020-03-12 12:38:42,832: Send to: explorer/025
+2020-03-12 12:38:42,832: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:38:42,879: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:38:42,962: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Anin",
+    "startX": 15,
+    "startY": 2,
+    "startOrientation": 0
+  }
+}
+2020-03-12 12:40:40,831: Send to: explorer/025
+2020-03-12 12:40:40,832: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:40:40,889: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:40:40,936: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Anin",
+    "startX": 15,
+    "startY": 2,
+    "startOrientation": 0
+  }
+}
+2020-03-12 12:41:38,063: Send to: explorer/025
+2020-03-12 12:41:38,063: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:41:38,135: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:41:38,156: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Anin",
+    "startX": 15,
+    "startY": 2,
+    "startOrientation": 0
+  }
+}
+2020-03-12 12:41:44,218: Send to: explorer/025
+2020-03-12 12:41:44,218: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:41:44,254: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:41:44,278: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Anin",
+    "startX": 15,
+    "startY": 2,
+    "startOrientation": 0
+  }
+}
+2020-03-12 12:43:20,971: Send to: explorer/025
+2020-03-12 12:43:20,971: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:43:21,033: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:43:21,054: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Anin",
+    "startX": 15,
+    "startY": 2,
+    "startOrientation": 0
+  }
+}
+2020-03-12 12:43:25,872: Send to: explorer/025
+2020-03-12 12:43:25,872: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:43:25,930: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:43:25,950: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Anin",
+    "startX": 15,
+    "startY": 2,
+    "startOrientation": 0
+  }
+}
+2020-03-12 12:43:39,340: Send to: explorer/025
+2020-03-12 12:43:39,340: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:43:39,402: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:43:39,417: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Anin",
+    "startX": 15,
+    "startY": 2,
+    "startOrientation": 0
+  }
+}
+2020-03-12 12:44:09,355: Send to: explorer/025
+2020-03-12 12:44:09,355: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:44:09,417: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:44:09,438: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Anin",
+    "startX": 15,
+    "startY": 2,
+    "startOrientation": 0
+  }
+}
+2020-03-12 12:45:50,831: Send to: explorer/025
+2020-03-12 12:45:50,832: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:45:50,899: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:45:50,920: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Anin",
+    "startX": 15,
+    "startY": 2,
+    "startOrientation": 0
+  }
+}
+2020-03-12 12:47:03,166: Send to: explorer/025
+2020-03-12 12:47:03,166: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:47:03,223: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:47:03,244: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Anin",
+    "startX": 15,
+    "startY": 2,
+    "startOrientation": 0
+  }
+}
+2020-03-12 12:48:57,746: Send to: explorer/025
+2020-03-12 12:48:57,746: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:48:57,825: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:48:57,846: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Anin",
+    "startX": 15,
+    "startY": 2,
+    "startOrientation": 0
+  }
+}
+2020-03-12 12:50:13,956: Send to: explorer/025
+2020-03-12 12:50:13,957: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:50:14,029: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:50:14,106: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Anin",
+    "startX": 15,
+    "startY": 2,
+    "startOrientation": 0
+  }
+}
+2020-03-12 12:51:52,049: Send to: explorer/025
+2020-03-12 12:51:52,050: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:51:52,111: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:51:52,174: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Anin",
+    "startX": 15,
+    "startY": 2,
+    "startOrientation": 0
+  }
+}
+2020-03-12 12:52:57,421: Send to: explorer/025
+2020-03-12 12:52:57,421: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:52:57,473: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:52:57,561: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Anin",
+    "startX": 15,
+    "startY": 2,
+    "startOrientation": 0
+  }
+}
+2020-03-12 12:53:30,056: Send to: explorer/025
+2020-03-12 12:53:30,057: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:53:30,099: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 12:53:30,121: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Anin",
+    "startX": 15,
+    "startY": 2,
+    "startOrientation": 0
+  }
+}
+2020-03-12 13:01:08,111: Send to: explorer/025
+2020-03-12 13:01:08,111: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 13:01:08,189: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 13:01:08,230: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Anin",
+    "startX": 15,
+    "startY": 2,
+    "startOrientation": 0
+  }
+}
+2020-03-12 13:01:38,907: Send to: explorer/025
+2020-03-12 13:01:38,907: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 13:01:38,947: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 13:01:38,963: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Anin",
+    "startX": 15,
+    "startY": 2,
+    "startOrientation": 0
+  }
+}
+2020-03-12 13:01:49,188: Send to: explorer/025
+2020-03-12 13:01:49,188: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 13:01:49,260: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 13:01:49,302: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Anin",
+    "startX": 15,
+    "startY": 2,
+    "startOrientation": 0
+  }
+}
+2020-03-12 13:01:55,512: Send to: explorer/025
+2020-03-12 13:01:55,513: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 13:01:55,581: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 13:01:55,587: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Anin",
+    "startX": 15,
+    "startY": 2,
+    "startOrientation": 0
+  }
+}
+2020-03-12 13:02:18,932: Send to: explorer/025
+2020-03-12 13:02:18,932: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 13:02:19,010: {
+  "from": "client",
+  "type": "ready"
+}
+2020-03-12 13:02:19,033: {
+  "from": "server",
+  "type": "planet",
+  "payload": {
+    "planetName": "Anin",
+    "startX": 15,
+    "startY": 2,
+    "startOrientation": 0
+  }
+}

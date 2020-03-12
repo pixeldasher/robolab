@@ -3,7 +3,7 @@
 # Attention: Do not import the ev3dev.ev3 module in this file
 import ev3dev.ev3 as ev3
 from time import sleep
-from math import sin,cos,pi
+from math import sin,cos,pi,degrees
 import database
 
 
@@ -23,7 +23,7 @@ class Odometry:
         self.motor_left = ev3.LargeMotor("outA")
         self.motor_right = ev3.LargeMotor("outB")
 
-        self.a = 9.3
+        self.a = 7.8
         self.d = 5.6
         self.Kp = 10
         self.Ki = 1
@@ -116,19 +116,16 @@ class Odometry:
         # print("blue:", current_value_blue)
 
         if self.us.distance_centimeters < 30:
-            self.motor_right.speed_sp = self.motor_right.speed_sp * (-1)
-            sleep(3)
+            self.turn_around(180)
 
         if 110 < current_value_red < 140 and 35 < current_value_green < 60 and 10 < current_value_blue < 30:
             self.motor_left.command = "stop"
             self.motor_right.command = "stop"
-            sleep(3)
             return True
 
         elif 20 < current_value_red < 40 and 110 < current_value_green < 140 and 70 < current_value_blue < 90:
             self.motor_left.command = "stop"
             self.motor_right.command = "stop"
-            sleep(3)
             return True
 
         else:
@@ -144,11 +141,17 @@ class Odometry:
         self.motor_left.wait_until_not_moving()
         self.motor_right.wait_until_not_moving()
 
+
+    def scan_directions(self):
+        self.turn_around(360)
+
+
     def start_driving(self):
         self.wheel_left = []
         self.wheel_right = []
         self.motor_right.reset()
         self.motor_left.reset()
+
 
     def while_driving(self):
         motor_left_value = (self.motor_left.position / 360)
@@ -175,8 +178,11 @@ class Odometry:
             deltax = - sin(gamma + beta) * s
             deltay = cos(gamma + beta) * s
             gamma = gamma + alpha
-            database.end_x = int((deltax + x) / 50)
-            database.end_y = int((deltay + y) / 50)
-            database.end_dir = int(gamma / 90) * 90
-
-        return database.end_x, database.end_y, gamma
+            x = deltax + x
+            y = deltay + y
+            
+        database.path_status = "free"
+        database.end_x = database.start_x + round(x / 50)
+        database.end_y = database.start_y + round(y / 50)
+        database.end_dir = (database.start_dir + 180 - (round(degrees(gamma) / 90) % 4) * 90) % 360
+        return x, y, degrees(gamma)
