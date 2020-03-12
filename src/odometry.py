@@ -3,8 +3,8 @@
 # Attention: Do not import the ev3dev.ev3 module in this file
 import ev3dev.ev3 as ev3
 from time import sleep
-from math import sin,cos,pi
-import database
+from math import sin,cos,pi, degrees
+import planet
 
 
 class Odometry:
@@ -19,6 +19,7 @@ class Odometry:
         # Define sensor modes
         self.us.mode = 'US-DIST-CM'
         self.cs.mode = 'RGB-RAW'
+
         # Define motors
         self.motor_left = ev3.LargeMotor("outA")
         self.motor_right = ev3.LargeMotor("outB")
@@ -32,6 +33,9 @@ class Odometry:
         self.Tp = 65
         self.wheel_left = None
         self.wheel_right = None
+
+        self.directions = set()
+        self.path_status = None
         
     def luminance(self):
 
@@ -137,12 +141,23 @@ class Odometry:
             return False
 
     def turn_around(self, direct: int):
-
         self.motor_left.run_to_rel_pos(position_sp=direct * self.a / self.d, speed_sp=200, stop_action="hold")
         self.motor_right.run_to_rel_pos(position_sp=-direct * self.a / self.d, speed_sp=-200, stop_action="hold")
         sleep(0.001)
         self.motor_left.wait_until_not_moving()
         self.motor_right.wait_until_not_moving()
+
+    def scan(self):
+        counter = 0
+        while counter < 360:
+            counter += 45
+            self.turn_around(45)
+            while True:
+                counter += 5
+                self.turn_around(5)
+                if self.luminance() < 0.5:
+                    self.directions.add(planet.Direction(round(counter/90)*90 % 360))
+                    break
 
     def start_driving(self):
         self.wheel_left = []
@@ -174,8 +189,12 @@ class Odometry:
                 s = ((distance_right + distance_left) / alpha) * sin(beta)
             deltax = - sin(gamma + beta) * s
             deltay = cos(gamma + beta) * s
-            gamma = gamma + alpha
-            database.end_x = deltax + x
-            database.end_y = deltay + y
+            gamma = gamma + alpha 
+            x = deltax + x
+            y = deltay + y
 
-        return database.end_x, database.end_y, gamma
+        self.path_status = "Free"
+        x = x + round(x / 90)
+        y = y + round(x / 90)
+        dir = (dir + 180 - (round(degrees(gamma)/90) % 4)*90) % 360
+        return x, y, gamma
