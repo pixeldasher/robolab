@@ -1,10 +1,10 @@
- #!/usr/bin/env python3
+# !/usr/bin/env python3
 
 # Attention: Do not import the ev3dev.ev3 module in this file
 import ev3dev.ev3 as ev3
 from time import sleep
-from math import sin,cos,pi,degrees
-import database
+from math import sin,cos,pi, degrees
+from planet import Direction
 
 
 class Odometry:
@@ -19,19 +19,34 @@ class Odometry:
         # Define sensor modes
         self.us.mode = 'US-DIST-CM'
         self.cs.mode = 'RGB-RAW'
+
         # Define motors
         self.motor_left = ev3.LargeMotor("outA")
         self.motor_right = ev3.LargeMotor("outB")
 
-        self.a = 7.8
+        self.a = 8
         self.d = 5.6
-        self.Kp = 10
-        self.Ki = 1
-        self.Kd = 100
+        self.k_p = 92.5
+        self.k_i = 3.25
+        self.k_d = 25
         self.offset = 50
-        self.Tp = 65
+        self.t_p = 150
+        self.integral = 0
+        self.derivative = 0
+        self.lasterror = 0
         self.wheel_left = None
         self.wheel_right = None
+
+        self.directions = set()
+        self.path_status = "free"
+
+        self.start_x = 0
+        self.start_y = 0
+        self.start_dir = 0
+
+        self.end_x = 0
+        self.end_y = 0
+        self.end_dir = 0
         
     def luminance(self):
 
@@ -44,64 +59,17 @@ class Odometry:
 
         return value
 
-    """
-    def colorscan():
-
-        max_value_red = 0
-        min_value_red = 1020
-
-        max_value_green = 0
-        min_value_green = 1020
-
-        max_value_blue = 0
-        min_value_blue = 1020
-
-        n = 2000
-        i = 1
-
-        while i <= n:
-            i += 1
-            current_value_red = (self.cs.bin_data("hhh")[0])
-            current_value_green = (self.cs.bin_data("hhh")[1])
-            current_value_blue = (self.cs.bin_data("hhh")[2])
-
-            if current_value_red > max_value_red:
-                max_value_red = current_value_red
-
-            if current_value_red < min_value_red:
-                min_value_red = current_value_red
-
-            if current_value_green > max_value_green:
-                max_value_green = current_value_green
-
-            if current_value_green < min_value_green:
-                min_value_green = current_value_green
-
-            if current_value_blue > max_value_blue:
-                max_value_blue = current_value_blue
-
-            if current_value_blue < min_value_blue:
-                min_value_blue = current_value_blue
-
-        print(max_value_red, max_value_green, max_value_blue)
-        print(min_value_red, min_value_green, min_value_blue)
-
-    """
 
     def move_smooth(self):
-
-        integral = 0
-        lasterror = 0
-
         lightvalue = self.luminance() * 100
         error = lightvalue - self.offset
-        integral = integral + error
-        derivative = error - lasterror
-        turn = self.Kp * error + self.Ki * integral + self.Kd * derivative
-        turn = turn / 100
-        power_motor_left = (self.Tp + turn)
-        power_motor_right = (self.Tp - turn)
-        lasterror = error
+        self.integral = self.integral + error
+        self.derivative = error - self.lasterror
+        turn = (self.k_p * error) + (self.k_i * self.integral) + (self.k_d * self.derivative)
+        turn = turn / 92.5
+        power_motor_left = (self.t_p + turn)
+        power_motor_right = (self.t_p - turn)
+        self.lasterror = error
 
         self.motor_left.speed_sp = power_motor_left
         self.motor_right.speed_sp = power_motor_right
@@ -111,21 +79,20 @@ class Odometry:
         current_value_green = (current_value[1])
         current_value_blue = (current_value[2])
 
-        # print("red:", current_value_red)
-        # print("green:", current_value_green)
-        # print("blue:", current_value_blue)
-
-        if self.us.distance_centimeters < 30:
+        if self.us.distance_centimeters < 15:
             self.turn_around(180)
+            self.path_status = "blocked"
 
         if 110 < current_value_red < 140 and 35 < current_value_green < 60 and 10 < current_value_blue < 30:
             self.motor_left.command = "stop"
             self.motor_right.command = "stop"
+            sleep(1)
             return True
 
         elif 20 < current_value_red < 40 and 110 < current_value_green < 140 and 70 < current_value_blue < 90:
             self.motor_left.command = "stop"
             self.motor_right.command = "stop"
+            sleep(1)
             return True
 
         else:
@@ -133,17 +100,30 @@ class Odometry:
             self.motor_right.command = "run-forever"
             return False
 
+
     def turn_around(self, direct: int):
+        self.derivative = 0
+        self.integral = 0
+        self.error = 0
+        self.motor_left.run_to_rel_pos(position_sp=direct * self.a / self.d, speed_sp=200, stop_action="brake")
+        self.motor_right.run_to_rel_pos(position_sp=-direct * self.a / self.d, speed_sp=-200, stop_action="brake")
 
-        self.motor_left.run_to_rel_pos(position_sp=direct * self.a / self.d, speed_sp=200, stop_action="hold")
-        self.motor_right.run_to_rel_pos(position_sp=-direct * self.a / self.d, speed_sp=-200, stop_action="hold")
-        sleep(0.001)
-        self.motor_left.wait_until_not_moving()
-        self.motor_right.wait_until_not_moving()
+        while 'running' in (self.motor_left.state + self.motor_right.state):
+            sleep(0.1)
 
 
-    def scan_directions(self):
-        self.turn_around(360)
+    def scan(self):
+        counter = 0
+        while counter <= 360:
+            counter += 50
+            self.turn_around(50)
+
+            while True:
+                counter += 5
+                self.turn_around(5)
+                if self.luminance() <= 0.25:
+                    self.directions.add(Direction(round(counter / 90) * 90 % 360))
+                    break
 
 
     def start_driving(self):
@@ -151,7 +131,6 @@ class Odometry:
         self.wheel_right = []
         self.motor_right.reset()
         self.motor_left.reset()
-
 
     def while_driving(self):
         motor_left_value = (self.motor_left.position / 360)
@@ -177,12 +156,12 @@ class Odometry:
                 s = ((distance_right + distance_left) / alpha) * sin(beta)
             deltax = - sin(gamma + beta) * s
             deltay = cos(gamma + beta) * s
-            gamma = gamma + alpha
+            gamma = gamma + alpha 
             x = deltax + x
             y = deltay + y
-            
-        database.path_status = "free"
-        database.end_x = database.start_x + round(x / 50)
-        database.end_y = database.start_y + round(y / 50)
-        database.end_dir = (database.start_dir + 180 - (round(degrees(gamma) / 90) % 4) * 90) % 360
-        return x, y, degrees(gamma)
+
+        self.end_x = self.start_x + round(x / 50)
+        self.end_y = self.start_y + round(y / 50)
+        self.end_dir = (self.start_dir + 180 - (round(degrees(gamma)/90) % 4)*90) % 360
+
+        return self.end_x, self.end_y, self.end_dir

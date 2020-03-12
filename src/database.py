@@ -10,7 +10,7 @@ received_message = None
 first_time_ready = True
 
 
-# Type of the latest received message
+# Type of the latest message
 message_type = None
 
 
@@ -39,6 +39,7 @@ target = None
 done_message = None
 testplanet_message = None
 
+
 # Variables for exploration on planet
 next_direction = None
 vert = (end_x, end_y)
@@ -51,7 +52,7 @@ latest_path_end = ((end_x, end_y), end_dir)
 latest_path_weight = path_weight
 
 
-# Booleans for whether or not the exploration is completed
+# Boolean for whether or not the exploration is completed
 exploration_completed = False
 
 
@@ -61,6 +62,7 @@ def update_start_coords():
     global start_y
     global start_dir
     global end_dir
+
     if type(end_x) == int:
         start_x = end_x
         start_y = end_y
