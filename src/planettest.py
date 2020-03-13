@@ -82,8 +82,8 @@ class RoboLabPlanetTests(unittest.TestCase):
         # same length and loop planet:
         self.planet_loop = Planet()
 
-        self.planet_same_same.add_path(((4, 0), Direction.SOUTH), ((4, 0), Direction.EAST), 1) # loop 1
-        self.planet_same_same.add_path(((1, 4), Direction.SOUTH), ((1, 4), Direction.WEST), 1) # loop 2
+        self.planet_loop.add_path(((4, 0), Direction.SOUTH), ((4, 0), Direction.EAST), 1) # loop 1
+        self.planet_loop.add_path(((1, 4), Direction.SOUTH), ((1, 4), Direction.WEST), 1) # loop 2
         self.planet_loop.add_path(((0, 0), Direction.NORTH), ((0, 2), Direction.SOUTH), 2)
         self.planet_loop.add_path(((0, 2), Direction.EAST), ((1, 2), Direction.WEST), 1)
         self.planet_loop.add_path(((1, 2), Direction.EAST), ((1, 4), Direction.EAST), 3)
@@ -108,7 +108,25 @@ class RoboLabPlanetTests(unittest.TestCase):
         self.planet_meteor.add_path(((1, 2), Direction.SOUTH), ((2, 1), Direction.WEST), 3)
         self.planet_meteor.add_path(((0, 0), Direction.EAST), ((4, 0), Direction.WEST), 4)
         self.planet_meteor.add_path(((4, 0), Direction.NORTH), ((3, 4), Direction.EAST), 4)
-        self.planet_meteor.add_path(((4, 0), Direction.EAST), ((4, 0), Direction.EAST), -1)
+        self.planet_meteor.add_path(((4, 0), Direction.EAST), ((4, 0), Direction.EAST), -1) # meteor-Pfad
+
+        self.intelligent_planet = Planet()
+
+        self.intelligent_planet.add_vertex((1, 1), {Direction.SOUTH, Direction.EAST, Direction.NORTH})
+        self.intelligent_planet.vertex_explored(None, ((1, 1), Direction.SOUTH))
+
+        self.intelligent_planet.add_vertex((1, 2), {Direction.SOUTH, Direction.EAST})
+        self.intelligent_planet.add_path(((1, 1), Direction.NORTH), ((1, 2), Direction.SOUTH), 1)
+        self.intelligent_planet.vertex_explored(((1, 1), Direction.NORTH), ((1, 2), Direction.SOUTH))
+
+        self.intelligent_planet.add_vertex((2, 1), {Direction.EAST, Direction.WEST})
+        self.intelligent_planet.add_path(((1, 1), Direction.EAST), ((2, 1), Direction.WEST), 1)
+        self.intelligent_planet.vertex_explored(((1, 1), Direction.EAST), ((2, 1), Direction.WEST))
+
+        self.intelligent_planet.add_vertex((2, 3), {Direction.SOUTH, Direction.WEST})
+        self.intelligent_planet.add_path(((1, 2), Direction.EAST), ((2, 3), Direction.SOUTH), 2)
+        self.intelligent_planet.vertex_explored(((1, 2), Direction.EAST), ((2, 3), Direction.SOUTH))
+
 
 
     def test_integrity(self):
@@ -146,8 +164,8 @@ class RoboLabPlanetTests(unittest.TestCase):
                      Direction.NORTH: ((3, 4), Direction.EAST, 4)}
         }
 
-        import pprint
-        pprint.pprint(self.planet.get_paths())
+        #import pprint
+        #pprint.pprint(self.planet.get_paths())
 
         self.assertEqual(expect_dict, self.planet.get_paths())
 
