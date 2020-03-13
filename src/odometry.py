@@ -16,7 +16,6 @@ class Odometry:
         self.us = ev3.UltrasonicSensor()
         self.cs = ev3.ColorSensor()
 
-
         # Define sensor modes
         self.us.mode = 'US-DIST-CM'
         self.cs.mode = 'RGB-RAW'
@@ -48,20 +47,32 @@ class Odometry:
         self.end_x = 0
         self.end_y = 0
         self.end_dir = 0
+
+
+    def update_coords(self):
+        self.start_x = self.end_x
+        self.start_y = self.end_y
+        self.start_dir = self.end_dir
+
+
+    def correct_pos(self):
+        self.motor_left.run_to_rel_pos(position_sp=150, speed_sp = 90)
+        self.motor_right.run_to_rel_pos(position_sp=150, speed_sp = 90)
+        sleep(0.01)
+        self.motor_left.wait_until_not_moving()
+        
         
     def luminance(self):
-
         current_value = (self.cs.bin_data("hhh"))
         current_value_red = (current_value[0] / 185)
         current_value_green = (current_value[1] / 321)
         current_value_blue = (current_value[2] / 157)
 
         value = (0.2126 * current_value_red + 0.7152 * current_value_green + 0.0722 * current_value_blue)
-
         return value
 
 
-    def move_smooth(self):
+    def move_to_point(self):
         lightvalue = self.luminance() * 100
         error = lightvalue - self.offset
         self.integral = self.integral + error
@@ -80,9 +91,10 @@ class Odometry:
         current_value_green = (current_value[1])
         current_value_blue = (current_value[2])
 
-        if self.us.distance_centimeters < 15:
-            self.turn_around(180)
+        if self.us.distance_centimeters <= 5:
+            self.turn_around(170)
             self.path_status = "blocked"
+            ev3.Sound.play_song((('G4', 'e3'),('D4', 'e3')))
 
         if 110 < current_value_red < 140 and 35 < current_value_green < 60 and 10 < current_value_blue < 30:
             self.motor_left.command = "stop"
@@ -112,23 +124,27 @@ class Odometry:
 
 
     def scan(self):
+        self.directions = set()
         counter = 0
         while counter <= 360:
             counter += 50
             self.turn_around(50)
-            while True:
+            i = 0
+            while i <= 70:
                 counter += 5
+                i += 5
                 self.turn_around(5)
                 if self.luminance() <= 0.25:
                     self.directions.add(Direction(round(counter/90)*90 % 360))
                     break
-    # aufpassen dass die Gradzahlen umgerechnet werden (Nicki)
 
-    def start_driving(self):
+
+    def init_mov(self):
         self.wheel_left = []
         self.wheel_right = []
         self.motor_right.reset()
         self.motor_left.reset()
+
 
     def while_driving(self):
         motor_left_value = (self.motor_left.position / 360)
@@ -137,7 +153,8 @@ class Odometry:
         self.wheel_right.append(motor_right_value)
         sleep(0.1)
 
-    def stop_driving(self):
+
+    def save_data(self):
         x = 0
         y = 0
         gamma = 0
@@ -161,5 +178,3 @@ class Odometry:
         self.end_x = self.start_x + round(x / 50)
         self.end_y = self.start_y + round(y / 50)
         self.end_dir = (self.start_dir + 180 - (round(degrees(gamma)/90) % 4)*90) % 360
-
-        return self.end_x, self.end_y, self.end_dir

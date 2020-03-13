@@ -15,6 +15,7 @@ from planet import Direction, Planet
 
 client = None  # DO NOT EDIT
 
+#####################################################################################
 
 # Initial function for main
 def run():
@@ -45,54 +46,70 @@ def run():
     o = Odometry()
     c = Communication(client, logger, p, o)
 
+    # Reset wheels
+    o.init_mov()
+
+    # Run beginning loop for start up once
+    while True:
+        o.while_driving
+
+        # First time movement
+        if o.move_to_point():
+            # ... move to point
+            o.correct_pos()
+            break
+
+    # ... scan for possible paths
+    o.scan()
+
+    # ... send ready message to mothership
+    c.send_ready()
+
+    # ... send the best path (chosen inside this function through a function in planet) to mothership
+    c.send_path_select()
+
+    # ... play a happy tune
+    ev3.Sound.play_song((('D4', 'e3'),( 'D4', 'e3'), ('D4', 'e3'), ('G4', 'h')))
+
+    # ... continue driving
+    o.init_mov()
+
     # Run system loop for exploration
     system_loop()
 
+#####################################################################################
 
-# System loop for running through all phases
+# System loop for map exploration
 def system_loop():
-    o.start_driving()
-    
     while True:
         # Movement function
         o.while_driving()
-        
 
-        if o.move_smooth():
-            o.motor_left.run_to_rel_pos(position_sp=160, speed_sp = 90)
-            o.motor_right.run_to_rel_pos(position_sp=160, speed_sp = 90)
-            sleep(0.01)
-            o.motor_left.wait_until_not_moving()
+        # Follow line; if on station point, break out of oop
+        if o.move_to_point():
+            # ... move forward to the correct position on the station point
+            o.correct_pos()
+            break
 
-            o.turn_around(170)
-            """
-            # ... send ready message, only works once
-            c.send_ready()
+    # ... turn around and check all directions for possible paths
+    o.scan()
 
-            # ... move forward in order to not scan the same station twice
-            o.motor_left.run_to_rel_pos(position_sp=160, speed_sp = 90)
-            o.motor_right.run_to_rel_pos(position_sp=160, speed_sp = 90)
-            sleep(0.01)
-            o.motor_left.wait_until_not_moving()
+    # ... get data from odometry and save it
+    o.save_data()
 
-            # ... get data from odometry and save it
-            o.stop_driving()
+    # ... send collected data to mothership
+    c.send_path()
 
-            # ... send collected data to mothership
-            c.send_path()
+    # ... send the best path (chosen inside this function through a function in planet) to mothership
+    c.send_path_select()
+    
+    # ... play a happy tune
+    ev3.Sound.play_song((('D4', 'e3'),( 'D4', 'e3'), ('D4', 'e3'), ('G4', 'h')))
 
-            # ... turn around and check all directions for possible paths
-            o.scan()
-
-            # ... send the best path (chosen inside this function through a function in planet) to mothership
-            c.send_path_select()
-            
-            # ... play a happy tune
-            ev3.Sound.play_song((('D4', 'e3'),( 'D4', 'e3'), ('D4', 'e3'), ('G4', 'h')))
-
-            # ... continue driving
-            o.start_driving()
-            """
+    # ... continue driving
+    o.init_mov()
+    
+#####################################################################################
 
 # DO NOT EDIT
 if __name__ == '__main__':
