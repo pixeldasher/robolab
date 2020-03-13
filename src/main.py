@@ -59,6 +59,13 @@ def system_loop():
         
 
         if o.move_smooth():
+            o.motor_left.run_to_rel_pos(position_sp=160, speed_sp = 90)
+            o.motor_right.run_to_rel_pos(position_sp=160, speed_sp = 90)
+            sleep(0.01)
+            o.motor_left.wait_until_not_moving()
+
+            o.turn_around(170)
+            """
             # ... send ready message, only works once
             c.send_ready()
 
@@ -85,6 +92,7 @@ def system_loop():
 
             # ... continue driving
             o.start_driving()
+            """
 
 
 # DO NOT EDIT
