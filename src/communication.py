@@ -4,9 +4,10 @@
 import json
 import ssl
 from time import time
-import database
+from planet import Direction
 
 
+# Class for communication
 class Communication:
     """
     Class to hold the MQTT client communication
@@ -14,7 +15,8 @@ class Communication:
     thereby solve the task according to the specifications
     """
 
-    def __init__(self, mqtt_client, logger):
+
+    def __init__(self, mqtt_client, logger, planet, odometry):
         """
         Initializes communication module, connect to server, subscribe, etc.
         :param mqtt_client: paho.mqtt.client.Client
@@ -24,15 +26,27 @@ class Communication:
         self.client = mqtt_client
         self.client.tls_set(tls_version=ssl.PROTOCOL_TLS)
         self.client.on_message = self.safe_on_message_handler
-        # Add your client setup here
-        #
-        # Setup for client/server communication
-        self.client.username_pw_set('025', password='4NpQpEEVS7')  # Your group credentials
+        
+        # Setup for client/server communication; Uses given username, password and channel data
+        self.client.username_pw_set('025', password='4NpQpEEVS7')
         self.client.connect('mothership.inf.tu-dresden.de', port=8883)
-        self.client.subscribe("explorer/025", qos=1)  # Subscribe to topic explorer/025
+        self.client.subscribe("explorer/025", qos=1)
+
+        # Starts the listener
         self.client.loop_start()
 
+        # logger var from function input
         self.logger = logger
+
+        # Create module objects
+        self.planet = planet
+        self.odometry = odometry
+
+        # Create variables
+        self.payload = None
+        self.answered = False
+        self.time_offset = None
+        self.first_time_ready = True
 
 
     # DO NOT EDIT THE METHOD SIGNATURE
@@ -44,26 +58,23 @@ class Communication:
         :param message: Object
         :return: void
         """
-        payload = json.loads(message.payload.decode('utf-8'))
-        self.logger.debug(json.dumps(payload, indent=2))
+        self.payload = json.loads(message.payload.decode('utf-8'))
+        self.logger.debug(json.dumps(self.payload, indent=2))
 
         # YOUR CODE FOLLOWS (remove pass, please!)
+        if self.payload["from"] == "server" or self.payload["from"] == "debug":
+            # Function for differentiating all possible messages
+            self.message_type_scan()
 
-        print("\n-----\n")
+            # Prints the message
+            print(json.dumps(self.payload, indent=2))
 
-        # Add the message's content to the database
-        database.message_type = str(payload["type"])
-        database.received_message = dict(json.loads(message.payload.decode('utf-8')))
-
-        # Function for differentiating all possible messages
-        self.message_type_scan()
-
-        # Prints the message
-        print(json.dumps(json.loads(message.payload.decode('utf-8')), indent=2))
-
-        # Checks whether or not an answer has been received
-        if (database.received_message["from"] == "server") or (database.received_message["from"] == "debug"):
-            database.answered = True
+            # Checks whether or not an answer has been received
+            if self.payload["from"] == "server" or self.payload["from"] == "debug":
+                self.answered = True
+        
+            # Writes down the time since the last message has been sent/received
+            self.time_offset = int(time())
       
 
     # DO NOT EDIT THE METHOD SIGNATURE
@@ -85,95 +96,111 @@ class Communication:
         self.client.publish(topic, json.dumps(message))
 
         # Write down time value in order to compare it later
-        database.time_offset = int(time())
+        self.time_offset = int(time())
 
         while True:
             # If last message has received an answer, continue...
-            if database.answered:
-                database.answered = False
+            if self.answered:
+                self.answered = False
                 break
-
-            # If the time offset between the last sent/received message is longer than 3 seconds, stop the communication phase
-            elif (int(time()) - database.time_offset) >= 3:
-                # Stop communication after 3 seconds of no answer
+            
+            # If last message has been sent/received longer than three seconds ago, continue...
+            elif int(time()) - self.time_offset >= 3:
                 break
-
+            
+            # Wait until either one of the conditions is met
             else:
                 pass
             
 
 
-    # Define all unique receivable message types for easier usage; Takes all data from message and adds them to database
+    # Define all unique receivable message types for easier usage;
     def message_type_scan(self):
-        if database.message_type == "planet":
-            database.planet_name = str(database.received_message["payload"]["planetName"])
+        if self.payload["type"] == "planet":
+            self.planet_name = self.payload["payload"]["planetName"]
 
-            database.start_x = int(database.received_message["payload"]["startX"])
-            database.start_y = int(database.received_message["payload"]["startY"])
-            database.start_dir = int(database.received_message["payload"]["startOrientation"])
+            self.odometry.start_x = self.payload["payload"]["startX"]
+            self.odometry.start_y = self.payload["payload"]["startY"]
+            self.odometry.start_dir = self.payload["payload"]["startOrientation"]
 
-            self.client.subscribe("planet/{}/025".format(database.planet_name), qos=1)  # Subscribe to topic planet
+            self.client.subscribe("planet/{}/025".format(self.planet_name), qos=1)
 
         
-        elif database.message_type == "path":
-            database.start_x = int(database.received_message["payload"]["startX"])
-            database.start_y = int(database.received_message["payload"]["startY"])
-            database.start_dir = int(database.received_message["payload"]["startDirection"])
+        elif self.payload["type"] == "path" and self.payload["payload"]["pathStatus"] == "free":
+            self.odometry.start_x = self.payload["payload"]["startX"]
+            self.odometry.start_y = self.payload["payload"]["startY"]
+            self.odometry.start_dir = self.payload["payload"]["startDirection"]
 
-            database.end_x = int(database.received_message["payload"]["endX"])
-            database.end_y = int(database.received_message["payload"]["endY"])
-            database.end_dir = int(database.received_message["payload"]["endDirection"])
+            self.odometry.end_x = self.payload["payload"]["endX"]
+            self.odometry.end_y = self.payload["payload"]["endY"]
+            self.odometry.end_dir = self.payload["payload"]["endDirection"]
 
-            database.path_status = str(database.received_message["payload"]["pathStatus"])
-            database.path_weight = int(database.received_message["payload"]["pathWeight"])
+            self.planet.add_vertex((self.payload["payload"]["endX"], self.payload["payload"]["endY"]), self.odometry.directions)
+            self.planet.add_path((self.odometry.start_x, self.odometry.start_y), (self.odometry.end_x, self.odometry.end_y), self.payload["payload"]["pathWeight"])
+
+        elif self.payload["type"] == "path" and self.payload["payload"]["pathStatus"] == "blocked":
+            self.odometry.start_x = self.payload["payload"]["startX"]
+            self.odometry.start_y = self.payload["payload"]["startY"]
+            self.odometry.start_dir = self.payload["payload"]["startDirection"]
+
+            self.odometry.end_x = self.payload["payload"]["endX"]
+            self.odometry.end_y = self.payload["payload"]["endY"]
+            self.odometry.end_dir = self.payload["payload"]["endDirection"]
+
+            self.planet.add_vertex((self.payload["payload"]["endX"], self.payload["payload"]["endY"]), self.odometry.directions)
+            self.planet.add_path((self.odometry.start_x, self.odometry.start_y), (self.odometry.end_x, self.odometry.end_y), -1)
+            self.odometry.path_status="free"
         
-        elif database.message_type == "pathSelect":
-            database.start_dir = int(database.received_message["payload"]["startDirection"])
+        elif self.payload["type"] == "pathSelect":
+            self.odometry.turn_around((self.odometry.start_dir + 180 + self.payload["payload"]["startDirection"]) % 360)
         
-        elif database.message_type == "pathUnveiled":
-            database.start_x = int(database.received_message["payload"]["startX"])
-            database.start_y = int(database.received_message["payload"]["startY"])
-            database.start_dir = int(database.received_message["payload"]["startDirection"])
+        elif self.payload["type"] == "pathUnveiled":
+            self.odometry.start_x = self.payload["payload"]["startX"]
+            self.odometry.start_y = self.payload["payload"]["startY"]
+            self.odometry.start_dir = self.payload["payload"]["startDirection"]
 
-            database.end_x = int(database.received_message["payload"]["endX"])
-            database.end_y = int(database.received_message["payload"]["endY"])
-            database.end_dir = int(database.received_message["payload"]["endDirection"])
+            self.odometry.end_x = self.payload["payload"]["endX"]
+            self.odometry.end_y = self.payload["payload"]["endY"]
+            self.odometry.end_dir = self.payload["payload"]["endDirection"]
 
-            database.path_status = str(database.received_message["payload"]["pathStatus"])
-            database.path_weight = int(database.received_message["payload"]["pathWeight"])
+            self.planet.add_vertex((self.payload["payload"]["endX"], self.payload["payload"]["endY"]), self.odometry.directions)
+            self.planet.add_path((self.odometry.start_x, self.odometry.start_y), (self.odometry.end_x, self.odometry.end_y), self.payload["payload"]["pathWeight"])
         
-        elif database.message_type == "target":
-            database.target_x = int(database.received_message["payload"]["targetX"])
-            database.target_y = int(database.received_message["payload"]["targetY"])
+        elif self.payload["type"] == "target":
+            self.planet.target = (self.payload["payload"]["targetX"], self.payload["payload"]["targetY"])
         
-        elif database.message_type == "done":
-            database.done_message = str(database.received_message["payload"]["message"])
+        elif self.payload["type"] == "done":
+            print("Done")
 
-        elif database.message_type == "notice":
-            database.testplanet_message = str(database.received_message["payload"]["message"])
+        elif self.payload["type"] == "notice":
+            print(self.payload["payload"]["message"])
 
-            
 
-    # Define all unique sendable message types as functions for easier usage; Takes all data from database and adds them to message
+    # Define all unique sendable message types as functions for easier usage;
     def send_ready(self):
-        if database.first_time_ready:
+        if self.first_time_ready:
             # Only performs the ready message action once
             self.send_message("explorer/025", {"from": "client", "type": "ready"})
-            database.first_time_ready = not database.first_time_ready
         else:
             pass
 
 
-    def send_test_planet(self, planet_name):
-        self.send_message("explorer/025", {"from": "client", "type": "testplanet", "payload": {"planetName": planet_name}})
+    def send_test_planet(self):
+        self.send_message("explorer/025", {"from": "client", "type": "testplanet", "payload": {"planetName": "Examinator-A-1337r"}})
 
 
-    def send_path(self, start_x, start_y, start_dir, end_x, end_y, end_dir, path_status):
-        self.send_message("planet/{}/025".format(database.planet_name), {"from": "client", "type": "path", "payload": {"startX": start_x, "startY": start_y, "startDirection": start_dir, "endX": end_x, "endY": end_y, "endDirection": end_dir, "pathStatus": path_status}})
+    def send_path(self):
+        # If no data has been set, don't call function
+        if not self.first_time_ready:
+            self.send_message("planet/{}/025".format(self.planet_name), {"from": "client", "type": "path", "payload": {"startX": self.odometry.start_x, "startY": self.odometry.start_y, "startDirection": self.odometry.start_dir, "endX": self.odometry.end_x, "endY": self.odometry.end_y, "endDirection": self.odometry.end_dir, "pathStatus": self.odometry.path_status}})
+        else:
+            self.first_time_ready = not self.first_time_ready
+            pass
 
 
-    def send_path_select(self, start_x, start_y, start_dir):
-        self.send_message("planet/{}/025".format(database.planet_name), {"from": "client", "type": "pathSelect", "payload":{"startX": start_x, "startY": start_y, "startDirection": start_dir}})
+    def send_path_select(self):
+        self.send_message("planet/{}/025".format(self.planet_name), {"from": "client", "type": "pathSelect", "payload":{"startX": self.odometry.start_x, "startY": self.odometry.start_y, "startDirection": self.planet.select_direction((self.odometry.start_x, self.odometry.start_y), self.planet.target)}})
+        
 
 
     def send_target_reached(self):
@@ -182,19 +209,6 @@ class Communication:
 
     def send_exploration_completed(self):
         self.send_message("explorer/025", {"from": "client", "type": "explorationCompleted", "payload":{"message": "Exploration completed!"}})
-
-
-    # Initiated in main; starts all functions once
-    def communication_phase(self):
-        self.send_ready()
-        
-        self.send_test_planet(database.planet_name)
-
-        self.send_exploration_completed()
-
-        self.send_target_reached()
-
-        self.send_path_select(1, 1, 0)
 
 
     # DO NOT EDIT THE METHOD SIGNATURE OR BODY
