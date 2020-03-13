@@ -6,13 +6,6 @@ import uuid
 import os
 import paho.mqtt.client as mqtt
 import ev3dev.ev3 as ev3
-
-import time
-from communication import Communication
-from odometry import Odometry
-from planet import Direction, Planet
-
-
 from time import sleep
 
 # Import src modules
