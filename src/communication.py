@@ -66,15 +66,15 @@ class Communication:
             # Function for differentiating all possible messages
             self.message_type_scan()
 
-            # Prints the message
-            print(json.dumps(self.payload, indent=2))
-
             # Checks whether or not an answer has been received
             if self.payload["from"] == "server" or self.payload["from"] == "debug":
                 self.answered = True
         
             # Writes down the time since the last message has been sent/received
             self.time_offset = int(time())
+
+        # Prints the message
+        print(json.dumps(self.payload, indent=2))
       
 
     # DO NOT EDIT THE METHOD SIGNATURE
@@ -147,8 +147,10 @@ class Communication:
             self.odometry.end_y = self.payload["payload"]["endY"]
             self.odometry.end_dir = self.payload["payload"]["endDirection"]
 
+            self.planet.vertex_explored(((self.payload["payload"]["startX"], self.payload["payload"]["startY"]), self.payload["payload"]["startDirection"]), (self.planet.target, self.payload["payload"]["endDirection"]))
             self.planet.add_vertex((self.payload["payload"]["endX"], self.payload["payload"]["endY"]), self.odometry.directions)
             self.planet.add_path((self.odometry.start_x, self.odometry.start_y), (self.odometry.end_x, self.odometry.end_y), -1)
+            self.planet.vertex_explored(((self.payload["payload"]["startX"], self.payload["payload"]["startY"]), self.payload["payload"]["startDirection"]), (self.planet.target, self.payload["payload"]["endDirection"]))
             self.odometry.path_status="free"
         
         elif self.payload["type"] == "pathSelect":
@@ -186,7 +188,11 @@ class Communication:
 
 
     def send_test_planet(self):
-        self.send_message("explorer/025", {"from": "client", "type": "testplanet", "payload": {"planetName": "Examinator-A-1337r"}})
+        # If no data has been set, don't call function
+        if not self.first_time_ready:
+            self.send_message("explorer/025", {"from": "client", "type": "testplanet", "payload": {"planetName": "Examinator-A-1337r"}})
+        else:
+            pass
 
 
     def send_path(self):

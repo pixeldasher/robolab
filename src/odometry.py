@@ -26,8 +26,8 @@ class Odometry:
 
         self.a = 8
         self.d = 5.6
-        self.k_p = 92.5
-        self.k_i = 3.25
+        self.k_p = 100
+        self.k_i = 5
         self.k_d = 25
         self.offset = 50
         self.t_p = 150

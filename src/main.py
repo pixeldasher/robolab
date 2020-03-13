@@ -59,8 +59,6 @@ def system_loop():
         
 
         if o.move_smooth():
-            o.turn_around(180)
-            """
             # ... send ready message, only works once
             c.send_ready()
 
@@ -87,7 +85,6 @@ def system_loop():
 
             # ... continue driving
             o.start_driving()
-            """
 
 
 # DO NOT EDIT
