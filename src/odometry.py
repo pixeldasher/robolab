@@ -16,6 +16,7 @@ class Odometry:
         self.us = ev3.UltrasonicSensor()
         self.cs = ev3.ColorSensor()
 
+
         # Define sensor modes
         self.us.mode = 'US-DIST-CM'
         self.cs.mode = 'RGB-RAW'
@@ -94,12 +95,10 @@ class Odometry:
             self.motor_right.command = "stop"
             sleep(1)
             return True
-
         else:
             self.motor_left.command = "run-forever"
             self.motor_right.command = "run-forever"
             return False
-
 
     def turn_around(self, direct: int):
         self.derivative = 0
@@ -117,14 +116,13 @@ class Odometry:
         while counter <= 360:
             counter += 50
             self.turn_around(50)
-
             while True:
                 counter += 5
                 self.turn_around(5)
                 if self.luminance() <= 0.25:
-                    self.directions.add(Direction(round(counter / 90) * 90 % 360))
+                    self.directions.add(Direction(round(counter/90)*90 % 360))
                     break
-
+    # aufpassen dass die Gradzahlen umgerechnet werden (Nicki)
 
     def start_driving(self):
         self.wheel_left = []
