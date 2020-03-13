@@ -173,8 +173,9 @@ class Planet:
                 for i in range(len(shortest_p)):
                     for path_tuple in self.paths:
                         if path_tuple[0][0] == shortest_p[i]:
-                            if i + 1 < len(shortest_p):
-                                if path_tuple[1][0] == shortest_p[i + 1]:
+
+                            if i+1 < len(shortest_p):
+                                if path_tuple[1][0] == shortest_p[i+1]:
                                     output.append((shortest_p[i], path_tuple[0][1]))
 
                 #print("shortest path from: ", start, " to: ", target, "is:", output)
