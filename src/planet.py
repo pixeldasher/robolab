@@ -186,7 +186,7 @@ class Planet:
 
     def select_direction(self, start: Tuple[int, int], target: Union[None, Tuple[int, int]]):
         # zur Sicherheit wird nochmal abgefragt, ob wir nicht bereits auf dem Ziel sitzen:
-        if self.shortest_path(start, target) == []:
+        if start[0] == target[0]:
             return None
 
         #falls wir auf einem Knoten sitzen, der noch nicht komplett explored wurde
@@ -197,10 +197,7 @@ class Planet:
             return int(self.explore_dict[start][0])
 
         else:
-            try:
-                return int((self.shortest_path(start, target))[0][1])
-            except:
-                return 0
+            return int((self.shortest_path(start, target))[0][1])
 
 """
 if __name__ == "__main__":
