@@ -197,11 +197,9 @@ class Planet:
 
     def select_direction(self, start: Tuple[int, int], target: Union[None, Tuple[int, int]]):
         # zur Sicherheit wird nochmal abgefragt, ob wir nicht bereits auf dem Ziel sitzen:
-        print(start)
-
-        print(self.explore_dict)
-        if (not target == None) and (start[0] == target[0]):
-            return None
+        if target is not None:
+            if start[0] == target[0]:
+                return None
 
         #falls wir auf einem Knoten sitzen, der noch nicht komplett explored wurde
         # (also noch unbekannte Pfade von ihm abgehen)
@@ -240,23 +238,4 @@ if __name__ == "__main__":
 
     #pprint.pprint(p.get_paths())
     #p.shortest_path((0, 0), (10, 10))
-
-    
-    p = Planet()
-    
-    p.add_path(((0, 0), Direction.NORTH), ((0, 2), Direction.SOUTH), 2)
-    p.add_path(((0, 2), Direction.EAST), ((1, 2), Direction.WEST), 1)
-    p.add_path(((1, 2), Direction.EAST), ((1, 4), Direction.EAST), 3)
-    p.add_path(((1, 4), Direction.NORTH), ((3, 4), Direction.WEST), 3)
-    p.add_path(((2, 2), Direction.EAST), ((3, 4), Direction.SOUTH), 3)
-    p.add_path(((2, 2), Direction.SOUTH), ((2, 1), Direction.NORTH), 1)
-    p.add_path(((2, 1), Direction.EAST), ((3, 1), Direction.WEST), 1)
-    p.add_path(((1, 2), Direction.SOUTH), ((2, 1), Direction.WEST), 3)
-    p.add_path(((0, 0), Direction.EAST), ((4, 0), Direction.WEST), 4)
-    p.add_path(((4, 0), Direction.NORTH), ((3, 4), Direction.EAST), 4)
-    
-    import pprint
-
-    pprint.pprint(p.get_paths())
-    p.shortest_path((0, 0), (10, 10))
 """
