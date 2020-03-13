@@ -39,10 +39,11 @@ class Planet:
 
     # alle neuen Directions bei Ankunft an einem (neuen) Knoten in explore_dict aufnehmen
     def add_vertex(self, vert: Tuple[int, int], directions: Set[Direction]):
-            # directions ist ein Set (Menge) aller möglichen neuen(!) directions am neuen Knoten
+        # directions ist ein Set (Menge) aller möglichen neuen(!) directions am neuen Knoten
 
-            if vert not in self.explore_dict:
-                self.explore_dict[vert] = directions
+        if vert not in self.explore_dict:
+            self.explore_dict[vert] = directions
+            # print("hallo", self.explore_dict)
 
     def add_path(self, start: Tuple[Tuple[int, int], Direction], target: Tuple[Tuple[int, int], Direction],
                  weight: int):
@@ -60,10 +61,18 @@ class Planet:
         self.paths.add((target, start, weight))
 
 
-    def vertex_explored(self, start: Tuple[Tuple[int, int], Direction], target: Tuple[Tuple[int, int], Direction]):
-        # Entfernen der Directions, die durchs Abfahren dieses Pfades "erkundet" wurden:
-        self.explore_dict[start[0]] = self.explore_dict[start[0]] - {start[1]}
-        self.explore_dict[target[0]] = self.explore_dict[target[0]] - {target[1]}
+    def vertex_explored(self, start: Union[None, Tuple[Tuple[int, int], Direction]], target: Tuple[Tuple[int, int], Direction]):
+        # Entfernen der Directions, die durchs Abfahren dieses Pfades "erkundet" wurden
+
+        # für den ersten Knoten des Planeten ist der Startknoten des "Herkunftspfads" nicht vorhanden, also Start=None
+        if start == None:
+            self.explore_dict[target[0]].remove(target[1])
+            #print("hallo", self.explore_dict)
+
+        # Normalfall: Start- und Zielknoten des "Herkunftspfads" sind vorhanden:
+        else:
+            self.explore_dict[start[0]] = self.explore_dict[start[0]] - {start[1]}
+            self.explore_dict[target[0]] = self.explore_dict[target[0]] - {target[1]}
 
     def get_paths(self) -> Dict[Tuple[int, int], Dict[Direction, Tuple[Tuple[int, int], Direction, Weight]]]:
         """
@@ -188,7 +197,7 @@ class Planet:
 
     def select_direction(self, start: Tuple[int, int], target: Union[None, Tuple[int, int]]):
         # zur Sicherheit wird nochmal abgefragt, ob wir nicht bereits auf dem Ziel sitzen:
-        if self.shortest_path(start, target) == []:
+        if start[0] == target[0]:
             return None
 
         #falls wir auf einem Knoten sitzen, der noch nicht komplett explored wurde
@@ -202,8 +211,32 @@ class Planet:
             return int(self.shortest_path(start, target)[0][1])
 
 
-'''if __name__ == "__main__":
+if __name__ == "__main__":
+    intelligent_planet = Planet()
+
+    intelligent_planet.add_vertex((1, 1), {Direction.SOUTH, Direction.EAST, Direction.NORTH})
+    intelligent_planet.vertex_explored(None, ((1, 1), Direction.SOUTH))
+
+    intelligent_planet.add_vertex((1, 2), {Direction.SOUTH, Direction.EAST})
+    intelligent_planet.add_path(((1, 1), Direction.NORTH), ((1, 2), Direction.SOUTH), 1)
+    intelligent_planet.vertex_explored(((1, 1), Direction.NORTH), ((1, 2), Direction.SOUTH))
+
+    intelligent_planet.add_vertex((2, 1), {Direction.EAST, Direction.WEST})
+    intelligent_planet.add_path(((1, 1), Direction.EAST), ((2, 1), Direction.WEST), 1)
+    intelligent_planet.vertex_explored(((1, 1), Direction.EAST), ((2, 1), Direction.WEST))
+
+    intelligent_planet.add_vertex((2, 3), {Direction.SOUTH, Direction.WEST})
+    intelligent_planet.add_path(((1, 2), Direction.EAST), ((2, 3), Direction.SOUTH), 2)
+    intelligent_planet.vertex_explored(((1, 2), Direction.EAST), ((2, 3), Direction.SOUTH))
+
+    import pprint
+
+    pprint.pprint(p.get_paths())
+    p.shortest_path((0, 0), (10, 10))
+
+    '''
     p = Planet()
+    
     p.add_path(((0, 0), Direction.NORTH), ((0, 2), Direction.SOUTH), 2)
     p.add_path(((0, 2), Direction.EAST), ((1, 2), Direction.WEST), 1)
     p.add_path(((1, 2), Direction.EAST), ((1, 4), Direction.EAST), 3)
@@ -214,8 +247,12 @@ class Planet:
     p.add_path(((1, 2), Direction.SOUTH), ((2, 1), Direction.WEST), 3)
     p.add_path(((0, 0), Direction.EAST), ((4, 0), Direction.WEST), 4)
     p.add_path(((4, 0), Direction.NORTH), ((3, 4), Direction.EAST), 4)
+    
     import pprint
 
     pprint.pprint(p.get_paths())
-    p.shortest_path((0, 0), (10, 10))'''
+    p.shortest_path((0, 0), (10, 10))
+    '''
+
+
 
