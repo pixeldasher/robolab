@@ -1,20 +1,29 @@
 #!/usr/bin/env python3
 
+# Import py modules
 import logging
+import uuid
 import os
 import paho.mqtt.client as mqtt
-import uuid
 import ev3dev.ev3 as ev3
+
 import time
 from communication import Communication
 from odometry import Odometry
 from planet import Direction, Planet
-import database
-odometry = Odometry()
+
+
+from time import sleep
+
+# Import src modules
+from odometry import Odometry
+from communication import Communication
+from planet import Direction, Planet
 
 client = None  # DO NOT EDIT
 
 
+# Initial function for main
 def run():
     # DO NOT CHANGE THESE VARIABLES
     #
@@ -36,55 +45,56 @@ def run():
 
     # THE EXECUTION OF ALL CODE SHALL BE STARTED FROM WITHIN THIS FUNCTION.
     # ADD YOUR OWN IMPLEMENTATION HEREAFTER.
-    # Run the system loop for exploration
 
-    # Setup objects for classes inside modules
-    global p
-    global c
+    # Objects for classes of other modules
+    global p, c, o
     p = Planet()
-    c = Communication(client, logger)
+    o = Odometry()
+    c = Communication(client, logger, p, o)
 
     # Run system loop for exploration
     system_loop()
 
-"""
-# Function to push all the sensor data into the database
-def push_sensor_data():
-    database.color_sensor_red_raw = cs.bin_data("hhh")[0]
-    database.color_sensor_green_raw = cs.bin_data("hhh")[1]
-    database.color_sensor_blue_raw = cs.bin_data("hhh")[2]
-
-    database.color_sensor_red_rgb = cs.bin_data("hhh")[0] / 185
-    database.color_sensor_green_rgb = cs.bin_data("hhh")[1] / 321
-    database.color_sensor_blue_rgb = cs.bin_data("hhh")[2] / 157
-
-    database.ultra_sonic_sensor = us.distance_centimeters
-"""  
-
 
 # System loop for running through all phases
 def system_loop():
-    odometry.start_driving()
+    o.start_driving()
+    
     while True:
+        # Movement function
+        o.while_driving()
+        
 
-        """
-        odometry.colorscan()
-        """
-        odometry.while_driving()
-        if odometry.move_smooth():
-            print("hallo")
-            print(odometry.stop_driving())
-            c.communication_phase()
-            odometry.motor_left.run_to_rel_pos(position_sp=270)
-            odometry.motor_right.run_to_rel_pos(position_sp=270)
-            time.sleep(2)
-            odometry.turn_around(350)
-            odometry.start_driving()
-        else:
-            pass
+        if o.move_smooth():
+            o.turn_around(180)
+            """
+            # ... send ready message, only works once
+            c.send_ready()
 
-        # Samplingrate for system loop ### 1/10 of a second
+            # ... move forward in order to not scan the same station twice
+            o.motor_left.run_to_rel_pos(position_sp=160, speed_sp = 90)
+            o.motor_right.run_to_rel_pos(position_sp=160, speed_sp = 90)
+            sleep(0.01)
+            o.motor_left.wait_until_not_moving()
 
+            # ... get data from odometry and save it
+            o.stop_driving()
+
+            # ... send collected data to mothership
+            c.send_path()
+
+            # ... turn around and check all directions for possible paths
+            o.scan()
+
+            # ... send the best path (chosen inside this function through a function in planet) to mothership
+            c.send_path_select()
+            
+            # ... play a happy tune
+            ev3.Sound.play_song((('D4', 'e3'),( 'D4', 'e3'), ('D4', 'e3'), ('G4', 'h')))
+
+            # ... continue driving
+            o.start_driving()
+            """
 
 # DO NOT EDIT
 if __name__ == '__main__':
