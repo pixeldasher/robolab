@@ -197,15 +197,19 @@ class Planet:
 
     def select_direction(self, start: Tuple[int, int], target: Union[None, Tuple[int, int]]):
         # zur Sicherheit wird nochmal abgefragt, ob wir nicht bereits auf dem Ziel sitzen:
-        if start[0] == target[0]:
-            return None
+        if target is not None:
+            if start[0] == target[0]:
+                return None
 
         #falls wir auf einem Knoten sitzen, der noch nicht komplett explored wurde
         # (also noch unbekannte Pfade von ihm abgehen)
 
         elif start in self.explore_dict:
             # dann wählen wir das erste Element aus der Menge aller nicht erkundeten Pfade (konkreter: Directions)
-            return int(self.explore_dict[start][0])
+            temp: Direction
+            for d in self.explore_dict[start]:
+                temp = d
+            return temp
 
         else:
             return int(self.shortest_path(start, target)[0][1])
