@@ -27,11 +27,11 @@ class Odometry:
 
         self.a = 8
         self.d = 5.6
-        self.k_p = 100
-        self.k_i = 5
-        self.k_d = 25
+        self.k_p = 112.5
+        self.k_i = 425
+        self.k_d = 36.25
         self.offset = 50
-        self.t_p = 150
+        self.t_p = 102.5
         self.integral = 0
         self.derivative = 0
         self.lasterror = 0
@@ -66,8 +66,8 @@ class Odometry:
         error = lightvalue - self.offset
         self.integral = self.integral + error
         self.derivative = error - self.lasterror
-        turn = (self.k_p * error) + (self.k_i * self.integral) + (self.k_d * self.derivative)
-        turn = turn / 92.5
+        turn = (self.k_p * error) + (self.k_i/100 * self.integral) + (self.k_d * self.derivative)
+        turn = turn / 97.5
         power_motor_left = (self.t_p + turn)
         power_motor_right = (self.t_p - turn)
         self.lasterror = error
