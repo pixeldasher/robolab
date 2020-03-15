@@ -34,7 +34,8 @@ class Planet:
         """ Initializes the data structure """
         self.target = None
         self.paths = set()
-        self.planet_dict: Dict[Tuple[int, int], Dict[Direction, Tuple[Tuple[int, int], Direction, Weight]]] = {}
+        self.planet_dict: Dict[Tuple[int, int], Dict[Direction,
+                                                     Tuple[Tuple[int, int], Direction, Weight]]] = {}
         self.explore_dict: Dict[Tuple[int, int], Set[Direction]] = {}
 
     # alle neuen Directions bei Ankunft an einem (neuen) Knoten in explore_dict aufnehmen
@@ -60,7 +61,6 @@ class Planet:
         self.paths.add((start, target, weight))
         self.paths.add((target, start, weight))
 
-
     def vertex_explored(self, start: Union[None, Tuple[Tuple[int, int], Direction]], target: Tuple[Tuple[int, int], Direction]):
         # Entfernen der Directions, die durchs Abfahren dieses Pfades "erkundet" wurden
 
@@ -71,8 +71,10 @@ class Planet:
 
         # Normalfall: Start- und Zielknoten des "Herkunftspfads" sind vorhanden:
         else:
-            self.explore_dict[start[0]] = self.explore_dict[start[0]] - {start[1]}
-            self.explore_dict[target[0]] = self.explore_dict[target[0]] - {target[1]}
+            self.explore_dict[start[0]
+                              ] = self.explore_dict[start[0]] - {start[1]}
+            self.explore_dict[target[0]
+                              ] = self.explore_dict[target[0]] - {target[1]}
 
     def get_paths(self) -> Dict[Tuple[int, int], Dict[Direction, Tuple[Tuple[int, int], Direction, Weight]]]:
         """
@@ -97,7 +99,8 @@ class Planet:
             if not path_tuple[0][0] in self.planet_dict:
                 path_dict = {}
                 self.planet_dict[path_tuple[0][0]] = path_dict
-            self.planet_dict[path_tuple[0][0]][path_tuple[0][1]] = (path_tuple[1][0], path_tuple[1][1], path_tuple[2])
+            self.planet_dict[path_tuple[0][0]][path_tuple[0][1]] = (
+                path_tuple[1][0], path_tuple[1][1], path_tuple[2])
 
         return self.planet_dict
 
@@ -141,18 +144,22 @@ class Planet:
             to_do.remove(u)
 
             # alle relevanten Nachbaren v von u finden:
-            for path_tuple in self.paths:  # alle Pfade (alle path_tuples, die im paths-set enthalten sind)
+            # alle Pfade (alle path_tuples, die im paths-set enthalten sind)
+            for path_tuple in self.paths:
                 if path_tuple[0][0] == u:  # nur die Pfade, dessen Startknoten u entspricht
 
-                    if not path_tuple[2] == -1: # Pfade mit weight -1 sind irrelevant, da diese Sackgassen sind
+                    # Pfade mit weight -1 sind irrelevant, da diese Sackgassen sind
+                    if not path_tuple[2] == -1:
 
                         v = path_tuple[1][0]
-                        if v in to_do:  # falls diese Nachbarn noch zu scannen sind (also noch Element der Liste to_do sind)
+                        # falls diese Nachbarn noch zu scannen sind (also noch Element der Liste to_do sind)
+                        if v in to_do:
 
                             # Berechnung und Vergleich des Alternativwegs: neuer Distanzwert durch Berücksichtigung der jeweiligen Kante zwischen u und v (path_tuple[2])
                             altern = dist[u] + path_tuple[2]
 
-                            if altern < dist[v]:  # falls Alterativweg kürzer ist, als bisheriger, wird Vorgänger von v auf u gesetzt und die Distanz zu v auf altern gesetzt
+                            # falls Alterativweg kürzer ist, als bisheriger, wird Vorgänger von v auf u gesetzt und die Distanz zu v auf altern gesetzt
+                            if altern < dist[v]:
                                 dist[v] = altern
                                 prev[v] = u
 
@@ -186,7 +193,8 @@ class Planet:
                         if path_tuple[0][0] == shortest_p[i]:
                             if i + 1 < len(shortest_p):
                                 if path_tuple[1][0] == shortest_p[i + 1]:
-                                    output.append((shortest_p[i], path_tuple[0][1]))
+                                    output.append(
+                                        (shortest_p[i], path_tuple[0][1]))
 
                 # print("shortest path from: ", start, " to: ", target, "is:", output)
                 return output
@@ -201,7 +209,7 @@ class Planet:
             if start[0] == target[0]:
                 return None
 
-        #falls wir auf einem Knoten sitzen, der noch nicht komplett explored wurde
+        # falls wir auf einem Knoten sitzen, der noch nicht komplett explored wurde
         # (also noch unbekannte Pfade von ihm abgehen)
 
         elif start in self.explore_dict:
