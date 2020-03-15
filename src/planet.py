@@ -92,14 +92,13 @@ class Planet:
         print("set1")
         print("expl_dict:", self.explore_dict)
         for path_tuple in self.paths:
-            print("set2, path_tuple[0][1]:", path_tuple[0][1])
+            print("set2, path_tuple[0][1]:", path_tuple[0][0])
             if path_tuple[0][0] in self.explore_dict:
-                print("set3:", path_tuple[0][1])
-                if not self.explore_dict[path_tuple[0][1]]:
-                    for dir in self.explore_dict[path_tuple[0][1]]:
-                        print("delete:", dir)
-                        self.explore_dict[path_tuple[0][1]] - {dir}
-                        print("explore_dict geändert", self.explore_dict)
+                print("set3:", path_tuple[0][0])
+                if self.explore_dict[path_tuple[0][0]]:
+                    print("remove:", path_tuple[0][1])
+                    self.explore_dict[path_tuple[0][0]] = self.explore_dict[path_tuple[0][0]] - {path_tuple[0][1]}
+                    print("explore_dict geändert", self.explore_dict)
 
     def get_paths(self) -> Dict[Tuple[int, int], Dict[Direction, Tuple[Tuple[int, int], Direction, Weight]]]:
         """
