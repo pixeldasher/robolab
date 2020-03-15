@@ -65,7 +65,7 @@ class Odometry:
 
     def correct_dir(self):
         turn_to = ((-(self.dest_d + 180) % 360) + self.next_d) % 360
-        print(self.dest_d, self.next_d, turn_to)[]
+        print(self.dest_d, self.next_d, turn_to)
         self.turn_around(turn_to)
         self.curr_d = self.next_d
 
@@ -165,7 +165,7 @@ class Odometry:
             if self.luminance() <= 0.33:
                 self.directions.add(Direction(
                     (self.dest_d + 180 + round((self.d / self.a * self.motor_left.position)/90)*90) % 360))
-                    
+
 
     def init_mov(self):
         self.wheel_left = []
