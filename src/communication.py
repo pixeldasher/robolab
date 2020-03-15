@@ -15,7 +15,6 @@ class Communication:
     thereby solve the task according to the specifications
     """
 
-
     def __init__(self, mqtt_client, logger, planet, odometry):
         """
         Initializes communication module, connect to server, subscribe, etc.
@@ -26,7 +25,7 @@ class Communication:
         self.client = mqtt_client
         self.client.tls_set(tls_version=ssl.PROTOCOL_TLS)
         self.client.on_message = self.safe_on_message_handler
-        
+
         # Setup for client/server communication; Uses given username, password and channel data
         self.client.username_pw_set('025', password='4NpQpEEVS7')
         self.client.connect('mothership.inf.tu-dresden.de', port=8883)
@@ -48,8 +47,8 @@ class Communication:
         self.answered = False
         self.time_offset = None
 
-
     # DO NOT EDIT THE METHOD SIGNATURE
+
     def on_message(self, client, data, message):
         """
         Handles the callback if any message arrived
@@ -66,24 +65,23 @@ class Communication:
             # Function for differentiating all possible messages
             self.message_type_scan()
 
-
             # Prints the message
-            print(json.dumps(self.payload, indent=2))
+            #print(json.dumps(self.payload, indent=2))
 
             # Checks whether or not an answer has been received
-            if self.payload["from"] == "server" or self.payload["from"] == "debug":
+            if self.payload["from"] == "server":
                 self.answered = True
-        
+
             # Writes down the time since the last message has been sent/received
             self.time_offset = int(time())
-
-      
+        
+        print(json.dumps(self.payload, indent=2))
 
     # DO NOT EDIT THE METHOD SIGNATURE
     #
     # In order to keep the logging working you must provide a topic string and
     # an already encoded JSON-Object as message.
-    
+
     def send_message(self, topic, message):
         """
         Sends given message to specified channel
@@ -105,15 +103,15 @@ class Communication:
             if self.answered:
                 self.answered = False
                 break
-            
+
             # If last message has been sent/received longer than three seconds ago, continue...
             elif int(time()) - self.time_offset >= 3:
                 break
-            
+
             # Wait until either one of the conditions is met
             else:
                 pass
-            
+
 #####################################################################################
 
     # Define all unique receivable message types for easier usage;
@@ -123,15 +121,15 @@ class Communication:
             self.planet_name = self.payload["payload"]["planetName"]
 
             # changes start coords and direction
-            self.odometry.start_x = self.payload["payload"]["startX"]
-            self.odometry.start_y = self.payload["payload"]["startY"]
-            self.odometry.start_dir = self.payload["payload"]["startOrientation"]
+            self.odometry.curr_x = self.payload["payload"]["startX"]
+            self.odometry.curr_y = self.payload["payload"]["startY"]
+            self.odometry.curr_d = self.payload["payload"]["startOrientation"]
 
             # add the point to planet database
             self.planet.add_vertex((self.payload["payload"]["startX"], self.payload["payload"]["startY"]), self.odometry.directions)
 
             # add the path to planet database
-            self.planet.vertex_explored(None, ((self.payload["payload"]["startX"], self.payload["payload"]["startY"]), (self.payload["payload"]["startOrientation"] + 180) % 360))
+            self.planet.vertex_explored(None, ((self.payload["payload"]["startX"], self.payload["payload"]["startY"]), (self.payload["payload"]["startOrientation"] - 180) % 360))
 
             # Subscribe to the planets channel in order to receive the messages sent on it
             self.client.subscribe("planet/{}/025".format(self.planet_name), qos=1)
@@ -139,14 +137,14 @@ class Communication:
         # If received message is of type "path", update all saved coords with the received counterparts
         elif self.payload["type"] == "path":
             # changes start coords and direction
-            self.odometry.start_x = self.payload["payload"]["startX"]
-            self.odometry.start_y = self.payload["payload"]["startY"]
-            self.odometry.start_dir = self.payload["payload"]["startDirection"]
+            self.odometry.curr_x = self.payload["payload"]["startX"]
+            self.odometry.curr_y = self.payload["payload"]["startY"]
+            self.odometry.curr_d = self.payload["payload"]["startDirection"]
 
             # changes end coords and direction
-            self.odometry.end_x = self.payload["payload"]["endX"]
-            self.odometry.end_y = self.payload["payload"]["endY"]
-            self.odometry.end_dir = self.payload["payload"]["endDirection"]
+            self.odometry.dest_x = self.payload["payload"]["endX"]
+            self.odometry.dest_y = self.payload["payload"]["endY"]
+            self.odometry.dest_d = (self.payload["payload"]["endDirection"] - 180) % 360
 
             # add the point to planet database
             self.planet.add_vertex((self.payload["payload"]["endX"], self.payload["payload"]["endY"]), self.odometry.directions)
@@ -154,26 +152,26 @@ class Communication:
             # add the path to planet database
             self.planet.add_path(((self.payload["payload"]["startX"], self.payload["payload"]["startY"]), self.payload["payload"]["startDirection"]), ((self.payload["payload"]["endX"], self.payload["payload"]["endY"]), self.payload["payload"]["endDirection"]), self.payload["payload"]["pathWeight"])
 
-            # determine the last path as already explored 
+            # determine the last path as already explored
             self.planet.vertex_explored(((self.payload["payload"]["startX"], self.payload["payload"]["startY"]), self.payload["payload"]["startDirection"]), ((self.payload["payload"]["endX"], self.payload["payload"]["endY"]), self.payload["payload"]["endDirection"]))
 
-            # sets the path status to free as default after it has been set to "blocked" after colliding with an object
-            self.odometry.path_status="free"
-        
+            # sets the path status to free as default after it has been set to "blocked" at collision with an object
+            self.odometry.path_status = "free"
+
         # If message is of type path select, use the given direction as the next direction to move to
         elif self.payload["type"] == "pathSelect":
-            self.odometry.start_dir = (self.odometry.start_dir + 180 - self.payload["payload"]["startDirection"]) % 360
-        
+            self.odometry.next_d = self.payload["payload"]["startDirection"]
+
         # If message is of type path unveiled, add the now given path to the planet's database
         elif self.payload["type"] == "pathUnveiled":
             # take the given data and use them in add path function
             self.planet.add_path(((self.payload["payload"]["startX"], self.payload["payload"]["startY"]), self.payload["payload"]["startDirection"]), ((self.payload["payload"]["endX"], self.payload["payload"]["endY"]), self.payload["payload"]["endDirection"]), self.payload["payload"]["pathWeight"])
-        
+
         # If message is of type target, save the given target as a tuple in the planet's database
         elif self.payload["type"] == "target":
             # create tuple with x and y coordinate
             self.planet.target = (self.payload["payload"]["targetX"], self.payload["payload"]["targetY"])
-        
+
         # If message is of type done, end all exploration
         elif self.payload["type"] == "done":
             print("Done")
@@ -190,24 +188,28 @@ class Communication:
 
     # Send test planet message; determines the current planet that should be used for testing.
     def send_test_planet(self):
-        self.send_message("explorer/025", {"from": "client", "type": "testplanet", "payload": {"planetName": "Examinator-A-1337r"}})
+        self.send_message("explorer/025", {"from": "client", "type": "testplanet", "payload": {"planetName": "Examinator-X-42b"}})
 
     # Send the last followed path line to server; Start = prev. point, End = curr. point
     def send_path(self):
-        self.send_message("planet/{}/025".format(self.planet_name), {"from": "client", "type": "path", "payload": {"startX": self.odometry.start_x, "startY": self.odometry.start_y, "startDirection": self.odometry.start_dir, "endX": self.odometry.end_x, "endY": self.odometry.end_y, "endDirection": self.odometry.end_dir, "pathStatus": self.odometry.path_status}})
+        self.send_message("planet/{}/025".format(self.planet_name), {"from": "client", "type": "path", "payload": {"startX": self.odometry.curr_x, "startY": self.odometry.curr_y, "startDirection": self.odometry.curr_d, "endX": self.odometry.dest_x, "endY": self.odometry.dest_y, "endDirection": self.odometry.dest_d, "pathStatus": self.odometry.path_status}})
 
     # Send the algorithm's selected path to mothership; Could be overwritten by server selection.
     def send_path_select(self):
-        direction = self.planet.select_direction((self.odometry.start_x, self.odometry.start_y), self.planet.target)
-        self.send_message("planet/{}/025".format(self.planet_name), {"from": "client", "type": "pathSelect", "payload":{"startX": self.odometry.start_x, "startY": self.odometry.start_y, "startDirection": direction}})
-        
+        direction = int(self.planet.select_direction((self.odometry.curr_x, self.odometry.curr_y), self.planet.target))
+        self.send_message("planet/{}/025".format(self.planet_name), {"from": "client", "type": "pathSelect", "payload": {"startX": self.odometry.curr_x, "startY": self.odometry.curr_y, "startDirection": direction}})
+        self.odometry.next_d = direction
+
+        if self.odometry.curr_x == self.planet.target[0] and self.odometry.curr_y == self.planet.target[1]:
+            self.send_target_reached()
+
     # Send message to mothership that the given target has been reached; should be initiated by planet module
     def send_target_reached(self):
-        self.send_message("explorer/025", {"from": "client", "type": "targetReached", "payload":{"message": "Target reached!"}})
+        self.send_message("explorer/025", {"from": "client", "type": "targetReached", "payload": {"message": "Target reached!"}})
 
     # Send message to mothership that the exploration has been completed; Target still has to be reached though.
     def send_exploration_completed(self):
-        self.send_message("explorer/025", {"from": "client", "type": "explorationCompleted", "payload":{"message": "Exploration completed!"}})
+        self.send_message("explorer/025", {"from": "client", "type": "explorationCompleted", "payload": {"message": "Exploration completed!"}})
 
 #####################################################################################
 
