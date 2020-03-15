@@ -145,7 +145,7 @@ def system_loop():
             o.update_coords()
 
             # delete mothership-path-directions
-             p.set_added_paths_expl()
+            p.set_added_paths_expl()
 
             # ... send the best path (chosen inside this function through a function in planet) to mothership
             c.send_path_select()
