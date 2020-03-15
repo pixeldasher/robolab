@@ -131,9 +131,9 @@ class Odometry:
         self.integral = 0
         self.error = 0
         self.motor_left.run_to_rel_pos(
-            position_sp=(direct-45) * self.a / self.d, speed_sp=150, stop_action="hold")
+            position_sp=(direct-22.5) * self.a / self.d, speed_sp=150, stop_action="hold")
         self.motor_right.run_to_rel_pos(
-            position_sp=-(direct-45) * self.a / self.d, speed_sp=-150, stop_action="hold")
+            position_sp=-(direct-22.5) * self.a / self.d, speed_sp=-150, stop_action="hold")
 
         while 'running' in (self.motor_left.state + self.motor_right.state):
             sleep(0.1)
@@ -144,6 +144,8 @@ class Odometry:
             self.motor_right.run_to_rel_pos(
                 position_sp=-(60) * self.a / self.d, speed_sp=-150, stop_action="hold")
             if self.luminance() <= 0.33:
+                self.motor_left.speed_sp = 0
+                self.motor_right.speed_sp = 0
                 self.motor_left.stop()
                 self.motor_right.stop()
                 break
@@ -155,16 +157,20 @@ class Odometry:
         self.directions = set()
         self.motor_left.reset()
         self.motor_right.reset()
-
         self.motor_left.run_to_rel_pos(
-            position_sp=360 * self.a / self.d, speed_sp=150, stop_action="brake")
+            position_sp=360 * self.a / self.d, speed_sp=150, stop_action="hold")
         self.motor_right.run_to_rel_pos(
-            position_sp=-360 * self.a / self.d, speed_sp=-150, stop_action="brake")
+            position_sp=-360 * self.a / self.d, speed_sp=-150, stop_action="hold")
 
         while 'running' in (self.motor_left.state + self.motor_right.state):
             if self.luminance() <= 0.33:
                 self.directions.add(Direction(
                     (self.dest_d + 180 + round((self.d / self.a * self.motor_left.position)/90)*90) % 360))
+        self.motor_left.run_to_abs_pos(position_sp=0,speed_sp=150,stop_action="hold")
+        self.motor_right.run_to_abs_pos(position_sp=0,speed_sp=150,stop_action="hold")
+        sleep(0.01)
+        self.motor_left.wait_until_not_moving()
+        self.motor_right.wait_until_not_moving()
 
 
     def init_mov(self):
