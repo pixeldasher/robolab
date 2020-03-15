@@ -130,8 +130,12 @@ def system_loop():
             if (o.dest_x, o.dest_y) not in p.explore_dict:
                 o.scan()
 
+            print("scanned odometry:", o.directions, "\n\n")
+
             # add the point to planet database
             p.add_vertex((o.dest_x, o.dest_y), o.directions)
+
+            print("explore_dict 1:", p.explore_dict, "\n")
 
             # add the path to planet database
             p.add_path(((o.curr_x, o.curr_y), o.curr_d),
@@ -140,6 +144,8 @@ def system_loop():
             # set the last path as already explored
             p.vertex_explored(((o.curr_x, o.curr_y), o.curr_d),
                               ((o.dest_x, o.dest_y), o.dest_d))
+
+            print("explore_dict 2:", p.explore_dict, "\n")
 
             # ... update coords
             o.update_coords()
@@ -166,7 +172,8 @@ def system_loop():
 
 #####################################################################################
 
-
 # DO NOT EDIT
 if __name__ == '__main__':
     run()
+
+#####################################################################################

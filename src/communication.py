@@ -174,6 +174,8 @@ class Communication:
             self.planet.target = (
                 self.payload["payload"]["targetX"], self.payload["payload"]["targetY"])
 
+            print("target received:", self.planet.target, "\n")
+
         # If message is of type done, end all exploration
         elif self.payload["type"] == "done":
             print("Done")

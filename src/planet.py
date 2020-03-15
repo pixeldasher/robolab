@@ -89,16 +89,16 @@ class Planet:
 
     # Directions der durch Mutterschiff hinzugefügten Pfade werden aus explore_dict herausgelöscht: 
     def set_added_paths_expl(self):
-        print("set1")
-        print("expl_dict:", self.explore_dict)
+        #print("set1")
+        #print("expl_dict:", self.explore_dict)
         for path_tuple in self.paths:
-            print("set2, path_tuple[0][1]:", path_tuple[0][0])
+            #print("set2, path_tuple[0][1]:", path_tuple[0][0])
             if path_tuple[0][0] in self.explore_dict:
-                print("set3:", path_tuple[0][0])
+                #print("set3:", path_tuple[0][0])
                 if self.explore_dict[path_tuple[0][0]]:
-                    print("remove:", path_tuple[0][1])
+                    #print("remove:", path_tuple[0][1])
                     self.explore_dict[path_tuple[0][0]] = self.explore_dict[path_tuple[0][0]] - {path_tuple[0][1]}
-                    print("explore_dict geändert", self.explore_dict)
+                    #print("explore_dict geändert", self.explore_dict)
 
     def get_paths(self) -> Dict[Tuple[int, int], Dict[Direction, Tuple[Tuple[int, int], Direction, Weight]]]:
         """
