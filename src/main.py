@@ -51,7 +51,7 @@ def run():
     p.explore_dict = {}
 
     # send test planet message
-    #c.send_test_planet()
+    # c.send_test_planet()
 
     # Reset wheels
     o.init_mov()
@@ -66,16 +66,22 @@ def run():
             o.correct_pos()
             break
 
-    # ... scan for possible paths
-    o.scan()
-    
-    print(o.directions)
-
     # ... send ready message to mothership
     c.send_ready()
 
+    # ... scan for possible paths
+    o.scan()
+
+    # add the point to planet database
+    p.add_vertex((o.dest_x, o.dest_y), o.directions)
+
+    # add the path to planet database
+    p.vertex_explored(None, ((o.dest_x, o.dest_y), o.dest_d))
+
+    # ... update coords function
+    o.update_coords()
+
     # ... send the best path (chosen inside this function through a function in planet) to mothership
-    print("vor pathselect:", p.explore_dict)
     c.send_path_select()
 
     # ... wait until last message is atleast 3 seconds old
@@ -116,28 +122,36 @@ def system_loop():
             # ... send collected data to mothership
             c.send_path()
 
+            # ... scan the possible paths around the station point the robot is standing on
+            o.scan()
+
+            # add the point to planet database
+            p.add_vertex((o.dest_x, o.dest_y), o.directions)
+
+            # add the path to planet database
+            p.add_path(((o.curr_x, o.curr_y), o.curr_d),
+                       ((o.dest_x, o.dest_y), o.dest_d), o.path_weight)
+
+            # set the last path as already explored
+            p.vertex_explored(((o.curr_x, o.curr_y), o.curr_d),
+                              ((o.dest_x, o.dest_y), o.dest_d))
+
             # ... update coords
             o.update_coords()
 
-            # ... check if station point is already registered and if not: turn around and check all directions for possible paths
-            #if (o.curr_x, o.curr_y) not in p.explore_dict:
-            o.scan()
-            #    print(o.directions)
-
             # ... send the best path (chosen inside this function through a function in planet) to mothership
-            print(p.explore_dict)
             c.send_path_select()
 
             # ... wait until last message is atleast 3 seconds old
             while (time() - c.time_offset < 3):
                 pass
 
-            # ... turn to the direction the algorithm or mothership has given the robot
-            o.correct_dir()
-            
-            # ... play a happy tune
+            # ... play a happy tune after the communication phase ended
             ev3.Sound.play_song(
                 (('D4', 'e3'), ('D4', 'e3'), ('D4', 'e3'), ('G4', 'h')))
+
+            # ... turn to the direction the algorithm or mothership has given the robot
+            o.correct_dir()
 
             # ... continue driving
             o.init_mov()

@@ -44,7 +44,7 @@ class Planet:
 
         if vert not in self.explore_dict:
             self.explore_dict[vert] = directions
-            # print("hallo", self.explore_dict)
+            print("added:", self.explore_dict)
 
     def add_path(self, start: Tuple[Tuple[int, int], Direction], target: Tuple[Tuple[int, int], Direction],
                  weight: int):
@@ -71,10 +71,12 @@ class Planet:
 
         # Normalfall: Start- und Zielknoten des "Herkunftspfads" sind vorhanden:
         else:
-            self.explore_dict[start[0]
-                              ] = self.explore_dict[start[0]] - {start[1]}
-            self.explore_dict[target[0]
-                              ] = self.explore_dict[target[0]] - {target[1]}
+            if start[0] in self.explore_dict:
+                self.explore_dict[start[0]
+                                  ] = self.explore_dict[start[0]] - {start[1]}
+            if target[0] in self.explore_dict:
+                self.explore_dict[target[0]
+                                  ] = self.explore_dict[target[0]] - {target[1]}
 
     def get_paths(self) -> Dict[Tuple[int, int], Dict[Direction, Tuple[Tuple[int, int], Direction, Weight]]]:
         """
@@ -205,22 +207,22 @@ class Planet:
 
     def select_direction(self, start: Tuple[int, int], target: Union[None, Tuple[int, int]]):
         # zur Sicherheit wird nochmal abgefragt, ob wir nicht bereits auf dem Ziel sitzen:
-        if target is not None:
-            if start[0] == target[0]:
-                return None
+        # if target is not None:
+        #    if start[0] == target[0]:
+        #        return None
 
         # falls wir auf einem Knoten sitzen, der noch nicht komplett explored wurde
         # (also noch unbekannte Pfade von ihm abgehen)
 
-        elif start in self.explore_dict:
-            # dann wählen wir das erste Element aus der Menge aller nicht erkundeten Pfade (konkreter: Directions)
-            temp: Direction
-            for d in self.explore_dict[start]:
-                temp = d
-            return temp
+        if start in self.explore_dict:
+            if self.explore_dict[start]:
+                # dann wählen wir das erste Element aus der Menge aller nicht erkundeten Pfade (konkreter: Directions)
+                temp: Direction
+                for d in self.explore_dict[start]:
+                    temp = d
+                return temp
 
-        else:
-            return int(self.shortest_path(start, target)[0][1])
+        return int(self.shortest_path(start, target)[0][1])
 
 
 """

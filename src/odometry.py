@@ -3,7 +3,7 @@
 # Attention: Do not import the ev3dev.ev3 module in this file
 import ev3dev.ev3 as ev3
 from time import sleep
-from math import sin, cos, pi, degrees
+from math import sin, cos, pi, degrees, radians
 from planet import Direction
 
 
@@ -39,6 +39,7 @@ class Odometry:
 
         self.directions = set()
         self.path_status = "free"
+        self.path_weight = 0
 
         self.curr_x = 0
         self.curr_y = 0
@@ -59,9 +60,13 @@ class Odometry:
         self.dest_x = 0
         self.dest_y = 0
 
+        # sets the path status to free as default after it has been set to "blocked" at collision with an object
+        self.path_status = "free"
+
     def correct_dir(self):
-        turn_to = (((-self.curr_d) % 360) + self.next_d) % 360
-        self.turn_around(turn_to - 12.5)
+        turn_to = ((-(self.dest_d + 180) % 360) + self.next_d) % 360
+        print(self.dest_d, self.next_d, turn_to)[]
+        self.turn_around(turn_to)
         self.curr_d = self.next_d
 
     def correct_pos(self):
@@ -85,8 +90,7 @@ class Odometry:
         error = lightvalue - self.offset
         self.integral = self.integral + error
         self.derivative = error - self.lasterror
-        turn = (self.k_p * error) + (self.k_i/100 * self.integral) + \
-            (self.k_d * self.derivative)
+        turn = (self.k_p * error) + (self.k_i/100 * self.integral) + (self.k_d * self.derivative)
         turn = turn / 97.5
         power_motor_left = (self.t_p + turn)
         power_motor_right = (self.t_p - turn)
@@ -127,52 +131,47 @@ class Odometry:
         self.integral = 0
         self.error = 0
         self.motor_left.run_to_rel_pos(
-            position_sp=direct * self.a / self.d, speed_sp=150, stop_action="brake")
+            position_sp=(direct-45) * self.a / self.d, speed_sp=150, stop_action="hold")
         self.motor_right.run_to_rel_pos(
-            position_sp=-direct * self.a / self.d, speed_sp=-150, stop_action="brake")
+            position_sp=-(direct-45) * self.a / self.d, speed_sp=-150, stop_action="hold")
 
         while 'running' in (self.motor_left.state + self.motor_right.state):
             sleep(0.1)
 
-    # Scans the robots surroundings for possible paths
-    
-    def scan(self):
-        self.directions = set()
-        counter = 0
-        while counter <= 360:
-            counter += 60
-            self.turn_around(60)
-            i = 0
-            while i <= 45:
-                counter += 3
-                i += 3
-                self.turn_around(3)
-                if self.luminance() <= 0.33:
-                    self.directions.add(Direction((self.curr_d + round((counter % 360)/90)*90) % 360))
-                    print(counter)
-                    print(self.directions)
-                    break
-    """
-    def scan(self):
-        self.directions = set()
-        counter = 0
-
-        while counter < 360:
-            counter += 1
-            self.motor_left.run_to_rel_pos(position_sp=1.5 * self.a / self.d, speed_sp=150)
-            self.motor_right.run_to_rel_pos(position_sp=-1.5 * self.a / self.d, speed_sp=-150)
-
+        while True:
+            self.motor_left.run_to_rel_pos(
+                position_sp=(60) * self.a / self.d, speed_sp=150, stop_action="hold")
+            self.motor_right.run_to_rel_pos(
+                position_sp=-(60) * self.a / self.d, speed_sp=-150, stop_action="hold")
             if self.luminance() <= 0.33:
-                self.directions.add(Direction(self.curr_d + round((counter % 360)/90)*90 % 360))
-    """
+                self.motor_left.stop()
+                self.motor_right.stop()
+                break
 
+    # Scans the robots surroundings for possible paths
+
+    def scan(self):
+
+        self.directions = set()
+        self.motor_left.reset()
+        self.motor_right.reset()
+
+        self.motor_left.run_to_rel_pos(
+            position_sp=360 * self.a / self.d, speed_sp=150, stop_action="brake")
+        self.motor_right.run_to_rel_pos(
+            position_sp=-360 * self.a / self.d, speed_sp=-150, stop_action="brake")
+
+        while 'running' in (self.motor_left.state + self.motor_right.state):
+            if self.luminance() <= 0.33:
+                self.directions.add(Direction(
+                    (self.dest_d + 180 + round((self.d / self.a * self.motor_left.position)/90)*90) % 360))
+                    
 
     def init_mov(self):
         self.wheel_left = []
         self.wheel_right = []
         self.motor_right.reset()
         self.motor_left.reset()
-
 
     def while_driving(self):
         motor_left_value = (self.motor_left.position / 360)
@@ -181,11 +180,10 @@ class Odometry:
         self.wheel_right.append(motor_right_value)
         sleep(0.1)
 
-
     def save_data(self):
         x = 0
         y = 0
-        gamma = 0
+        gamma = -radians(self.curr_d)
 
         for i in range(1, len(self.wheel_left)):
             distance_left = (
@@ -199,12 +197,12 @@ class Odometry:
                 s = distance_left
             else:
                 s = ((distance_right + distance_left) / alpha) * sin(beta)
-            deltay = - sin(gamma + beta) * s
-            deltax = cos(gamma + beta) * s
+            deltax = - sin(gamma + beta) * s
+            deltay = cos(gamma + beta) * s
             gamma = gamma + alpha
             x = deltax + x
-            y = -deltay + y
+            y = deltay + y
 
         self.dest_x = self.curr_x + round(x / 50)
         self.dest_y = self.curr_y + round(y / 50)
-        self.dest_d = (self.curr_d + 180 - (round(degrees(gamma)/90) % 4)*90) % 360
+        self.dest_d = (180 - (round(degrees(gamma)/90) % 4)*90) % 360
