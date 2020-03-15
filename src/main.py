@@ -70,7 +70,8 @@ def run():
     c.send_ready()
 
     # ... scan for possible paths
-    o.scan()
+    if (o.dest_x, o.dest_y) not in p.explore_dict:
+        o.scan()
 
     # add the point to planet database
     p.add_vertex((o.dest_x, o.dest_y), o.directions)
@@ -80,6 +81,9 @@ def run():
 
     # ... update coords function
     o.update_coords()
+
+    # delete mothership-path-directions
+    p.set_added_paths_expl()
 
     # ... send the best path (chosen inside this function through a function in planet) to mothership
     c.send_path_select()
@@ -123,7 +127,8 @@ def system_loop():
             c.send_path()
 
             # ... scan the possible paths around the station point the robot is standing on
-            o.scan()
+            if (o.dest_x, o.dest_y) not in p.explore_dict:
+                o.scan()
 
             # add the point to planet database
             p.add_vertex((o.dest_x, o.dest_y), o.directions)
@@ -138,6 +143,9 @@ def system_loop():
 
             # ... update coords
             o.update_coords()
+
+            # delete mothership-path-directions
+             p.set_added_paths_expl()
 
             # ... send the best path (chosen inside this function through a function in planet) to mothership
             c.send_path_select()

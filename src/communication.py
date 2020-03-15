@@ -152,18 +152,21 @@ class Communication:
         # If message is of type path unveiled, add the now given path to the planet's database
         elif self.payload["type"] == "pathUnveiled":
             # take the given data and use them in add path function
-            self.planet.vertex_explored(
-                ((self.payload["payload"]["startX"], self.payload["payload"]["startY"]), 
-                    self.payload["payload"]["startDirection"]), 
-                ((self.payload["payload"]["endX"], self.payload["payload"]["endY"]), 
-                    self.payload["payload"]["endDirection"]))
-                    
+            print("pathUnveiled/n/n/n/n/n/n/n/n/n/n/n/n/n")
             self.planet.add_path(
                 ((self.payload["payload"]["startX"], self.payload["payload"]["startY"]),
                     self.payload["payload"]["startDirection"]),
                 ((self.payload["payload"]["endX"], self.payload["payload"]["endY"]),
                     self.payload["payload"]["endDirection"]),
                     self.payload["payload"]["pathWeight"])
+
+            """
+            self.planet.vertex_explored(
+                ((self.payload["payload"]["startX"], self.payload["payload"]["startY"]), 
+                    self.payload["payload"]["startDirection"]), 
+                ((self.payload["payload"]["endX"], self.payload["payload"]["endY"]), 
+                    self.payload["payload"]["endDirection"]))
+            """
 
         # If message is of type target, save the given target as a tuple in the planet's database
         elif self.payload["type"] == "target":

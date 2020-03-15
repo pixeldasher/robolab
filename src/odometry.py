@@ -140,9 +140,9 @@ class Odometry:
 
         while True:
             self.motor_left.run_to_rel_pos(
-                position_sp=(60) * self.a / self.d, speed_sp=150, stop_action="hold")
+                position_sp=(60) * self.a / self.d, speed_sp=50, stop_action="hold")
             self.motor_right.run_to_rel_pos(
-                position_sp=-(60) * self.a / self.d, speed_sp=-150, stop_action="hold")
+                position_sp=-(60) * self.a / self.d, speed_sp=-50, stop_action="hold")
             if self.luminance() <= 0.33:
                 self.motor_left.speed_sp = 0
                 self.motor_right.speed_sp = 0
