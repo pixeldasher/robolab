@@ -41,6 +41,8 @@ class Planet:
     # alle neuen Directions bei Ankunft an einem (neuen) Knoten in explore_dict aufnehmen
     def add_vertex(self, vert: Tuple[int, int], directions: Set[Direction]):
         # directions ist ein Set (Menge) aller möglichen neuen(!) directions am neuen Knoten
+        directions = {Direction(d) for d in directions}
+        print("add_vertex(", vert,",", directions, ")")
 
         if vert not in self.explore_dict:
             self.explore_dict[vert] = directions
@@ -58,12 +60,19 @@ class Planet:
         :param weight: Integer
         :return: void
         """
+
+        target = (target[0],Direction(target[1]))
+        start = (start[0],Direction(start[1]))
+        print("add_path(", start,",", target,",", weight, ")")
+
         self.paths.add((start, target, weight))
         self.paths.add((target, start, weight))
 
     def vertex_explored(self, start: Union[None, Tuple[Tuple[int, int], Direction]], target: Tuple[Tuple[int, int], Direction]):
         # Entfernen der Directions, die durchs Abfahren dieses Pfades "erkundet" wurden
-
+        target = target and (target[0],Direction(target[1]))
+        start = start and (start[0],Direction(start[1]))
+        print("vertex_explored(", start,",", target, ")")
         # für den ersten Knoten des Planeten ist der Startknoten des "Herkunftspfads" nicht vorhanden, also Start=None
         if start == None:
             self.explore_dict[target[0]].remove(target[1])
@@ -77,6 +86,20 @@ class Planet:
             if target[0] in self.explore_dict:
                 self.explore_dict[target[0]
                                   ] = self.explore_dict[target[0]] - {target[1]}
+
+    # Directions der durch Mutterschiff hinzugefügten Pfade werden aus explore_dict herausgelöscht: 
+    def set_added_paths_expl(self):
+        print("set1")
+        print("expl_dict:", self.explore_dict)
+        for path_tuple in self.paths:
+            print("set2, path_tuple[0][1]:", path_tuple[0][1])
+            if path_tuple[0][0] in self.explore_dict:
+                print("set3:", path_tuple[0][1])
+                if not self.explore_dict[path_tuple[0][1]]:
+                    for dir in self.explore_dict[path_tuple[0][1]]:
+                        print("delete:", dir)
+                        self.explore_dict[path_tuple[0][1]] - {dir}
+                        print("explore_dict geändert", self.explore_dict)
 
     def get_paths(self) -> Dict[Tuple[int, int], Dict[Direction, Tuple[Tuple[int, int], Direction, Weight]]]:
         """
@@ -117,6 +140,8 @@ class Planet:
         :param target: 2-Tuple
         :return: 2-Tuple[List, Direction]
         """
+        
+        print("shortest_path(", start, ",", target, ")")
 
         # wenn Ziel- und Startknoten derselbe sind, wird ein "leerer Weg" zurückgegeben
         if target == start:
@@ -214,12 +239,17 @@ class Planet:
         # falls wir auf einem Knoten sitzen, der noch nicht komplett explored wurde
         # (also noch unbekannte Pfade von ihm abgehen)
 
+        print("select_direction(", start, ",", target, ")")
+        print("Explored Dict:", self.explore_dict)
+
         if start in self.explore_dict:
             if self.explore_dict[start]:
+                print("if value an stelle start existiert:", self.explore_dict[start])
                 # dann wählen wir das erste Element aus der Menge aller nicht erkundeten Pfade (konkreter: Directions)
                 temp: Direction
                 for d in self.explore_dict[start]:
                     temp = d
+                print(temp)
                 return temp
 
         return int(self.shortest_path(start, target)[0][1])
